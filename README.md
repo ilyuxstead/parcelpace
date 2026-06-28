@@ -145,6 +145,6 @@ These are tracked as active design decisions, not bugs:
 
 ---
 
-##📲 Uploading from a phone
+## 📲 Uploading from a phone
 
 Drivers don't need a full git setup. The Codeberg mobile-friendly web UI supports uploading a file directly into `inbox/` from a phone browser — open the repo, navigate to `inbox/`, and use the upload option to add the exported JSON. No app install required.
