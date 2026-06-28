@@ -8,6 +8,7 @@ Dropstats schema:
   "driver_id": str,
   "date": "YYYY-MM-DD",
   "plan": {
+      "route_id": str,
       "planned_stops": int,
       "planned_miles": number,
       "planned_pieces": int,
@@ -61,6 +62,7 @@ REQUIRED_HOUR_FIELDS = {
 }
 
 REQUIRED_PLAN_FIELDS = {
+    "route_id": (str,),
     "planned_stops": (int,),
     "planned_miles": (int, float),
     "planned_pieces": (int,),
@@ -121,6 +123,12 @@ def _validate_plan(plan, result):
             result.add_error("plan missing required field '{}'".format(field))
             continue
         _check_type(plan[field], types, "plan.{}".format(field), result)
+
+    # route_id must be non-blank once a plan exists -- needed to group
+    # same-route days for the trending average. plan:null itself stays a
+    # warning (see above); this only fires when a plan was submitted.
+    if "route_id" in plan and isinstance(plan["route_id"], str) and not plan["route_id"].strip():
+        result.add_error("plan.route_id is present but blank -- a route code is required")
 
     # predicted_finish: allowed to be null, but warn either way.
     if "predicted_finish" not in plan:

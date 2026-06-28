@@ -168,6 +168,7 @@ def build_daily_rollup(date, driver_id, payload, inbox_dir):
     finish_time = hours[last_hour_key].get("entry_time") if last_hour_key else None
 
     predicted_finish = plan.get("predicted_finish") if plan else None
+    route_id = plan.get("route_id") if plan else None
     planned_stops = plan.get("planned_stops") if plan else None
     planned_miles = plan.get("planned_miles") if plan else None
     planned_pieces = plan.get("planned_pieces") if plan else None
@@ -189,6 +190,7 @@ def build_daily_rollup(date, driver_id, payload, inbox_dir):
         "driver_id": driver_id,
         "date": date,
         "plan": {
+            "route_id": route_id,
             "planned_stops": planned_stops,
             "planned_miles": planned_miles,
             "planned_pieces": planned_pieces,
@@ -240,6 +242,41 @@ def _safe_stddev(values):
     return round(statistics.stdev(values), 2)
 
 
+def _build_trend_by_route(daily_rollups):
+    """
+    Group daily rollups by route_id (days with no plan / no route_id are
+    excluded -- there's nothing to group them by) and compute a recent-vs-
+    prior stops_per_mile trend within each route's own date-ordered series.
+
+    Windows are based on "last N days this route was driven", not calendar
+    days -- same-route days are rarely contiguous on the calendar, so a
+    calendar-day window would mix in unrelated routes or skip route days
+    that are further apart than TREND_WINDOW_DAYS.
+    """
+    by_route = {}
+    for r in daily_rollups:
+        route_id = r["plan"]["route_id"] if r["plan"] else None
+        if not route_id:
+            continue
+        by_route.setdefault(route_id, []).append(r)
+
+    trend = {}
+    for route_id, route_rollups in by_route.items():
+        route_rollups = sorted(route_rollups, key=lambda r: r["date"])
+        series = [r["pace"]["stops_per_mile"] for r in route_rollups]
+        recent = route_rollups[-TREND_WINDOW_DAYS:]
+        prior = route_rollups[:-TREND_WINDOW_DAYS]
+
+        trend[route_id] = {
+            "days_tracked": len(route_rollups),
+            "stops_per_mile_recent_avg": _safe_avg([r["pace"]["stops_per_mile"] for r in recent]),
+            # None (not 0) when there isn't enough same-route history yet.
+            "stops_per_mile_prior_avg": _safe_avg([r["pace"]["stops_per_mile"] for r in prior]) if prior else None,
+            "window_days": TREND_WINDOW_DAYS,
+        }
+    return trend
+
+
 def build_overall_rollup(driver_id, daily_rollups):
     """daily_rollups: list of daily rollup dicts for one driver, any order."""
     daily_rollups = sorted(daily_rollups, key=lambda r: r["date"])
@@ -255,12 +292,6 @@ def build_overall_rollup(driver_id, daily_rollups):
     stops_per_mile_series = [r["pace"]["stops_per_mile"] for r in daily_rollups]
     pieces_per_active_hour_series = [r["pace"]["pieces_per_active_hour"] for r in daily_rollups]
     finish_delta_series = [r["plan_vs_actual"]["finish_time_delta_minutes"] for r in daily_rollups]
-
-    recent = daily_rollups[-TREND_WINDOW_DAYS:]
-    prior = daily_rollups[:-TREND_WINDOW_DAYS]
-
-    recent_avg = _safe_avg([r["pace"]["stops_per_mile"] for r in recent])
-    prior_avg = _safe_avg([r["pace"]["stops_per_mile"] for r in prior]) if prior else None
 
     total_warnings = sum(r["data_quality"]["warning_count"] for r in daily_rollups)
     total_errors = sum(r["data_quality"]["error_count"] for r in daily_rollups)
@@ -288,10 +319,7 @@ def build_overall_rollup(driver_id, daily_rollups):
             "pieces_per_active_hour_stddev": _safe_stddev(pieces_per_active_hour_series),
         },
         "trend": {
-            "stops_per_mile_recent_avg": recent_avg,
-            # None (not 0 or omitted) when there isn't enough history yet --
-            # distinguishes "no prior data" from "prior average was zero".
-            "stops_per_mile_prior_avg": prior_avg,
+            "by_route": _build_trend_by_route(daily_rollups),
             "window_days": TREND_WINDOW_DAYS,
         },
         "data_quality": {
