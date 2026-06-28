@@ -1,4 +1,4 @@
-# Dropstats
+# 🚚 Dropstats
 
 A lightweight delivery-driver telematics tracker that uses a Codeberg git repository as its entire data store. No database, no backend server — just JSON files, a static web form, and a couple of Python scripts.
 
@@ -6,7 +6,7 @@ A lightweight delivery-driver telematics tracker that uses a Codeberg git reposi
 
 ---
 
-## How it works
+## ✨ How it works
 
 1. A driver opens the **entry tool** (a single-page HTML app hosted on **Codeberg Pages**) on their phone.
 2. They log a **start-of-day plan** and then an **hourly check-in** throughout their shift.
@@ -18,7 +18,7 @@ No driver ever hand-edits JSON. The web tool is the only thing that produces it.
 
 ---
 
-## Repository structure
+## 🚧 Repository structure
 
 ```
 dropstats/
@@ -44,7 +44,7 @@ dropstats/
 
 ---
 
-## Data flow, end to end
+## 📀 Data flow, end to end
 
 ```
    ┌──────────────┐      ┌─────────────┐      ┌──────────────────┐      ┌─────────────┐
@@ -69,7 +69,7 @@ dropstats/
 
 ---
 
-## Schema
+## 📐 Schema
 
 A consolidated driver-day payload:
 
@@ -103,7 +103,7 @@ A consolidated driver-day payload:
 
 ---
 
-## Running the scripts
+## 💨 Running the scripts
 
 These are plain Python, no dependencies beyond the standard library:
 
@@ -118,18 +118,18 @@ python scripts/route_inbox.py
 python scripts/aggregate.py
 ```
 
-### Automation
+### 🤖 Automation
 
 The previous GitHub Actions setup has been retired along with the GitHub repo. Until a Codeberg-native automation layer (e.g. **Woodpecker CI**, which integrates with Codeberg) is wired up, `route_inbox.py` and `aggregate.py` are run manually or via a local cron job against a clone of the repo. This is a known gap on the roadmap, not a permanent design choice.
 
 ---
 
-## Design principles
+## ⚜️ Design principles
 
-- **Collect raw stats first, score later.** No scoring weights are defined yet — there isn't enough real driver data to know what a fair weighting even looks like. The pipeline focuses entirely on capturing clean, well-shaped data.
-- **Fault-tolerant over blocking.** Odd values (e.g. a negative hourly delta) are flagged as warnings, logged, and let through rather than rejected outright. Hard errors (missing required fields, malformed dates) are the only thing that blocks a file from being filed.
-- **Cumulative-to-delta conversion happens in the app, never in storage.** The web tool is the only place that ever sees a raw odometer-style cumulative number; everything written to JSON is already a clean per-hour delta.
-- **Rollups are always rebuilt, never patched.** `aggregate.py` has no incremental update logic — every run recomputes `rollups/` and `overall/` from the full set of organized date folders. Simple and safe at the current data volume.
+- **📊Collect raw stats first, score later.** No scoring weights are defined yet — there isn't enough real driver data to know what a fair weighting even looks like. The pipeline focuses entirely on capturing clean, well-shaped data.
+- **🧱Fault-tolerant over blocking.** Odd values (e.g. a negative hourly delta) are flagged as warnings, logged, and let through rather than rejected outright. Hard errors (missing required fields, malformed dates) are the only thing that blocks a file from being filed.
+- **⛓️‍💥Cumulative-to-delta conversion happens in the app, never in storage.** The web tool is the only place that ever sees a raw odometer-style cumulative number; everything written to JSON is already a clean per-hour delta.
+- **🏗️Rollups are always rebuilt, never patched.** `aggregate.py` has no incremental update logic — every run recomputes `rollups/` and `overall/` from the full set of organized date folders. Simple and safe at the current data volume.
 
 ---
 
@@ -145,6 +145,6 @@ These are tracked as active design decisions, not bugs:
 
 ---
 
-## Uploading from a phone
+##📲 Uploading from a phone
 
 Drivers don't need a full git setup. The Codeberg mobile-friendly web UI supports uploading a file directly into `inbox/` from a phone browser — open the repo, navigate to `inbox/`, and use the upload option to add the exported JSON. No app install required.
