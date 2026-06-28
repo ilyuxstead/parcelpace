@@ -1,0 +1,69 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-06-27",
+  "plan": {
+    "planned_stops": 91,
+    "planned_miles": 90,
+    "planned_pieces": 163,
+    "predicted_finish": "17:00",
+    "entry_time": "2026-06-28T12:03:49"
+  },
+  "hours": {
+    "10": {
+      "hourly_stops": 11,
+      "hourly_miles": 7.2,
+      "hourly_pieces": 14,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-27T11:04:27"
+    },
+    "11": {
+      "hourly_stops": 6,
+      "hourly_miles": 3.4,
+      "hourly_pieces": 56,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-27T12:00:13"
+    },
+    "12": {
+      "hourly_stops": 13,
+      "hourly_miles": 10,
+      "hourly_pieces": 14,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-27T13:00:56"
+    },
+    "13": {
+      "hourly_stops": 17,
+      "hourly_miles": 7.6,
+      "hourly_pieces": 18,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-27T14:00:26"
+    },
+    "14": {
+      "hourly_stops": 17,
+      "hourly_miles": 13.7,
+      "hourly_pieces": 26,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-27T15:02:04"
+    },
+    "15": {
+      "hourly_stops": 15,
+      "hourly_miles": 17,
+      "hourly_pieces": 18,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-27T16:06:57"
+    },
+    "16": {
+      "hourly_stops": 12,
+      "hourly_miles": 18.4,
+      "hourly_pieces": 17,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-27T17:05:08"
+    }
+  }
+}
