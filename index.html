@@ -502,6 +502,11 @@
       <div class="group-label">Today's Plan</div>
 
       <div class="field">
+        <label>Route <span class="hint">alphanumeric code, e.g. 17F</span></label>
+        <input type="text" id="routeId" class="mono" placeholder="Route code" autocomplete="off" autocapitalize="characters" style="text-transform:uppercase;">
+      </div>
+
+      <div class="field">
         <label>Planned stops <span class="hint">total for the day</span></label>
         <div class="stepper">
           <button type="button" data-step="-1" data-target="plannedStops">–</button>
@@ -626,6 +631,7 @@
     <div class="slip">
       <div class="slip-title">TODAY'S SLIP</div>
       <div class="slip-line"><span>DRIVER</span><span id="slipDriver">----</span></div>
+      <div class="slip-line"><span>ROUTE</span><span id="slipRoute">----</span></div>
       <div class="slip-line"><span>DATE</span><span id="slipDate">----------</span></div>
       <div class="slip-line"><span>ENTRIES SAVED</span><span id="slipCount">0</span></div>
       <div class="slip-line total"><span>QUEUED FOR EXPORT</span><span id="slipQueued">0</span></div>
@@ -684,6 +690,7 @@
   var hourBadge = document.getElementById('hourBadge');
   var baselineNote = document.getElementById('baselineNote');
 
+  var routeId = document.getElementById('routeId');
   var plannedStops = document.getElementById('plannedStops');
   var plannedMiles = document.getElementById('plannedMiles');
   var plannedPieces = document.getElementById('plannedPieces');
@@ -705,6 +712,7 @@
   var breakFlag = false;
 
   var slipDriver = document.getElementById('slipDriver');
+  var slipRoute = document.getElementById('slipRoute');
   var slipDate = document.getElementById('slipDate');
   var slipCount = document.getElementById('slipCount');
   var slipQueued = document.getElementById('slipQueued');
@@ -859,6 +867,7 @@
       renderSlip();
     });
   });
+  routeId.addEventListener('input', renderSlip);
 
   refreshBaseline();
 
@@ -901,6 +910,9 @@
   function renderSlip() {
     var q = getQueue();
     slipDriver.textContent = driverIdEl.value.trim() || "----";
+    var planEntry = q.find(function(e) { return e.type === 'plan'; });
+    var routeForSlip = (planEntry && planEntry.data && planEntry.data.route_id) || routeId.value.trim().toUpperCase();
+    slipRoute.textContent = routeForSlip || "----";
     slipDate.textContent = logDateEl.value.trim() || "----------";
     slipCount.textContent = q.length;
     slipQueued.textContent = q.length;
@@ -932,6 +944,7 @@
       folder: date,
       type: "plan",
       data: {
+        route_id: routeId.value.trim().toUpperCase(),
         planned_stops: parseInt(plannedStops.value, 10) || 0,
         planned_miles: parseFloat(plannedMiles.value) || 0,
         planned_pieces: parseInt(plannedPieces.value, 10) || 0,
@@ -975,6 +988,7 @@
     var activeTab = document.querySelector('.tab.active').dataset.tab;
 
     if (activeTab === 'plan') {
+      if (!routeId.value.trim()) { showToast("Enter a route code first", true); return; }
       var entry = buildPlanEntry();
       // replace existing plan entry for this driver/date if present
       var q = getQueue().filter(function(e) {
@@ -1105,6 +1119,7 @@
   }
 
   function resetAllFields() {
+    routeId.value = "";
     plannedStops.value = 0;
     plannedMiles.value = 0;
     plannedPieces.value = 0;
