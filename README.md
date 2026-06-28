@@ -59,13 +59,13 @@ dropstats/
 1. **Plan + hourly entries** are composed client-side in `index.html`. Cumulative device readings (stops, pieces, pieces picked up) are converted to per-hour deltas *in the browser*, via `recalcDeltas()` against a `lastreading` baseline kept in `localStorage`. Only deltas are ever written to JSON — the raw cumulative totals never leave the phone.
 2. **Export** bundles the queued plan + hourly entries into one consolidated `driver-XXXXXXX.json` and the driver uploads it into `inbox/`.
 3. **`route_inbox.py`** scans `inbox/`, skips log files, and for each data file:
-   - Calls `validate.py` against the schema.
+   - Calls `validate.py` against the schema. A missing `plan` is only a warning, but if a plan *is* submitted, a missing or blank `route_id` is a hard error — every plan needs a route so same-route days can be grouped for trending.
    - Appends any errors/warnings to that driver's accumulating `driver-XXXXXXX.log.json` (silent if the submission is fully clean).
    - On success, moves the file into `<date>/driver-XXXXXXX.json`, overwriting any prior file for that driver+date.
    - On a hard error, leaves the file in `inbox/` for a human to look at.
 4. **`aggregate.py`** walks every date folder and rebuilds, from scratch each run:
    - `rollups/<date>/driver-XXXXXXX.json` — one day's totals, plan-vs-actual deltas, and pace metrics for a driver.
-   - `overall/driver-XXXXXXX.json` — totals, averages, consistency (stddev), and trend across all days tracked.
+   - `overall/driver-XXXXXXX.json` — totals, averages, consistency (stddev), and trend across all days tracked. Trend is computed **per route** (`trend.by_route["17F"]`, etc.) — recent vs. prior `stops_per_mile`, windowed by the last 7 days *that route was driven*, not 7 calendar days. Days with no plan (no route) are excluded from every route's series.
 
 ---
 
@@ -78,6 +78,7 @@ A consolidated driver-day payload:
   "driver_id": "2266642",
   "date": "2026-06-26",
   "plan": {
+    "route_id": "17F",
     "planned_stops": 0,
     "planned_miles": 0,
     "planned_pieces": 0,
@@ -140,6 +141,7 @@ These are tracked as active design decisions, not bugs:
 - Whether `aggregate.py`'s handling of non-contiguous hour ranges (gaps in a shift) needs more nuance than the current `has_gaps` flag.
 - Whether an all-zero, non-break hour should be distinguishable from an unedited/forgotten entry — currently both look identical to the pipeline.
 - What composite "effort" and miles-normalized pace metrics should eventually feed into driver scoring.
+- `route_id` casing is only normalized client-side (the HTML tool uppercases on save). `validate.py`/`aggregate.py` don't normalize it, so a route entered inconsistently outside the web tool (e.g. `17f` vs `17F`) would silently split into two separate trend buckets rather than being caught.
 
 ---
 
