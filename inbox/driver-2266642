@@ -1,0 +1,95 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-06-29",
+  "plan": {
+    "route_id": "14A",
+    "planned_stops": 140,
+    "planned_miles": 106.5,
+    "planned_pieces": 221,
+    "predicted_finish": "18:56",
+    "entry_time": "2026-06-29T10:13:37"
+  },
+  "hours": {
+    "10": {
+      "hourly_stops": 12,
+      "hourly_miles": 11.6,
+      "hourly_pieces": 17,
+      "hourly_pieces_picked_up": 0,
+      "notes": "Finished up air now doing the pike",
+      "break_flag": false,
+      "entry_time": "2026-06-29T11:10:16"
+    },
+    "11": {
+      "hourly_stops": 14,
+      "hourly_miles": 16.3,
+      "hourly_pieces": 51,
+      "hourly_pieces_picked_up": 1,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-29T12:03:46"
+    },
+    "12": {
+      "hourly_stops": 17,
+      "hourly_miles": 23.2,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 4,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-29T13:05:49"
+    },
+    "13": {
+      "hourly_stops": 19,
+      "hourly_miles": 9.6,
+      "hourly_pieces": 19,
+      "hourly_pieces_picked_up": 2,
+      "notes": "Broke off the side neighborhood",
+      "break_flag": false,
+      "entry_time": "2026-06-29T14:03:56"
+    },
+    "14": {
+      "hourly_stops": 20,
+      "hourly_miles": 14.1,
+      "hourly_pieces": 21,
+      "hourly_pieces_picked_up": 0,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-29T15:05:58"
+    },
+    "15": {
+      "hourly_stops": 11,
+      "hourly_miles": 16.2,
+      "hourly_pieces": 2,
+      "hourly_pieces_picked_up": 19,
+      "notes": "Had to break trace from Wertzville road to start doing Harrisburg Pike and Carlisle Pike pick ups",
+      "break_flag": false,
+      "entry_time": "2026-06-29T16:04:05"
+    },
+    "16": {
+      "hourly_stops": 6,
+      "hourly_miles": 17.7,
+      "hourly_pieces": 3,
+      "hourly_pieces_picked_up": 3,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-29T17:05:31"
+    },
+    "17": {
+      "hourly_stops": 22,
+      "hourly_miles": 9.5,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 0,
+      "notes": "All residential. The two remaining pick ups are dead work complete.",
+      "break_flag": false,
+      "entry_time": "2026-06-29T18:03:20"
+    },
+    "09": {
+      "hourly_stops": 10,
+      "hourly_miles": 12.3,
+      "hourly_pieces": 63,
+      "hourly_pieces_picked_up": 0,
+      "notes": "Heavy pieces and mostly straight air",
+      "break_flag": false,
+      "entry_time": "2026-06-29T10:14:39"
+    }
+  }
+}
