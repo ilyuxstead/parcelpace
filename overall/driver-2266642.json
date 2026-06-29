@@ -1,0 +1,41 @@
+{
+  "driver_id": "2266642",
+  "days_tracked": 1,
+  "date_range": {
+    "first": "2026-06-27",
+    "last": "2026-06-27"
+  },
+  "totals": {
+    "total_stops": 91,
+    "total_miles": 77.3,
+    "total_pieces": 163,
+    "total_pieces_picked_up": 0
+  },
+  "averages": {
+    "stops_per_day": 91.0,
+    "pieces_per_day": 163.0,
+    "stops_per_mile": 1.18,
+    "pieces_per_active_hour": 23.29,
+    "finish_time_delta_minutes": 5.0
+  },
+  "consistency": {
+    "stops_per_mile_stddev": null,
+    "pieces_per_active_hour_stddev": null
+  },
+  "trend": {
+    "by_route": {
+      "17F": {
+        "days_tracked": 1,
+        "stops_per_mile_recent_avg": 1.18,
+        "stops_per_mile_prior_avg": null,
+        "window_days": 7
+      }
+    },
+    "window_days": 7
+  },
+  "data_quality": {
+    "total_warnings": 0,
+    "total_errors": 7,
+    "days_with_gaps": 0
+  }
+}

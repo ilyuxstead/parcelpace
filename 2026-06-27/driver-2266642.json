@@ -14,6 +14,7 @@
       "hourly_stops": 11,
       "hourly_miles": 7.2,
       "hourly_pieces": 14,
+      "hourly_pieces_picked_up": 0,
       "notes": "",
       "break_flag": false,
       "entry_time": "2026-06-27T11:04:27"
@@ -22,6 +23,7 @@
       "hourly_stops": 6,
       "hourly_miles": 3.4,
       "hourly_pieces": 56,
+      "hourly_pieces_picked_up": 0,
       "notes": "",
       "break_flag": false,
       "entry_time": "2026-06-27T12:00:13"
@@ -30,6 +32,7 @@
       "hourly_stops": 13,
       "hourly_miles": 10,
       "hourly_pieces": 14,
+      "hourly_pieces_picked_up": 0,
       "notes": "",
       "break_flag": false,
       "entry_time": "2026-06-27T13:00:56"
@@ -38,6 +41,7 @@
       "hourly_stops": 17,
       "hourly_miles": 7.6,
       "hourly_pieces": 18,
+      "hourly_pieces_picked_up": 0,
       "notes": "",
       "break_flag": false,
       "entry_time": "2026-06-27T14:00:26"
@@ -46,6 +50,7 @@
       "hourly_stops": 17,
       "hourly_miles": 13.7,
       "hourly_pieces": 26,
+      "hourly_pieces_picked_up": 0,
       "notes": "",
       "break_flag": false,
       "entry_time": "2026-06-27T15:02:04"
@@ -54,6 +59,7 @@
       "hourly_stops": 15,
       "hourly_miles": 17,
       "hourly_pieces": 18,
+      "hourly_pieces_picked_up": 0,
       "notes": "",
       "break_flag": false,
       "entry_time": "2026-06-27T16:06:57"
@@ -62,6 +68,7 @@
       "hourly_stops": 12,
       "hourly_miles": 18.4,
       "hourly_pieces": 17,
+      "hourly_pieces_picked_up": 0,
       "notes": "",
       "break_flag": false,
       "entry_time": "2026-06-27T17:05:08"
