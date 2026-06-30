@@ -1,0 +1,104 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-06-30",
+  "plan": {
+    "route_id": "17C",
+    "planned_stops": 178,
+    "planned_miles": 81.6,
+    "planned_pieces": 347,
+    "predicted_finish": "19:27",
+    "entry_time": "2026-06-30T09:14:36"
+  },
+  "hours": {
+    "10": {
+      "hourly_stops": 6,
+      "hourly_miles": 3.7,
+      "hourly_pieces": 141,
+      "hourly_pieces_picked_up": 2,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-30T11:09:02"
+    },
+    "11": {
+      "hourly_stops": 16,
+      "hourly_miles": 9.5,
+      "hourly_pieces": 19,
+      "hourly_pieces_picked_up": 0,
+      "notes": "Last air delivered, doing neighborhoods in order now",
+      "break_flag": false,
+      "entry_time": "2026-06-30T12:02:03"
+    },
+    "12": {
+      "hourly_stops": 22,
+      "hourly_miles": 5.8,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 0,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-30T13:05:13"
+    },
+    "13": {
+      "hourly_stops": 22,
+      "hourly_miles": 4.5,
+      "hourly_pieces": 33,
+      "hourly_pieces_picked_up": 8,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-30T14:04:15"
+    },
+    "14": {
+      "hourly_stops": 23,
+      "hourly_miles": 4.6,
+      "hourly_pieces": 44,
+      "hourly_pieces_picked_up": 0,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-30T15:09:14"
+    },
+    "15": {
+      "hourly_stops": 17,
+      "hourly_miles": 9.3,
+      "hourly_pieces": 31,
+      "hourly_pieces_picked_up": 24,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-30T16:02:36"
+    },
+    "16": {
+      "hourly_stops": 9,
+      "hourly_miles": 14.8,
+      "hourly_pieces": 5,
+      "hourly_pieces_picked_up": 472,
+      "notes": "UPS store",
+      "break_flag": false,
+      "entry_time": "2026-06-30T17:05:31"
+    },
+    "17": {
+      "hourly_stops": 21,
+      "hourly_miles": 6,
+      "hourly_pieces": 26,
+      "hourly_pieces_picked_up": 0,
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-06-30T18:00:58"
+    },
+    "18": {
+      "hourly_stops": 16,
+      "hourly_miles": 14.6,
+      "hourly_pieces": 15,
+      "hourly_pieces_picked_up": 93,
+      "notes": "Had to pick up 950 Centerville Rd.",
+      "break_flag": false,
+      "entry_time": "2026-06-30T18:58:27"
+    },
+    "09": {
+      "hourly_stops": 6,
+      "hourly_miles": 2,
+      "hourly_pieces": 9,
+      "hourly_pieces_picked_up": 0,
+      "notes": "Running straight air",
+      "break_flag": false,
+      "entry_time": "2026-06-30T10:07:41"
+    }
+  }
+}
