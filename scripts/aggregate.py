@@ -40,6 +40,13 @@ OVERALL_DIR = "overall"
 
 TREND_WINDOW_DAYS = 7
 
+# The four pace metrics tracked both in overall averages/consistency and
+# per-route trend. Centralized here so adding a future pace metric (e.g.
+# something picked-up-per-hour based) only means adding a string to this
+# tuple rather than touching build_overall_rollup and _build_trend_by_route
+# separately.
+TREND_METRICS = ("stops_per_mile", "pieces_per_mile", "stops_per_active_hour", "pieces_per_active_hour")
+
 
 # ---------- loading source data ----------
 
@@ -246,7 +253,8 @@ def _build_trend_by_route(daily_rollups):
     """
     Group daily rollups by route_id (days with no plan / no route_id are
     excluded -- there's nothing to group them by) and compute a recent-vs-
-    prior stops_per_mile trend within each route's own date-ordered series.
+    prior trend, per pace metric (see TREND_METRICS), within each route's
+    own date-ordered series.
 
     Windows are based on "last N days this route was driven", not calendar
     days -- same-route days are rarely contiguous on the calendar, so a
@@ -263,17 +271,21 @@ def _build_trend_by_route(daily_rollups):
     trend = {}
     for route_id, route_rollups in by_route.items():
         route_rollups = sorted(route_rollups, key=lambda r: r["date"])
-        series = [r["pace"]["stops_per_mile"] for r in route_rollups]
         recent = route_rollups[-TREND_WINDOW_DAYS:]
         prior = route_rollups[:-TREND_WINDOW_DAYS]
 
-        trend[route_id] = {
+        route_trend = {
             "days_tracked": len(route_rollups),
-            "stops_per_mile_recent_avg": _safe_avg([r["pace"]["stops_per_mile"] for r in recent]),
-            # None (not 0) when there isn't enough same-route history yet.
-            "stops_per_mile_prior_avg": _safe_avg([r["pace"]["stops_per_mile"] for r in prior]) if prior else None,
             "window_days": TREND_WINDOW_DAYS,
         }
+        for metric in TREND_METRICS:
+            recent_series = [r["pace"][metric] for r in recent]
+            prior_series = [r["pace"][metric] for r in prior]
+            route_trend["{}_recent_avg".format(metric)] = _safe_avg(recent_series)
+            # None (not 0) when there isn't enough same-route history yet.
+            route_trend["{}_prior_avg".format(metric)] = _safe_avg(prior_series) if prior else None
+
+        trend[route_id] = route_trend
     return trend
 
 
@@ -290,6 +302,8 @@ def build_overall_rollup(driver_id, daily_rollups):
     days_tracked = len(daily_rollups)
 
     stops_per_mile_series = [r["pace"]["stops_per_mile"] for r in daily_rollups]
+    pieces_per_mile_series = [r["pace"]["pieces_per_mile"] for r in daily_rollups]
+    stops_per_active_hour_series = [r["pace"]["stops_per_active_hour"] for r in daily_rollups]
     pieces_per_active_hour_series = [r["pace"]["pieces_per_active_hour"] for r in daily_rollups]
     finish_delta_series = [r["plan_vs_actual"]["finish_time_delta_minutes"] for r in daily_rollups]
 
@@ -311,11 +325,15 @@ def build_overall_rollup(driver_id, daily_rollups):
             "stops_per_day": round(total_stops / days_tracked, 2) if days_tracked else None,
             "pieces_per_day": round(total_pieces / days_tracked, 2) if days_tracked else None,
             "stops_per_mile": _safe_avg(stops_per_mile_series),
+            "pieces_per_mile": _safe_avg(pieces_per_mile_series),
+            "stops_per_active_hour": _safe_avg(stops_per_active_hour_series),
             "pieces_per_active_hour": _safe_avg(pieces_per_active_hour_series),
             "finish_time_delta_minutes": _safe_avg(finish_delta_series),
         },
         "consistency": {
             "stops_per_mile_stddev": _safe_stddev(stops_per_mile_series),
+            "pieces_per_mile_stddev": _safe_stddev(pieces_per_mile_series),
+            "stops_per_active_hour_stddev": _safe_stddev(stops_per_active_hour_series),
             "pieces_per_active_hour_stddev": _safe_stddev(pieces_per_active_hour_series),
         },
         "trend": {
