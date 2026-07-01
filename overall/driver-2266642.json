@@ -1,26 +1,26 @@
 {
   "driver_id": "2266642",
-  "days_tracked": 2,
+  "days_tracked": 3,
   "date_range": {
     "first": "2026-06-27",
-    "last": "2026-06-29"
+    "last": "2026-06-30"
   },
   "totals": {
-    "total_stops": 222,
-    "total_miles": 207.8,
-    "total_pieces": 385,
-    "total_pieces_picked_up": 29
+    "total_stops": 380,
+    "total_miles": 282.6,
+    "total_pieces": 731,
+    "total_pieces_picked_up": 628
   },
   "averages": {
-    "stops_per_day": 111.0,
-    "pieces_per_day": 192.5,
-    "stops_per_mile": 1.09,
-    "pieces_per_active_hour": 23.98,
-    "finish_time_delta_minutes": -24.0
+    "stops_per_day": 126.67,
+    "pieces_per_day": 243.67,
+    "stops_per_mile": 1.43,
+    "pieces_per_active_hour": 27.52,
+    "finish_time_delta_minutes": -25.67
   },
   "consistency": {
-    "stops_per_mile_stddev": 0.13,
-    "pieces_per_active_hour_stddev": 0.98
+    "stops_per_mile_stddev": 0.6,
+    "pieces_per_active_hour_stddev": 6.17
   },
   "trend": {
     "by_route": {
@@ -35,13 +35,19 @@
         "stops_per_mile_recent_avg": 1.0,
         "stops_per_mile_prior_avg": null,
         "window_days": 7
+      },
+      "17C": {
+        "days_tracked": 1,
+        "stops_per_mile_recent_avg": 2.11,
+        "stops_per_mile_prior_avg": null,
+        "window_days": 7
       }
     },
     "window_days": 7
   },
   "data_quality": {
     "total_warnings": 0,
-    "total_errors": 7,
+    "total_errors": 0,
     "days_with_gaps": 0
   }
 }

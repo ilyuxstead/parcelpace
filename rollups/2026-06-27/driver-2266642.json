@@ -41,7 +41,7 @@
   },
   "data_quality": {
     "warning_count": 0,
-    "error_count": 7,
+    "error_count": 0,
     "has_gaps": false,
     "all_zero_hours": []
   }
