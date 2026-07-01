@@ -169,7 +169,10 @@ def _validate_hour_entry(hour_key, entry, result):
 
     # Negative deltas: flagged, not blocked -- consistent with the HTML
     # tool's own red-highlight-but-don't-block behavior for these fields.
-    for delta_field in ("hourly_stops", "hourly_pieces", "hourly_pieces_picked_up"):
+    # hourly_miles is included alongside the others now that it's computed
+    # from a cumulative trip-meter reading in the same way as
+    # stops/pieces/pieces_picked_up, rather than hand-entered per hour.
+    for delta_field in ("hourly_stops", "hourly_pieces", "hourly_pieces_picked_up", "hourly_miles"):
         val = entry.get(delta_field)
         if isinstance(val, (int, float)) and not isinstance(val, bool) and val < 0:
             result.add_warning("{}.{} is negative ({})".format(label_prefix, delta_field, val))
