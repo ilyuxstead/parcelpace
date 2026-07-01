@@ -696,16 +696,46 @@
   var plannedPieces = document.getElementById('plannedPieces');
   var predictedFinish = document.getElementById('predictedFinish');
 
-  var cumStops = document.getElementById('cumStops');
-  var cumPieces = document.getElementById('cumPieces');
-  var cumPiecesPickedUp = document.getElementById('cumPiecesPickedUp');
+  // Single source of truth for the day-plan fields: each entry pairs an
+  // element with its JSON key, a parser (type coercion + formatting), and
+  // a reset default. buildPlanEntry() and resetAllFields() both loop this
+  // instead of hand-listing the same five fields twice.
+  var PLAN_FIELDS = [
+    { el: routeId, reset: '', jsonField: 'route_id',
+      parse: function(v) { return v.trim().toUpperCase(); } },
+    { el: plannedStops, reset: 0, jsonField: 'planned_stops',
+      parse: function(v) { return parseInt(v, 10) || 0; } },
+    { el: plannedMiles, reset: 0, jsonField: 'planned_miles',
+      parse: function(v) { return parseFloat(v) || 0; } },
+    { el: plannedPieces, reset: 0, jsonField: 'planned_pieces',
+      parse: function(v) { return parseInt(v, 10) || 0; } },
+    { el: predictedFinish, reset: '', jsonField: 'predicted_finish',
+      parse: function(v) { return v || null; } }
+  ];
+
   var hourMiles = document.getElementById('hourMiles');
-  var deltaStopsVal = document.getElementById('deltaStopsVal');
-  var deltaPiecesVal = document.getElementById('deltaPiecesVal');
-  var deltaPickupVal = document.getElementById('deltaPickupVal');
-  var chipStops = document.getElementById('chipStops');
-  var chipPieces = document.getElementById('chipPieces');
-  var chipPickup = document.getElementById('chipPickup');
+
+  // Single source of truth for the three cumulative-tracked hourly metrics.
+  // Each entry pairs the cumulative input, its delta-display element, and
+  // its "negative" chip with the JSON field it becomes and the key used in
+  // the localStorage baseline reading ({ stops, pieces, pickup, hour }).
+  // recalcDeltas(), buildHourlyEntry(), setLastHourReading(),
+  // refreshBaseline(), and resetAllFields() all loop this instead of each
+  // separately hand-listing stops/pieces/piecesPickedUp.
+  var HOURLY_METRICS = [
+    { key: 'stops', label: 'stops', jsonField: 'hourly_stops',
+      cumEl: document.getElementById('cumStops'),
+      chipEl: document.getElementById('chipStops'),
+      deltaEl: document.getElementById('deltaStopsVal') },
+    { key: 'pieces', label: 'pieces', jsonField: 'hourly_pieces',
+      cumEl: document.getElementById('cumPieces'),
+      chipEl: document.getElementById('chipPieces'),
+      deltaEl: document.getElementById('deltaPiecesVal') },
+    { key: 'pickup', label: 'picked up', jsonField: 'hourly_pieces_picked_up',
+      cumEl: document.getElementById('cumPiecesPickedUp'),
+      chipEl: document.getElementById('chipPickup'),
+      deltaEl: document.getElementById('deltaPickupVal') }
+  ];
 
   var notesEl = document.getElementById('notes');
   var breakSwitch = document.getElementById('breakSwitch');
@@ -800,12 +830,20 @@
     breakSwitch.classList.toggle('on', breakFlag);
   });
 
+  // ---------- driver/date lookup ----------
+  // Central place for reading the header fields -- used everywhere that
+  // used to call driverIdEl.value.trim() / logDateEl.value.trim() by hand
+  // (getDriverKey, validateDriverDate, buildPlanEntry, buildHourlyEntry,
+  // renderSlip, buildExportPayload).
+  function getDriverAndDate() {
+    return { id: driverIdEl.value.trim(), date: logDateEl.value.trim() };
+  }
+
   // ---------- baseline lookup + delta calc ----------
   function getDriverKey() {
-    var id = driverIdEl.value.trim();
-    var date = logDateEl.value.trim();
-    if (!id || !date) return null;
-    return STORAGE_PREFIX + date + "_driver-" + id;
+    var dd = getDriverAndDate();
+    if (!dd.id || !dd.date) return null;
+    return STORAGE_PREFIX + dd.date + "_driver-" + dd.id;
   }
 
   function getLastHourReading() {
@@ -817,11 +855,13 @@
     } catch(e) { return null; }
   }
 
-  function setLastHourReading(stops, pieces, pickup, hour) {
+  function setLastHourReading(cumValues, hour) {
     var key = getDriverKey();
     if (!key) return;
     try {
-      localStorage.setItem(key + "_lastreading", JSON.stringify({ stops: stops, pieces: pieces, pickup: pickup, hour: hour }));
+      var payload = { hour: hour };
+      HOURLY_METRICS.forEach(function(m) { payload[m.key] = cumValues[m.key]; });
+      localStorage.setItem(key + "_lastreading", JSON.stringify(payload));
     } catch(e) {}
   }
 
@@ -832,34 +872,28 @@
       baselineNote.innerHTML = "No previous hour found for this driver today — this entry will store <b>raw totals</b> as the hourly amount. Confirm this is hour 1, or check the driver ID / date above.";
     } else {
       baselineNote.classList.remove('warn');
-      var pickupBase = (typeof last.pickup === 'number') ? last.pickup : 0;
-      baselineNote.innerHTML = "Previous reading (hour " + last.hour + "): <b>" + last.stops + "</b> stops, <b>" + last.pieces + "</b> pieces, <b>" + pickupBase + "</b> picked up. New entries will be calculated against this.";
+      var parts = HOURLY_METRICS.map(function(m) {
+        var base = (typeof last[m.key] === 'number') ? last[m.key] : 0;
+        return "<b>" + base + "</b> " + m.label;
+      });
+      baselineNote.innerHTML = "Previous reading (hour " + last.hour + "): " + parts.join(", ") + ". New entries will be calculated against this.";
     }
     recalcDeltas();
   }
 
   function recalcDeltas() {
     var last = getLastHourReading();
-    var curS = parseInt(cumStops.value, 10) || 0;
-    var curP = parseInt(cumPieces.value, 10) || 0;
-    var curPU = parseInt(cumPiecesPickedUp.value, 10) || 0;
-    var baseS = last ? last.stops : 0;
-    var baseP = last ? last.pieces : 0;
-    var basePU = (last && typeof last.pickup === 'number') ? last.pickup : 0;
-    var dS = last ? (curS - baseS) : curS;
-    var dP = last ? (curP - baseP) : curP;
-    var dPU = last ? (curPU - basePU) : curPU;
-
-    deltaStopsVal.textContent = dS;
-    deltaPiecesVal.textContent = dP;
-    deltaPickupVal.textContent = dPU;
-    chipStops.classList.toggle('neg', dS < 0);
-    chipPieces.classList.toggle('neg', dP < 0);
-    chipPickup.classList.toggle('neg', dPU < 0);
+    HOURLY_METRICS.forEach(function(m) {
+      var cur = parseInt(m.cumEl.value, 10) || 0;
+      var base = (last && typeof last[m.key] === 'number') ? last[m.key] : 0;
+      var d = last ? (cur - base) : cur;
+      m.deltaEl.textContent = d;
+      m.chipEl.classList.toggle('neg', d < 0);
+    });
   }
 
-  [cumStops, cumPieces, cumPiecesPickedUp].forEach(function(el) {
-    el.addEventListener('input', recalcDeltas);
+  HOURLY_METRICS.forEach(function(m) {
+    m.cumEl.addEventListener('input', recalcDeltas);
   });
   [driverIdEl, logDateEl].forEach(function(el) {
     el.addEventListener('input', function() {
@@ -909,11 +943,12 @@
 
   function renderSlip() {
     var q = getQueue();
-    slipDriver.textContent = driverIdEl.value.trim() || "----";
+    var dd = getDriverAndDate();
+    slipDriver.textContent = dd.id || "----";
     var planEntry = q.find(function(e) { return e.type === 'plan'; });
     var routeForSlip = (planEntry && planEntry.data && planEntry.data.route_id) || routeId.value.trim().toUpperCase();
     slipRoute.textContent = routeForSlip || "----";
-    slipDate.textContent = logDateEl.value.trim() || "----------";
+    slipDate.textContent = dd.date || "----------";
     slipCount.textContent = q.length;
     slipQueued.textContent = q.length;
     queueCountText.textContent = q.length + (q.length === 1 ? " entry saved this session" : " entries saved this session");
@@ -921,10 +956,9 @@
 
   // ---------- validation ----------
   function validateDriverDate() {
-    var id = driverIdEl.value.trim();
-    var date = logDateEl.value.trim();
-    if (!id) { showToast("Enter a driver ID first", true); return false; }
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) { showToast("Date must be YYYY-MM-DD", true); return false; }
+    var dd = getDriverAndDate();
+    if (!dd.id) { showToast("Enter a driver ID first", true); return false; }
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dd.date)) { showToast("Date must be YYYY-MM-DD", true); return false; }
     return true;
   }
 
@@ -937,48 +971,39 @@
   }
 
   function buildPlanEntry() {
-    var id = driverIdEl.value.trim();
-    var date = logDateEl.value.trim();
+    var dd = getDriverAndDate();
+    var data = { entry_time: isoTimestampNow() };
+    PLAN_FIELDS.forEach(function(f) { data[f.jsonField] = f.parse(f.el.value); });
     return {
-      filename: "driver-" + id + "_plan.json",
-      folder: date,
+      filename: "driver-" + dd.id + "_plan.json",
+      folder: dd.date,
       type: "plan",
-      data: {
-        route_id: routeId.value.trim().toUpperCase(),
-        planned_stops: parseInt(plannedStops.value, 10) || 0,
-        planned_miles: parseFloat(plannedMiles.value) || 0,
-        planned_pieces: parseInt(plannedPieces.value, 10) || 0,
-        predicted_finish: predictedFinish.value || null,
-        entry_time: isoTimestampNow()
-      }
+      data: data
     };
   }
 
   // ---------- save hourly ----------
   function buildHourlyEntry() {
-    var id = driverIdEl.value.trim();
-    var date = logDateEl.value.trim();
+    var dd = getDriverAndDate();
     var hour = hourBadge.textContent.replace("HOUR ", "");
-    var dS = parseInt(deltaStopsVal.textContent, 10) || 0;
-    var dP = parseInt(deltaPiecesVal.textContent, 10) || 0;
-    var dPU = parseInt(deltaPickupVal.textContent, 10) || 0;
+    var cumValues = {};
+    var data = {
+      hourly_miles: parseFloat(hourMiles.value) || 0,
+      notes: notesEl.value.trim(),
+      break_flag: breakFlag,
+      entry_time: isoTimestampNow()
+    };
+    HOURLY_METRICS.forEach(function(m) {
+      cumValues[m.key] = parseInt(m.cumEl.value, 10) || 0;
+      data[m.jsonField] = parseInt(m.deltaEl.textContent, 10) || 0;
+    });
     return {
-      filename: "driver-" + id + "_hour-" + hour + ".json",
-      folder: date,
+      filename: "driver-" + dd.id + "_hour-" + hour + ".json",
+      folder: dd.date,
       type: "hourly",
       hour: hour,
-      cumStops: parseInt(cumStops.value, 10) || 0,
-      cumPieces: parseInt(cumPieces.value, 10) || 0,
-      cumPiecesPickedUp: parseInt(cumPiecesPickedUp.value, 10) || 0,
-      data: {
-        hourly_stops: dS,
-        hourly_miles: parseFloat(hourMiles.value) || 0,
-        hourly_pieces: dP,
-        hourly_pieces_picked_up: dPU,
-        notes: notesEl.value.trim(),
-        break_flag: breakFlag,
-        entry_time: isoTimestampNow()
-      }
+      cumValues: cumValues,
+      data: data
     };
   }
 
@@ -1004,7 +1029,7 @@
       });
       hq.push(hEntry);
       setQueue(hq);
-      setLastHourReading(hEntry.cumStops, hEntry.cumPieces, hEntry.cumPiecesPickedUp, hEntry.hour);
+      setLastHourReading(hEntry.cumValues, hEntry.hour);
       showToast("Hour " + hEntry.hour + " saved");
       // reset hour-specific fields for next entry, advance hour badge
       notesEl.value = "";
@@ -1023,9 +1048,8 @@
   // Builds the single consolidated driver-day object from the queue.
   // { driver_id, date, plan, hours: { "13": {...}, "14": {...} } }
   function buildExportPayload(q) {
-    var driverId = driverIdEl.value.trim() || null;
-    var date = logDateEl.value.trim() || null;
-    var payload = { driver_id: driverId, date: date, plan: null, hours: {} };
+    var dd = getDriverAndDate();
+    var payload = { driver_id: dd.id || null, date: dd.date || null, plan: null, hours: {} };
 
     q.forEach(function(entry) {
       // Prefer identity info embedded in the entry itself, falling back
@@ -1119,24 +1143,16 @@
   }
 
   function resetAllFields() {
-    routeId.value = "";
-    plannedStops.value = 0;
-    plannedMiles.value = 0;
-    plannedPieces.value = 0;
-    predictedFinish.value = "";
-    cumStops.value = 0;
-    cumPieces.value = 0;
-    cumPiecesPickedUp.value = 0;
+    PLAN_FIELDS.forEach(function(f) { f.el.value = f.reset; });
+    HOURLY_METRICS.forEach(function(m) {
+      m.cumEl.value = 0;
+      m.deltaEl.textContent = "0";
+      m.chipEl.classList.remove('neg');
+    });
     hourMiles.value = 0;
     notesEl.value = "";
     breakFlag = false;
     breakSwitch.classList.remove('on');
-    deltaStopsVal.textContent = "0";
-    deltaPiecesVal.textContent = "0";
-    deltaPickupVal.textContent = "0";
-    chipStops.classList.remove('neg');
-    chipPieces.classList.remove('neg');
-    chipPickup.classList.remove('neg');
     delete hourBadge.dataset.manual;
     hourBadge.textContent = "HOUR " + nowHourStr();
   }
