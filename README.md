@@ -1,4 +1,4 @@
-# 🚚 Dropstats
+# Dropstats
 
 A lightweight delivery-driver telematics tracker that uses a Codeberg git repository as its entire data store. No database, no backend server — just JSON files, a static web form, and a couple of Python scripts.
 
@@ -6,7 +6,7 @@ A lightweight delivery-driver telematics tracker that uses a Codeberg git reposi
 
 ---
 
-## ✨ How it works
+## How it works
 
 1. A driver opens the **entry tool** (a single-page HTML app hosted on **Codeberg Pages**) on their phone.
 2. They log a **start-of-day plan** and then an **hourly check-in** throughout their shift.
@@ -18,19 +18,23 @@ No driver ever hand-edits JSON. The web tool is the only thing that produces it.
 
 ---
 
-## 🚧 Repository structure
+## Repository structure
 
 ```
 dropstats/
-├── index.html              # the phone-native entry tool (Codeberg Pages)
-├── inbox/                  # incoming submissions land here, pre-validation
-│   ├── driver-XXXXXXX.json         # one pending payload per driver
-│   └── driver-XXXXXXX.log.json     # accumulating validation log per driver
-├── 2026-06-26/              # date-first folder, created once data lands
-│   └── driver-XXXXXXX.json         # validated, organized driver-day record
+├── index.html                      # the phone-native entry tool (Codeberg Pages)
+├── inbox/                          # incoming submissions land here, pre-validation
+│   ├── driver-XXXXXXX.json                 # one pending payload per driver
+│   └── driver-XXXXXXX.log.json             # accumulating validation log per driver
+├── 2026/                           # nested date path: yyyy/mm/dd, created once data lands
+│   └── 06/
+│       └── 26/
+│           └── driver-XXXXXXX.json         # validated, organized driver-day record
 ├── rollups/
-│   └── 2026-06-26/
-│       └── driver-XXXXXXX.json     # per-driver, per-day computed stats
+│   └── 2026/
+│       └── 06/
+│           └── 26/
+│               └── driver-XXXXXXX.json     # per-driver, per-day computed stats
 ├── overall/
 │   └── driver-XXXXXXX.json         # per-driver stats across all days
 └── scripts/
@@ -40,18 +44,20 @@ dropstats/
     └── aggregate.py         # rebuilds rollups/ and overall/ from scratch
 ```
 
-**Date lives in the JSON, not the filename.** A driver's raw upload is always `driver-XXXXXXX.json` — the date is read out of the payload body during routing, then used to place the file in the right `YYYY-MM-DD/` folder.
+**Date lives in the JSON, not the filename.** A driver's raw upload is always `driver-XXXXXXX.json` — the date is read out of the payload body during routing, then used to place the file in the right `yyyy/mm/dd/` folder.
+
+**Data folders are nested by year/month/day, not flat.** A flat `YYYY-MM-DD/` folder per day would eventually leave hundreds of folders sitting at the repo root. Nesting keeps the root tidy — at most ~12 month folders per year, ~31 day folders per month — while `rollups/` mirrors the same nesting for consistency. `overall/` isn't date-keyed at all, so it stays flat.
 
 ---
 
-## 📀 Data flow, end to end
+## Data flow, end to end
 
 ```
-   ┌──────────────┐      ┌─────────────┐      ┌──────────────────┐      ┌─────────────┐
-   │  index.html   │ ───▶ │  inbox/     │ ───▶ │  <date>/driver-… │ ───▶ │  rollups/   │
-   │ (Codeberg     │ JSON │  (pending)  │ move │  (organized)     │ agg  │  overall/   │
-   │  Pages)       │      │             │      │                  │      │             │
-   └──────────────┘      └─────────────┘      └──────────────────┘      └─────────────┘
+   ┌──────────────┐      ┌─────────────┐      ┌───────────────────────┐      ┌─────────────┐
+   │  index.html   │ ───▶ │  inbox/     │ ───▶ │  yyyy/mm/dd/driver-…  │ ───▶ │  rollups/   │
+   │ (Codeberg     │ JSON │  (pending)  │ move │  (organized)          │ agg  │  overall/   │
+   │  Pages)       │      │             │      │                       │      │             │
+   └──────────────┘      └─────────────┘      └───────────────────────┘      └─────────────┘
                           validate.py +
                           route_inbox.py
 ```
@@ -61,15 +67,15 @@ dropstats/
 3. **`route_inbox.py`** scans `inbox/`, skips log files, and for each data file:
    - Calls `validate.py` against the schema. A missing `plan` is only a warning, but if a plan *is* submitted, a missing or blank `route_id` is a hard error — every plan needs a route so same-route days can be grouped for trending.
    - Appends any errors/warnings to that driver's accumulating `driver-XXXXXXX.log.json` (silent if the submission is fully clean).
-   - On success, moves the file into `<date>/driver-XXXXXXX.json`, overwriting any prior file for that driver+date.
+   - On success, splits the payload's `date` field into `yyyy/mm/dd` and moves the file into `yyyy/mm/dd/driver-XXXXXXX.json`, overwriting any prior file for that driver+date.
    - On a hard error, leaves the file in `inbox/` for a human to look at.
-4. **`aggregate.py`** walks every date folder and rebuilds, from scratch each run:
-   - `rollups/<date>/driver-XXXXXXX.json` — one day's totals, plan-vs-actual deltas, and pace metrics for a driver.
+4. **`aggregate.py`** walks every nested `yyyy/mm/dd/` folder and rebuilds, from scratch each run:
+   - `rollups/yyyy/mm/dd/driver-XXXXXXX.json` — one day's totals, plan-vs-actual deltas, and pace metrics for a driver.
    - `overall/driver-XXXXXXX.json` — totals, averages, consistency (stddev), and trend across all days tracked. Trend is computed **per route** (`trend.by_route["17F"]`, etc.) — recent vs. prior `stops_per_mile`, windowed by the last 7 days *that route was driven*, not 7 calendar days. Days with no plan (no route) are excluded from every route's series.
 
 ---
 
-## 📐 Schema
+## Schema
 
 A consolidated driver-day payload:
 
@@ -101,9 +107,11 @@ A consolidated driver-day payload:
 
 `plan` may be `null` if a driver hasn't submitted a day plan. Hour keys are zero-padded `"00"`–`"23"` strings; the `hour-HH.json` naming convention in the export process gives one slot per hour at the filesystem level, so collisions are structurally impossible rather than something validation has to catch.
 
+The payload's `date` field stays `"YYYY-MM-DD"` — that format doesn't change. It's only the *on-disk folder* it gets routed into that's nested (`yyyy/mm/dd/` instead of a flat `YYYY-MM-DD/`).
+
 ---
 
-## 💨 Running the scripts
+## Running the scripts
 
 These are plain Python, no dependencies beyond the standard library:
 
@@ -118,18 +126,19 @@ python scripts/route_inbox.py
 python scripts/aggregate.py
 ```
 
-### 🤖 Automation
+### Automation
 
 The previous GitHub Actions setup has been retired along with the GitHub repo. Until a Codeberg-native automation layer (e.g. **Woodpecker CI**, which integrates with Codeberg) is wired up, `route_inbox.py` and `aggregate.py` are run manually or via a local cron job against a clone of the repo. This is a known gap on the roadmap, not a permanent design choice.
 
 ---
 
-## ⚜️ Design principles
+## Design principles
 
-- **📊Collect raw stats first, score later.** No scoring weights are defined yet — there isn't enough real driver data to know what a fair weighting even looks like. The pipeline focuses entirely on capturing clean, well-shaped data.
-- **🧱Fault-tolerant over blocking.** Odd values (e.g. a negative hourly delta) are flagged as warnings, logged, and let through rather than rejected outright. Hard errors (missing required fields, malformed dates) are the only thing that blocks a file from being filed.
-- **⛓️‍💥Cumulative-to-delta conversion happens in the app, never in storage.** The web tool is the only place that ever sees a raw odometer-style cumulative number; everything written to JSON is already a clean per-hour delta.
-- **🏗️Rollups are always rebuilt, never patched.** `aggregate.py` has no incremental update logic — every run recomputes `rollups/` and `overall/` from the full set of organized date folders. Simple and safe at the current data volume.
+- **Collect raw stats first, score later.** No scoring weights are defined yet — there isn't enough real driver data to know what a fair weighting even looks like. The pipeline focuses entirely on capturing clean, well-shaped data.
+- **Fault-tolerant over blocking.** Odd values (e.g. a negative hourly delta) are flagged as warnings, logged, and let through rather than rejected outright. Hard errors (missing required fields, malformed dates) are the only thing that blocks a file from being filed.
+- **Cumulative-to-delta conversion happens in the app, never in storage.** The web tool is the only place that ever sees a raw odometer-style cumulative number; everything written to JSON is already a clean per-hour delta.
+- **Rollups are always rebuilt, never patched.** `aggregate.py` has no incremental update logic — every run recomputes `rollups/` and `overall/` from the full set of organized date folders. Simple and safe at the current data volume.
+- **Nest date folders to keep the repo root readable.** Both the organized data tree and `rollups/` use `yyyy/mm/dd/` nesting instead of one flat folder per day, so the root and `rollups/` don't accumulate hundreds of sibling date folders over time.
 
 ---
 
@@ -145,6 +154,6 @@ These are tracked as active design decisions, not bugs:
 
 ---
 
-## 📲 Uploading from a phone
+## Uploading from a phone
 
 Drivers don't need a full git setup. The Codeberg mobile-friendly web UI supports uploading a file directly into `inbox/` from a phone browser — open the repo, navigate to `inbox/`, and use the upload option to add the exported JSON. No app install required.

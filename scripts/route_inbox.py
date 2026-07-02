@@ -3,8 +3,8 @@ route_inbox.py
 
 Scans inbox/ for driver submissions (driver-XXXXXXX.json), validates each
 one via validate.py, and -- if there are no hard errors -- moves it to its
-organized location (date-first: <date>/driver-XXXXXXX.json), overwriting
-any existing file for that driver+date.
+organized location (nested date path: yyyy/mm/dd/driver-XXXXXXX.json),
+overwriting any existing file for that driver+date.
 
 Log files (driver-XXXXXXX.log.json) are skipped when scanning, and are
 also where any validation errors/warnings get written -- one accumulating
@@ -31,6 +31,7 @@ from inbox_common import (
     is_data_file,
     is_log_file,
     log_filename_for_driver,
+    split_date,
 )
 from validate import validate_file
 
@@ -84,7 +85,17 @@ def _append_log(inbox_dir, driver_id, date, result):
 
 
 def _destination_path(repo_root, date, driver_id):
-    folder = os.path.join(repo_root, date)
+    """
+    Build the nested yyyy/mm/dd destination folder + full path for a
+    driver-day file. Returns (None, None) if date isn't in 'YYYY-MM-DD'
+    form -- shouldn't happen given validate.py already checked the format,
+    but this is the last line of defense before touching the filesystem.
+    """
+    parts = split_date(date)
+    if parts is None:
+        return None, None
+    yyyy, mm, dd = parts
+    folder = os.path.join(repo_root, yyyy, mm, dd)
     filename = "driver-{}.json".format(driver_id)
     return folder, os.path.join(folder, filename)
 
@@ -155,6 +166,16 @@ def process_inbox(inbox_dir=INBOX_DIR, repo_root=REPO_ROOT):
             continue
 
         folder, dest_path = _destination_path(repo_root, date, driver_id)
+        if folder is None:
+            # Shouldn't happen -- validate.py already checked date format --
+            # but guard rather than crash on a malformed path.
+            print(
+                "BLOCKED '{}': validation passed but date '{}' isn't in "
+                "YYYY-MM-DD form -- left in inbox.".format(filename, date)
+            )
+            summary["blocked"].append(driver_id)
+            continue
+
         os.makedirs(folder, exist_ok=True)
         shutil.move(full_path, dest_path)  # overwrites if dest_path exists
 

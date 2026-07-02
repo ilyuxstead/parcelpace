@@ -1,17 +1,17 @@
 """
 aggregate.py
 
-Reads organized driver-day data (<date>/driver-XXXXXXX.json) and produces
-two kinds of derived rollups, written to disk:
+Reads organized driver-day data (yyyy/mm/dd/driver-XXXXXXX.json) and
+produces two kinds of derived rollups, written to disk:
 
-  rollups/<date>/driver-XXXXXXX.json   -- one per driver per day
-  overall/driver-XXXXXXX.json          -- one per driver, across all days
+  rollups/yyyy/mm/dd/driver-XXXXXXX.json   -- one per driver per day
+  overall/driver-XXXXXXX.json              -- one per driver, across all days
 
 Both are fully rebuilt from scratch on every run (no incremental/merge
 logic) -- simplest and safest starting point given the data volume.
 
 Key assumption (per project decision): drivers do not submit partial
-shifts. A file landing in <date>/ represents a complete day. This means:
+shifts. A file landing in yyyy/mm/dd/ represents a complete day. This means:
   - plan_vs_actual deltas are always meaningful (no "day still in
     progress" ambiguity to worry about)
   - "finish time" for a day = the entry_time of whichever hour key is
@@ -31,7 +31,14 @@ import statistics
 import sys
 from datetime import datetime
 
-from inbox_common import data_filename_for_driver, is_date_folder, log_filename_for_driver
+from inbox_common import (
+    data_filename_for_driver,
+    is_day_folder,
+    is_month_folder,
+    is_year_folder,
+    log_filename_for_driver,
+    split_date,
+)
 
 REPO_ROOT = "."
 INBOX_DIR = "inbox"
@@ -60,19 +67,35 @@ def _load_json(path):
 
 def find_driver_day_files(repo_root):
     """
-    Walk repo_root for date-folders and return a list of
+    Walk repo_root for nested yyyy/mm/dd date folders and return a list of
     (date, driver_id, full_path) tuples for every driver-day data file.
+
+    Structural folders at the root (inbox/, rollups/, overall/, scripts/)
+    are skipped automatically since they won't match is_year_folder().
     """
     results = []
-    for entry in sorted(os.listdir(repo_root)):
-        full_dir = os.path.join(repo_root, entry)
-        if not os.path.isdir(full_dir) or not is_date_folder(entry):
+    for year in sorted(os.listdir(repo_root)):
+        year_dir = os.path.join(repo_root, year)
+        if not os.path.isdir(year_dir) or not is_year_folder(year):
             continue
-        for filename in sorted(os.listdir(full_dir)):
-            if not filename.startswith("driver-") or not filename.endswith(".json"):
+
+        for month in sorted(os.listdir(year_dir)):
+            month_dir = os.path.join(year_dir, month)
+            if not os.path.isdir(month_dir) or not is_month_folder(month):
                 continue
-            driver_id = filename[len("driver-"):-len(".json")]
-            results.append((entry, driver_id, os.path.join(full_dir, filename)))
+
+            for day in sorted(os.listdir(month_dir)):
+                day_dir = os.path.join(month_dir, day)
+                if not os.path.isdir(day_dir) or not is_day_folder(day):
+                    continue
+
+                date = "{}-{}-{}".format(year, month, day)
+                for filename in sorted(os.listdir(day_dir)):
+                    if not filename.startswith("driver-") or not filename.endswith(".json"):
+                        continue
+                    driver_id = filename[len("driver-"):-len(".json")]
+                    results.append((date, driver_id, os.path.join(day_dir, filename)))
+
     return results
 
 
@@ -372,7 +395,8 @@ def run(repo_root=REPO_ROOT, inbox_dir=None, rollups_dir=None, overall_dir=None)
 
         rollup = build_daily_rollup(date, driver_id, payload, inbox_dir)
 
-        out_dir = os.path.join(rollups_dir, date)
+        yyyy, mm, dd = split_date(date)
+        out_dir = os.path.join(rollups_dir, yyyy, mm, dd)
         os.makedirs(out_dir, exist_ok=True)
         out_path = os.path.join(out_dir, data_filename_for_driver(driver_id))
         with open(out_path, "w", encoding="utf-8") as f:
