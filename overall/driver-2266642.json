@@ -1,46 +1,68 @@
 {
   "driver_id": "2266642",
-  "days_tracked": 3,
+  "days_tracked": 4,
   "date_range": {
     "first": "2026-06-27",
-    "last": "2026-06-30"
+    "last": "2026-07-01"
   },
   "totals": {
-    "total_stops": 380,
-    "total_miles": 282.6,
-    "total_pieces": 731,
-    "total_pieces_picked_up": 628
+    "total_stops": 545,
+    "total_miles": 340.7,
+    "total_pieces": 1086,
+    "total_pieces_picked_up": 1107
   },
   "averages": {
-    "stops_per_day": 126.67,
-    "pieces_per_day": 243.67,
-    "stops_per_mile": 1.43,
-    "pieces_per_active_hour": 27.52,
-    "finish_time_delta_minutes": -25.67
+    "stops_per_day": 136.25,
+    "pieces_per_day": 271.5,
+    "stops_per_mile": 1.78,
+    "pieces_per_mile": 3.64,
+    "stops_per_active_hour": 14.96,
+    "pieces_per_active_hour": 29.52,
+    "finish_time_delta_minutes": -35.0
   },
   "consistency": {
-    "stops_per_mile_stddev": 0.6,
-    "pieces_per_active_hour_stddev": 6.17
+    "stops_per_mile_stddev": 0.86,
+    "pieces_per_mile_stddev": 2.1,
+    "stops_per_active_hour_stddev": 1.54,
+    "pieces_per_active_hour_stddev": 6.43
   },
   "trend": {
     "by_route": {
       "17F": {
         "days_tracked": 1,
+        "window_days": 7,
         "stops_per_mile_recent_avg": 1.18,
         "stops_per_mile_prior_avg": null,
-        "window_days": 7
+        "pieces_per_mile_recent_avg": 2.11,
+        "pieces_per_mile_prior_avg": null,
+        "stops_per_active_hour_recent_avg": 13.0,
+        "stops_per_active_hour_prior_avg": null,
+        "pieces_per_active_hour_recent_avg": 23.29,
+        "pieces_per_active_hour_prior_avg": null
       },
       "14A": {
         "days_tracked": 1,
+        "window_days": 7,
         "stops_per_mile_recent_avg": 1.0,
         "stops_per_mile_prior_avg": null,
-        "window_days": 7
+        "pieces_per_mile_recent_avg": 1.7,
+        "pieces_per_mile_prior_avg": null,
+        "stops_per_active_hour_recent_avg": 14.56,
+        "stops_per_active_hour_prior_avg": null,
+        "pieces_per_active_hour_recent_avg": 24.67,
+        "pieces_per_active_hour_prior_avg": null
       },
       "17C": {
-        "days_tracked": 1,
-        "stops_per_mile_recent_avg": 2.11,
+        "days_tracked": 2,
+        "window_days": 7,
+        "stops_per_mile_recent_avg": 2.47,
         "stops_per_mile_prior_avg": null,
-        "window_days": 7
+        "pieces_per_mile_recent_avg": 5.37,
+        "pieces_per_mile_prior_avg": null,
+        "stops_per_active_hour_recent_avg": 16.15,
+        "stops_per_active_hour_prior_avg": null,
+        "pieces_per_active_hour_recent_avg": 35.05,
+        "pieces_per_active_hour_prior_avg": null
       }
     },
     "window_days": 7
