@@ -1,0 +1,104 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-07-01",
+  "plan": {
+    "entry_time": "2026-07-01T09:18:09",
+    "route_id": "17C",
+    "planned_stops": 178,
+    "planned_miles": 90.7,
+    "planned_pieces": 356,
+    "predicted_finish": "19:57"
+  },
+  "hours": {
+    "10": {
+      "notes": "Got off the post office and Dykeman Road",
+      "break_flag": false,
+      "entry_time": "2026-07-01T11:12:43",
+      "hourly_stops": 8,
+      "hourly_pieces": 148,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 7.2
+    },
+    "11": {
+      "notes": "Air complete",
+      "break_flag": false,
+      "entry_time": "2026-07-01T12:03:35",
+      "hourly_stops": 11,
+      "hourly_pieces": 32,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 10.2
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-01T13:10:48",
+      "hourly_stops": 30,
+      "hourly_pieces": 37,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 5.1
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-01T14:08:02",
+      "hourly_stops": 20,
+      "hourly_pieces": 26,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.8
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-01T15:01:15",
+      "hourly_stops": 18,
+      "hourly_pieces": 28,
+      "hourly_pieces_picked_up": 8,
+      "hourly_miles": 2.8
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-01T16:01:05",
+      "hourly_stops": 24,
+      "hourly_pieces": 30,
+      "hourly_pieces_picked_up": 5,
+      "hourly_miles": 6.4
+    },
+    "16": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-01T17:39:26",
+      "hourly_stops": 20,
+      "hourly_pieces": 18,
+      "hourly_pieces_picked_up": 441,
+      "hourly_miles": 5.2
+    },
+    "17": {
+      "notes": "Had to get pu pieces from other drivers",
+      "break_flag": false,
+      "entry_time": "2026-07-01T18:14:50",
+      "hourly_stops": 18,
+      "hourly_pieces": 19,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 8.2
+    },
+    "18": {
+      "notes": "I’ll pick Ups complete heading back to building",
+      "break_flag": false,
+      "entry_time": "2026-07-01T18:54:42",
+      "hourly_stops": 13,
+      "hourly_pieces": 13,
+      "hourly_pieces_picked_up": 24,
+      "hourly_miles": 6.3
+    },
+    "09": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-01T10:01:51",
+      "hourly_stops": 3,
+      "hourly_pieces": 4,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 1.9
+    }
+  }
+}
