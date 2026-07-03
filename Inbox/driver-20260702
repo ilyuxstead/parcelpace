@@ -1,0 +1,113 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-07-02",
+  "plan": {
+    "entry_time": "2026-07-02T09:56:41",
+    "route_id": "17C",
+    "planned_stops": 159,
+    "planned_miles": 81.1,
+    "planned_pieces": 286,
+    "predicted_finish": "18:43"
+  },
+  "hours": {
+    "10": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-02T11:00:46",
+      "hourly_stops": 9,
+      "hourly_pieces": 89,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 6
+    },
+    "11": {
+      "notes": "Took lunch 1138-1208",
+      "break_flag": false,
+      "entry_time": "2026-07-02T12:09:04",
+      "hourly_stops": 4,
+      "hourly_pieces": 55,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 3
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-02T13:03:09",
+      "hourly_stops": 18,
+      "hourly_pieces": 25,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 4.9
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-02T14:07:48",
+      "hourly_stops": 26,
+      "hourly_pieces": 33,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 5.8
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-02T15:03:10",
+      "hourly_stops": 20,
+      "hourly_pieces": 19,
+      "hourly_pieces_picked_up": 8,
+      "hourly_miles": 5
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-02T16:21:06",
+      "hourly_stops": 19,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 39,
+      "hourly_miles": 9.8
+    },
+    "16": {
+      "notes": "Picked up the UPS store. Got here at 4:50 got done 520.",
+      "break_flag": false,
+      "entry_time": "2026-07-02T17:22:02",
+      "hourly_stops": 13,
+      "hourly_pieces": 15,
+      "hourly_pieces_picked_up": 446,
+      "hourly_miles": 1.9
+    },
+    "17": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-02T18:02:43",
+      "hourly_stops": 11,
+      "hourly_pieces": 12,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.3
+    },
+    "18": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-02T18:59:40",
+      "hourly_stops": 15,
+      "hourly_pieces": 14,
+      "hourly_pieces_picked_up": 35,
+      "hourly_miles": 6.8
+    },
+    "19": {
+      "notes": "Office depot",
+      "break_flag": false,
+      "entry_time": "2026-07-02T19:24:50",
+      "hourly_stops": 1,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 58,
+      "hourly_miles": 10.2
+    },
+    "09": {
+      "notes": "Got a late start. Didn’t get to area until almost 950.",
+      "break_flag": false,
+      "entry_time": "2026-07-02T10:28:46",
+      "hourly_stops": 3,
+      "hourly_pieces": 3,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0.4
+    }
+  }
+}
