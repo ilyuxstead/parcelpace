@@ -1,30 +1,30 @@
 {
   "driver_id": "2266642",
-  "days_tracked": 4,
+  "days_tracked": 5,
   "date_range": {
     "first": "2026-06-27",
-    "last": "2026-07-01"
+    "last": "2026-07-02"
   },
   "totals": {
-    "total_stops": 545,
-    "total_miles": 340.7,
-    "total_pieces": 1086,
-    "total_pieces_picked_up": 1107
+    "total_stops": 684,
+    "total_miles": 398.8,
+    "total_pieces": 1374,
+    "total_pieces_picked_up": 1695
   },
   "averages": {
-    "stops_per_day": 136.25,
-    "pieces_per_day": 271.5,
-    "stops_per_mile": 1.78,
-    "pieces_per_mile": 3.64,
-    "stops_per_active_hour": 14.96,
-    "pieces_per_active_hour": 29.52,
-    "finish_time_delta_minutes": -35.0
+    "stops_per_day": 136.8,
+    "pieces_per_day": 274.8,
+    "stops_per_mile": 1.9,
+    "pieces_per_mile": 3.9,
+    "stops_per_active_hour": 14.5,
+    "pieces_per_active_hour": 28.85,
+    "finish_time_delta_minutes": -19.8
   },
   "consistency": {
-    "stops_per_mile_stddev": 0.86,
-    "pieces_per_mile_stddev": 2.1,
-    "stops_per_active_hour_stddev": 1.54,
-    "pieces_per_active_hour_stddev": 6.43
+    "stops_per_mile_stddev": 0.79,
+    "pieces_per_mile_stddev": 1.91,
+    "stops_per_active_hour_stddev": 1.69,
+    "pieces_per_active_hour_stddev": 5.76
   },
   "trend": {
     "by_route": {
@@ -53,15 +53,15 @@
         "pieces_per_active_hour_prior_avg": null
       },
       "17C": {
-        "days_tracked": 2,
+        "days_tracked": 3,
         "window_days": 7,
-        "stops_per_mile_recent_avg": 2.47,
+        "stops_per_mile_recent_avg": 2.45,
         "stops_per_mile_prior_avg": null,
-        "pieces_per_mile_recent_avg": 5.37,
+        "pieces_per_mile_recent_avg": 5.23,
         "pieces_per_mile_prior_avg": null,
-        "stops_per_active_hour_recent_avg": 16.15,
+        "stops_per_active_hour_recent_avg": 14.98,
         "stops_per_active_hour_prior_avg": null,
-        "pieces_per_active_hour_recent_avg": 35.05,
+        "pieces_per_active_hour_recent_avg": 32.09,
         "pieces_per_active_hour_prior_avg": null
       }
     },
