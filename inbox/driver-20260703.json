@@ -1,0 +1,95 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-07-03",
+  "plan": {
+    "entry_time": "2026-07-03T09:08:49",
+    "route_id": "17C",
+    "planned_stops": 137,
+    "planned_miles": 75.8,
+    "planned_pieces": 215,
+    "predicted_finish": "18:08"
+  },
+  "hours": {
+    "10": {
+      "notes": "Missing two pieces, pin, oak, and rustic",
+      "break_flag": false,
+      "entry_time": "2026-07-03T11:07:56",
+      "hourly_stops": 16,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 8.3
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-03T12:01:07",
+      "hourly_stops": 20,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 4.6
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-03T13:19:41",
+      "hourly_stops": 23,
+      "hourly_pieces": 91,
+      "hourly_pieces_picked_up": 10,
+      "hourly_miles": 4.5
+    },
+    "13": {
+      "notes": "This number may be a little messed up since I recorded the last hour bucket so late",
+      "break_flag": false,
+      "entry_time": "2026-07-03T14:01:45",
+      "hourly_stops": 14,
+      "hourly_pieces": 18,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 3.7
+    },
+    "14": {
+      "notes": "Recorded a little late",
+      "break_flag": false,
+      "entry_time": "2026-07-03T15:21:38",
+      "hourly_stops": 30,
+      "hourly_pieces": 38,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 9.6
+    },
+    "15": {
+      "notes": "All stops complete running the two I couldn’t find earlier",
+      "break_flag": false,
+      "entry_time": "2026-07-03T16:04:04",
+      "hourly_stops": 16,
+      "hourly_pieces": 15,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 7.3
+    },
+    "16": {
+      "notes": "The mileage is higher because of all the running around I had to do",
+      "break_flag": false,
+      "entry_time": "2026-07-03T17:02:26",
+      "hourly_stops": 3,
+      "hourly_pieces": 2,
+      "hourly_pieces_picked_up": 441,
+      "hourly_miles": 7.4
+    },
+    "17": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-03T17:17:00",
+      "hourly_stops": 2,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 5,
+      "hourly_miles": 4.6
+    },
+    "09": {
+      "notes": "Ran 200 airport rd",
+      "break_flag": false,
+      "entry_time": "2026-07-03T10:19:54",
+      "hourly_stops": 2,
+      "hourly_pieces": 5,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 20
+    }
+  }
+}
