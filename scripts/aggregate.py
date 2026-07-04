@@ -23,6 +23,17 @@ data_quality numbers come from each driver's accumulating inbox log
 (inbox/driver-XXXXXXX.log.json), filtered down to entries matching the
 specific date being rolled up. The log file is read once per driver and
 reused across all of that driver's dates, rather than re-read per date.
+
+Active-hour pace normalization (stops_per_active_hour, pieces_per_active_hour)
+is based on ELAPSED WALL-CLOCK TIME between consecutive entry_time
+timestamps, not a raw count of submitted hour buckets. A driver who logs
+20-25 minutes late doesn't reset the clock -- their next entry's bucket
+would otherwise silently absorb that overrun and look like one inflated
+"hour" of activity. See _compute_active_minutes() for the derivation.
+This is computed retroactively from entry_time (already present in every
+historical file since the schema's inception) rather than requiring a new
+client-supplied field, so it applies uniformly to old and new data alike
+with no backfill gap.
 """
 
 import json
@@ -46,6 +57,18 @@ ROLLUPS_DIR = "rollups"
 OVERALL_DIR = "overall"
 
 TREND_WINDOW_DAYS = 7
+
+# Fallback assumed duration (minutes) for an hour entry when elapsed time
+# can't be derived -- no previous timestamp to diff against (first hour of
+# the day with no plan entry_time either), or an unparseable/out-of-order
+# timestamp. Keeps behavior sane/backward-compatible rather than blowing
+# up the pace math on missing data.
+ASSUMED_HOUR_MINUTES = 60.0
+
+# How far an hour's derived elapsed time can drift from ASSUMED_HOUR_MINUTES
+# before it's surfaced in data_quality.irregular_hour_gaps for a human to
+# glance at. Not used to alter the math itself -- just a visibility flag.
+GAP_THRESHOLD_MINUTES = 15.0
 
 # The four pace metrics tracked both in overall averages/consistency and
 # per-route trend. Centralized here so adding a future pace metric (e.g.
@@ -139,6 +162,75 @@ def _has_gaps(hour_keys):
     return span != len(nums)
 
 
+def _parse_iso(timestamp_str):
+    """
+    Parse an ISO 8601 timestamp string as written by isoTimestampNow() in
+    index.html. Returns None on missing/malformed input rather than
+    raising -- callers treat that as "can't derive elapsed time for this
+    entry" and fall back to ASSUMED_HOUR_MINUTES.
+    """
+    if not timestamp_str or not isinstance(timestamp_str, str):
+        return None
+    try:
+        return datetime.fromisoformat(timestamp_str)
+    except ValueError:
+        return None
+
+
+def _compute_active_minutes(hour_keys, hours, plan):
+    """
+    Derive elapsed wall-clock minutes for each submitted hour entry by
+    diffing its entry_time against the entry_time of the previous
+    submission (or the plan's entry_time, for the first hour of the day),
+    then sum the minutes belonging to non-break hours.
+
+    Returns (active_minutes, irregular_gaps):
+      - active_minutes: float, total elapsed minutes across non-break hours,
+        the new denominator for stops_per_active_hour / pieces_per_active_hour
+        (divide by 60 to get "active hours" in the old count-based sense).
+      - irregular_gaps: list of {"hour": hk, "elapsed_minutes": n} for any
+        hour whose derived elapsed time drifted from the assumed 60-minute
+        window by more than GAP_THRESHOLD_MINUTES -- surfaced in
+        data_quality for a human to glance at, not used to alter the math.
+
+    A derived elapsed time <= 0 (e.g. a driver going back and re-saving an
+    earlier hour out of order) is discarded and treated the same as a
+    missing timestamp, since it isn't a trustworthy measure of real elapsed
+    time.
+    """
+    active_minutes = 0.0
+    irregular_gaps = []
+
+    prev_time = _parse_iso(plan.get("entry_time")) if plan else None
+
+    for hk in hour_keys:
+        entry = hours[hk]
+        this_time = _parse_iso(entry.get("entry_time"))
+
+        elapsed = None
+        if prev_time is not None and this_time is not None:
+            candidate = (this_time - prev_time).total_seconds() / 60.0
+            if candidate > 0:
+                elapsed = candidate
+
+        if elapsed is None:
+            elapsed = ASSUMED_HOUR_MINUTES
+
+        if not entry.get("break_flag"):
+            active_minutes += elapsed
+
+        if abs(elapsed - ASSUMED_HOUR_MINUTES) > GAP_THRESHOLD_MINUTES:
+            irregular_gaps.append({"hour": hk, "elapsed_minutes": round(elapsed, 1)})
+
+        # Advance the reference point even if this entry's own elapsed time
+        # was thrown out, so the *next* hour is still diffed against a real
+        # timestamp rather than propagating the gap forward.
+        if this_time is not None:
+            prev_time = this_time
+
+    return active_minutes, irregular_gaps
+
+
 def _finish_time_delta_minutes(predicted_finish, finish_time_iso):
     """
     Diff predicted_finish (HH:MM, same-day assumed) against the actual
@@ -194,6 +286,13 @@ def build_daily_rollup(date, driver_id, payload, inbox_dir):
         if stops == 0 and miles == 0 and pieces == 0 and pickup == 0:
             all_zero_hours.append(hk)
 
+    # active_minutes is the time-normalized replacement denominator for the
+    # two active-hour pace metrics below; active_hours (the raw bucket
+    # count, computed above) is kept as-is in `actual` for display/context,
+    # it's just no longer what pace is divided by.
+    active_minutes, irregular_gaps = _compute_active_minutes(hour_keys, hours, plan)
+    active_hours_equiv = active_minutes / 60.0
+
     last_hour_key = hour_keys[-1] if hour_keys else None
     finish_time = hours[last_hour_key].get("entry_time") if last_hour_key else None
 
@@ -211,8 +310,8 @@ def build_daily_rollup(date, driver_id, payload, inbox_dir):
 
     stops_per_mile = round(total_stops / total_miles, 2) if total_miles > 0 else None
     pieces_per_mile = round(total_pieces / total_miles, 2) if total_miles > 0 else None
-    stops_per_active_hour = round(total_stops / active_hours, 2) if active_hours > 0 else None
-    pieces_per_active_hour = round(total_pieces / active_hours, 2) if active_hours > 0 else None
+    stops_per_active_hour = round(total_stops / active_hours_equiv, 2) if active_hours_equiv > 0 else None
+    pieces_per_active_hour = round(total_pieces / active_hours_equiv, 2) if active_hours_equiv > 0 else None
 
     warning_count, error_count = _log_counts_for_date(inbox_dir, driver_id, date)
 
@@ -254,6 +353,7 @@ def build_daily_rollup(date, driver_id, payload, inbox_dir):
             "error_count": error_count,
             "has_gaps": _has_gaps(hour_keys),
             "all_zero_hours": all_zero_hours,
+            "irregular_hour_gaps": irregular_gaps,
         },
     }
 
@@ -333,6 +433,9 @@ def build_overall_rollup(driver_id, daily_rollups):
     total_warnings = sum(r["data_quality"]["warning_count"] for r in daily_rollups)
     total_errors = sum(r["data_quality"]["error_count"] for r in daily_rollups)
     days_with_gaps = sum(1 for r in daily_rollups if r["data_quality"]["has_gaps"])
+    days_with_irregular_hours = sum(
+        1 for r in daily_rollups if r["data_quality"]["irregular_hour_gaps"]
+    )
 
     return {
         "driver_id": driver_id,
@@ -367,6 +470,7 @@ def build_overall_rollup(driver_id, daily_rollups):
             "total_warnings": total_warnings,
             "total_errors": total_errors,
             "days_with_gaps": days_with_gaps,
+            "days_with_irregular_hours": days_with_irregular_hours,
         },
     }
 
