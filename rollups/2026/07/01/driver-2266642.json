@@ -39,13 +39,31 @@
   "pace": {
     "stops_per_mile": 2.84,
     "pieces_per_mile": 6.11,
-    "stops_per_active_hour": 16.5,
-    "pieces_per_active_hour": 35.5
+    "stops_per_active_hour": 17.17,
+    "pieces_per_active_hour": 36.94
   },
   "data_quality": {
     "warning_count": 0,
     "error_count": 0,
     "has_gaps": false,
-    "all_zero_hours": []
+    "all_zero_hours": [],
+    "irregular_hour_gaps": [
+      {
+        "hour": "09",
+        "elapsed_minutes": 43.7
+      },
+      {
+        "hour": "16",
+        "elapsed_minutes": 98.3
+      },
+      {
+        "hour": "17",
+        "elapsed_minutes": 35.4
+      },
+      {
+        "hour": "18",
+        "elapsed_minutes": 39.9
+      }
+    ]
   }
 }

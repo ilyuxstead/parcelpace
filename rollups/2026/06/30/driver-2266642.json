@@ -39,13 +39,14 @@
   "pace": {
     "stops_per_mile": 2.11,
     "pieces_per_mile": 4.63,
-    "stops_per_active_hour": 15.8,
-    "pieces_per_active_hour": 34.6
+    "stops_per_active_hour": 16.24,
+    "pieces_per_active_hour": 35.56
   },
   "data_quality": {
     "warning_count": 0,
     "error_count": 0,
     "has_gaps": false,
-    "all_zero_hours": []
+    "all_zero_hours": [],
+    "irregular_hour_gaps": []
   }
 }

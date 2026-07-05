@@ -16,15 +16,15 @@
     "pieces_per_day": 264.83,
     "stops_per_mile": 1.89,
     "pieces_per_mile": 3.76,
-    "stops_per_active_hour": 14.42,
-    "pieces_per_active_hour": 28.02,
+    "stops_per_active_hour": 15.55,
+    "pieces_per_active_hour": 30.16,
     "finish_time_delta_minutes": -25.0
   },
   "consistency": {
     "stops_per_mile_stddev": 0.71,
     "pieces_per_mile_stddev": 1.74,
-    "stops_per_active_hour_stddev": 1.52,
-    "pieces_per_active_hour_stddev": 5.54
+    "stops_per_active_hour_stddev": 1.54,
+    "pieces_per_active_hour_stddev": 5.29
   },
   "trend": {
     "by_route": {
@@ -35,9 +35,9 @@
         "stops_per_mile_prior_avg": null,
         "pieces_per_mile_recent_avg": 2.11,
         "pieces_per_mile_prior_avg": null,
-        "stops_per_active_hour_recent_avg": 13.0,
+        "stops_per_active_hour_recent_avg": 12.98,
         "stops_per_active_hour_prior_avg": null,
-        "pieces_per_active_hour_recent_avg": 23.29,
+        "pieces_per_active_hour_recent_avg": 23.25,
         "pieces_per_active_hour_prior_avg": null
       },
       "14A": {
@@ -47,9 +47,9 @@
         "stops_per_mile_prior_avg": null,
         "pieces_per_mile_recent_avg": 1.7,
         "pieces_per_mile_prior_avg": null,
-        "stops_per_active_hour_recent_avg": 14.56,
+        "stops_per_active_hour_recent_avg": 16.73,
         "stops_per_active_hour_prior_avg": null,
-        "pieces_per_active_hour_recent_avg": 24.67,
+        "pieces_per_active_hour_recent_avg": 28.36,
         "pieces_per_active_hour_prior_avg": null
       },
       "17C": {
@@ -59,9 +59,9 @@
         "stops_per_mile_prior_avg": null,
         "pieces_per_mile_recent_avg": 4.69,
         "pieces_per_mile_prior_avg": null,
-        "stops_per_active_hour_recent_avg": 14.73,
+        "stops_per_active_hour_recent_avg": 15.89,
         "stops_per_active_hour_prior_avg": null,
-        "pieces_per_active_hour_recent_avg": 30.04,
+        "pieces_per_active_hour_recent_avg": 32.33,
         "pieces_per_active_hour_prior_avg": null
       }
     },
@@ -70,6 +70,7 @@
   "data_quality": {
     "total_warnings": 0,
     "total_errors": 0,
-    "days_with_gaps": 0
+    "days_with_gaps": 0,
+    "days_with_irregular_hours": 4
   }
 }
