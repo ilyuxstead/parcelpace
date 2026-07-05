@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 676" width="680" height="676">
+<rect width="680" height="676" fill="#15191B"/>
+<text x="20" y="36" font-family="-apple-system,sans-serif" font-size="15" font-weight="700" letter-spacing="0.02em" fill="#F2EFE9">PACE TREND</text>
+<text x="660" y="35" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="12" fill="#9AA3A5" text-anchor="end">2266642 · route 17F</text>
+<text x="20" y="54" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#9AA3A5">1 days tracked · 2026-06-27 → 2026-06-27</text>
+<rect x="20" y="70" width="640" height="130" rx="10" fill="#1F2426"/>
+<text x="34" y="90" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" letter-spacing="0.08em" fill="#9AA3A5">STOPS / MILE</text>
+<circle cx="340.0" cy="137.0" r="3" fill="#4FA876"/>
+<text x="344.0" y="129.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="start">1.18</text>
+<text x="336.0" y="129.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">1.18</text>
+<rect x="20" y="222" width="640" height="130" rx="10" fill="#1F2426"/>
+<text x="34" y="242" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" letter-spacing="0.08em" fill="#9AA3A5">PIECES / MILE</text>
+<circle cx="340.0" cy="289.0" r="3" fill="#4FA876"/>
+<text x="344.0" y="281.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="start">2.11</text>
+<text x="336.0" y="281.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">2.11</text>
+<rect x="20" y="374" width="640" height="130" rx="10" fill="#1F2426"/>
+<text x="34" y="394" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" letter-spacing="0.08em" fill="#9AA3A5">STOPS / ACTIVE HR</text>
+<circle cx="340.0" cy="441.0" r="3" fill="#4FA876"/>
+<text x="344.0" y="433.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="start">12.98</text>
+<text x="336.0" y="433.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">12.98</text>
+<rect x="20" y="526" width="640" height="130" rx="10" fill="#1F2426"/>
+<text x="34" y="546" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" letter-spacing="0.08em" fill="#9AA3A5">PIECES / ACTIVE HR</text>
+<circle cx="340.0" cy="593.0" r="3" fill="#4FA876"/>
+<text x="344.0" y="585.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="start">23.25</text>
+<text x="336.0" y="585.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">23.25</text>
+</svg>
