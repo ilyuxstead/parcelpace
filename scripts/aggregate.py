@@ -377,7 +377,9 @@ def _build_trend_by_route(daily_rollups):
     Group daily rollups by route_id (days with no plan / no route_id are
     excluded -- there's nothing to group them by) and compute a recent-vs-
     prior trend, per pace metric (see TREND_METRICS), within each route's
-    own date-ordered series.
+    own date-ordered series. Each metric gets both an avg and a stddev for
+    the recent and prior windows, so a consumer can draw a variance band
+    around each segment rather than just two point estimates.
 
     Windows are based on "last N days this route was driven", not calendar
     days -- same-route days are rarely contiguous on the calendar, so a
@@ -407,6 +409,14 @@ def _build_trend_by_route(daily_rollups):
             route_trend["{}_recent_avg".format(metric)] = _safe_avg(recent_series)
             # None (not 0) when there isn't enough same-route history yet.
             route_trend["{}_prior_avg".format(metric)] = _safe_avg(prior_series) if prior else None
+            # Per-route stddev, same windows as the averages above -- lets a
+            # consumer draw a variance band around each segment of the trend
+            # line rather than only having the all-days-combined figure in
+            # the driver's overall consistency block. _safe_stddev already
+            # returns None under 2 points, so a route with only 1 day (or an
+            # empty prior window) naturally yields None here too.
+            route_trend["{}_recent_stddev".format(metric)] = _safe_stddev(recent_series)
+            route_trend["{}_prior_stddev".format(metric)] = _safe_stddev(prior_series) if prior else None
 
         trend[route_id] = route_trend
     return trend
