@@ -113,8 +113,8 @@
       "notes": "ran air. missing 4 lonk",
       "break_flag": false,
       "entry_time": "2026-07-06T10:00:07",
-      "hourly_stops": 5,
-      "hourly_pieces": 6,
+      "hourly_stops": 7,
+      "hourly_pieces": 8,
       "hourly_pieces_picked_up": 0,
       "hourly_miles": 24.0
     }
