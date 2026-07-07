@@ -9,9 +9,9 @@
     "predicted_finish": "19:32"
   },
   "actual": {
-    "total_stops": 159,
+    "total_stops": 161,
     "total_miles": 84.1,
-    "total_pieces": 370,
+    "total_pieces": 372,
     "total_pieces_picked_up": 292,
     "active_hours": 12,
     "break_hours": 0,
@@ -33,16 +33,16 @@
     "finish_time": "2026-07-06T20:15:06"
   },
   "plan_vs_actual": {
-    "stops_delta": -6,
+    "stops_delta": -4,
     "miles_delta": 1.5,
-    "pieces_delta": -3,
+    "pieces_delta": -1,
     "finish_time_delta_minutes": 43
   },
   "pace": {
-    "stops_per_mile": 1.89,
-    "pieces_per_mile": 4.4,
-    "stops_per_active_hour": 13.84,
-    "pieces_per_active_hour": 32.2
+    "stops_per_mile": 1.91,
+    "pieces_per_mile": 4.42,
+    "stops_per_active_hour": 14.01,
+    "pieces_per_active_hour": 32.38
   },
   "data_quality": {
     "warning_count": 0,
