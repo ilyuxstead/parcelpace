@@ -1,0 +1,113 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-07-06",
+  "plan": {
+    "entry_time": "2026-07-06T08:34:42",
+    "route_id": "20A",
+    "planned_stops": 165,
+    "planned_miles": 82.6,
+    "planned_pieces": 373,
+    "predicted_finish": "19:32"
+  },
+  "hours": {
+    "10": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-06T11:15:07",
+      "hourly_stops": 13,
+      "hourly_pieces": 94,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 3.1
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-06T12:02:53",
+      "hourly_stops": 17,
+      "hourly_pieces": 43,
+      "hourly_pieces_picked_up": 5,
+      "hourly_miles": 2
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-06T13:12:06",
+      "hourly_stops": 22,
+      "hourly_pieces": 63,
+      "hourly_pieces_picked_up": 3,
+      "hourly_miles": 2.7
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-06T14:10:10",
+      "hourly_stops": 9,
+      "hourly_pieces": 38,
+      "hourly_pieces_picked_up": 41,
+      "hourly_miles": 2.4
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-06T15:06:14",
+      "hourly_stops": 17,
+      "hourly_pieces": 63,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.6
+    },
+    "15": {
+      "notes": "Started doing pick ups",
+      "break_flag": false,
+      "entry_time": "2026-07-06T16:03:29",
+      "hourly_stops": 20,
+      "hourly_pieces": 11,
+      "hourly_pieces_picked_up": 29,
+      "hourly_miles": 8.1
+    },
+    "16": {
+      "notes": "Took 15 minute lunch 1857-1713",
+      "break_flag": false,
+      "entry_time": "2026-07-06T17:14:21",
+      "hourly_stops": 15,
+      "hourly_pieces": 12,
+      "hourly_pieces_picked_up": 93,
+      "hourly_miles": 5.8
+    },
+    "17": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-06T18:04:17",
+      "hourly_stops": 16,
+      "hourly_pieces": 14,
+      "hourly_pieces_picked_up": 21,
+      "hourly_miles": 4.8
+    },
+    "18": {
+      "notes": "Final stop complete.",
+      "break_flag": false,
+      "entry_time": "2026-07-06T18:45:33",
+      "hourly_stops": 23,
+      "hourly_pieces": 26,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.3
+    },
+    "19": {
+      "notes": "Te connectivity",
+      "break_flag": false,
+      "entry_time": "2026-07-06T19:49:30",
+      "hourly_stops": 2,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 100,
+      "hourly_miles": 6.2
+    },
+    "20": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-06T20:15:06",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 16.1
+    }
+  }
+}
