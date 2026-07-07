@@ -2,7 +2,7 @@
   "driver_id": "2266642",
   "date": "2026-07-06",
   "plan": {
-    "entry_time": "2026-07-06T08:34:42",
+    "entry_time": "2026-07-06T08:45:42",
     "route_id": "20A",
     "planned_stops": 165,
     "planned_miles": 82.6,
@@ -108,6 +108,15 @@
       "hourly_pieces": 0,
       "hourly_pieces_picked_up": 0,
       "hourly_miles": 16.1
+    },
+    "09": {
+      "notes": "ran air. missing 4 lonk",
+      "break_flag": false,
+      "entry_time": "2026-07-06T10:00:07",
+      "hourly_stops": 5,
+      "hourly_pieces": 6,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 24.0
     }
   }
 }
