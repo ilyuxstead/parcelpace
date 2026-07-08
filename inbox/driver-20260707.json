@@ -93,7 +93,7 @@
     },
     "19": {
       "notes": "Back in building",
-      "break_flag": true,
+      "break_flag": false,
       "entry_time": "2026-07-07T18:59:42",
       "hourly_stops": 0,
       "hourly_pieces": 0,
