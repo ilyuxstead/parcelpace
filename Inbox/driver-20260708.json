@@ -1,0 +1,113 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-07-08",
+  "plan": {
+    "entry_time": "2026-07-08T08:55:11",
+    "route_id": "17C",
+    "planned_stops": 162,
+    "planned_miles": 90.4,
+    "planned_pieces": 313,
+    "predicted_finish": "19:07"
+  },
+  "hours": {
+    "10": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-08T11:05:38",
+      "hourly_stops": 6,
+      "hourly_pieces": 124,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 2.4
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-08T11:59:48",
+      "hourly_stops": 18,
+      "hourly_pieces": 21,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 5.7
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-08T13:02:13",
+      "hourly_stops": 21,
+      "hourly_pieces": 28,
+      "hourly_pieces_picked_up": 5,
+      "hourly_miles": 4
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-08T14:02:08",
+      "hourly_stops": 20,
+      "hourly_pieces": 45,
+      "hourly_pieces_picked_up": 2,
+      "hourly_miles": 4.4
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-08T15:06:02",
+      "hourly_stops": 20,
+      "hourly_pieces": 25,
+      "hourly_pieces_picked_up": 6,
+      "hourly_miles": 0
+    },
+    "15": {
+      "notes": "Total 14 bucket miles was 44.1. Delta should be 5.1. This bucket should be 12.3 - 5.1 =7.2",
+      "break_flag": false,
+      "entry_time": "2026-07-08T16:01:44",
+      "hourly_stops": 15,
+      "hourly_pieces": 12,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 12.3
+    },
+    "16": {
+      "notes": "UPS store",
+      "break_flag": false,
+      "entry_time": "2026-07-08T17:21:13",
+      "hourly_stops": 21,
+      "hourly_pieces": 25,
+      "hourly_pieces_picked_up": 445,
+      "hourly_miles": 4.5
+    },
+    "17": {
+      "notes": "Got way distracted. Had to help two drivers get their PU pieces. Met at bard and the sheetz on old Scotland",
+      "break_flag": false,
+      "entry_time": "2026-07-08T18:32:14",
+      "hourly_stops": 13,
+      "hourly_pieces": 18,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 12.1
+    },
+    "18": {
+      "notes": "Complete. RTB",
+      "break_flag": false,
+      "entry_time": "2026-07-08T19:00:01",
+      "hourly_stops": 9,
+      "hourly_pieces": 7,
+      "hourly_pieces_picked_up": 24,
+      "hourly_miles": 3.3
+    },
+    "19": {
+      "notes": "Back in building",
+      "break_flag": false,
+      "entry_time": "2026-07-08T19:20:04",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 16.9
+    },
+    "09": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-08T10:12:45",
+      "hourly_stops": 5,
+      "hourly_pieces": 9,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 22.5
+    }
+  }
+}
