@@ -1,0 +1,113 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-07-10",
+  "plan": {
+    "entry_time": "2026-07-10T08:46:27",
+    "route_id": "17C",
+    "planned_stops": 159,
+    "planned_miles": 82.9,
+    "planned_pieces": 263,
+    "predicted_finish": "18:37"
+  },
+  "hours": {
+    "10": {
+      "notes": "Preload missed two unsorted bags in the back. I have a lot of late air now.",
+      "break_flag": false,
+      "entry_time": "2026-07-10T11:22:52",
+      "hourly_stops": 10,
+      "hourly_pieces": 97,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 2.9
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-10T12:03:51",
+      "hourly_stops": 15,
+      "hourly_pieces": 20,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.2
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-10T13:16:24",
+      "hourly_stops": 24,
+      "hourly_pieces": 36,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 5.5
+    },
+    "13": {
+      "notes": "Hour 12 stops should be 54 total stops, 158 total pieces, 2 pu, and 33.8 total miles",
+      "break_flag": false,
+      "entry_time": "2026-07-10T14:03:06",
+      "hourly_stops": 21,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 3.4
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-10T15:04:09",
+      "hourly_stops": 23,
+      "hourly_pieces": 27,
+      "hourly_pieces_picked_up": 13,
+      "hourly_miles": 5.3
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-10T16:25:23",
+      "hourly_stops": 26,
+      "hourly_pieces": 27,
+      "hourly_pieces_picked_up": 12,
+      "hourly_miles": 9.8
+    },
+    "16": {
+      "notes": "UPS store",
+      "break_flag": false,
+      "entry_time": "2026-07-10T17:18:54",
+      "hourly_stops": 13,
+      "hourly_pieces": 11,
+      "hourly_pieces_picked_up": 465,
+      "hourly_miles": 3.4
+    },
+    "17": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-10T18:03:57",
+      "hourly_stops": 14,
+      "hourly_pieces": 13,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 4.6
+    },
+    "18": {
+      "notes": "Had to run to Miss loads in Newville. Added a lot of mileage. From 25 sunbeam ran off 585 running pump and 846 greenspring then down to 950 centerville.",
+      "break_flag": false,
+      "entry_time": "2026-07-10T19:07:16",
+      "hourly_stops": 5,
+      "hourly_pieces": 3,
+      "hourly_pieces_picked_up": 43,
+      "hourly_miles": 20.6
+    },
+    "19": {
+      "notes": "Back to building. Final mileage",
+      "break_flag": false,
+      "entry_time": "2026-07-10T19:22:37",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 8.3
+    },
+    "09": {
+      "notes": "We were missing a lot of air so far. Missing a 108 E. Orange, a 132 East King St., and our ground package for 120 N. Seneca.",
+      "break_flag": false,
+      "entry_time": "2026-07-10T10:16:47",
+      "hourly_stops": 5,
+      "hourly_pieces": 5,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 21.2
+    }
+  }
+}
