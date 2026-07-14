@@ -1,0 +1,13 @@
+{
+  "driver_id": "2266642",
+  "entries": [
+    {
+      "date": "2026-07-13",
+      "timestamp": "2026-07-14T10:01:18.134965+00:00",
+      "errors": [],
+      "warnings": [
+        "hours[08] is all-zero with break_flag=false -- could be legitimate zero activity or an unedited/forgotten entry"
+      ]
+    }
+  ]
+}
