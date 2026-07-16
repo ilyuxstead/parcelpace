@@ -1,0 +1,104 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-07-15",
+  "plan": {
+    "entry_time": "2026-07-15T09:28:41",
+    "route_id": "17C",
+    "planned_stops": 180,
+    "planned_miles": 98.6,
+    "planned_pieces": 342,
+    "predicted_finish": "20:06"
+  },
+  "hours": {
+    "11": {
+      "notes": "Missed hour ten",
+      "break_flag": false,
+      "entry_time": "2026-07-15T12:01:56",
+      "hourly_stops": 17,
+      "hourly_pieces": 161,
+      "hourly_pieces_picked_up": 4,
+      "hourly_miles": 16
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-15T13:04:41",
+      "hourly_stops": 22,
+      "hourly_pieces": 32,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.1
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-15T14:03:17",
+      "hourly_stops": 23,
+      "hourly_pieces": 30,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 5.2
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-15T15:01:58",
+      "hourly_stops": 20,
+      "hourly_pieces": 26,
+      "hourly_pieces_picked_up": 16,
+      "hourly_miles": 6.9
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-15T16:32:18",
+      "hourly_stops": 32,
+      "hourly_pieces": 35,
+      "hourly_pieces_picked_up": 41,
+      "hourly_miles": 11.3
+    },
+    "16": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-15T17:42:41",
+      "hourly_stops": 17,
+      "hourly_pieces": 21,
+      "hourly_pieces_picked_up": 386,
+      "hourly_miles": 4.9
+    },
+    "17": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-15T18:19:14",
+      "hourly_stops": 10,
+      "hourly_pieces": 13,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 5.1
+    },
+    "18": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-15T19:21:01",
+      "hourly_stops": 20,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 48,
+      "hourly_miles": 6.7
+    },
+    "19": {
+      "notes": "Final mileage",
+      "break_flag": false,
+      "entry_time": "2026-07-15T19:44:36",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 16.9
+    },
+    "09": {
+      "notes": "Two air stops",
+      "break_flag": false,
+      "entry_time": "2026-07-15T10:00:31",
+      "hourly_stops": 2,
+      "hourly_pieces": 2,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 19.5
+    }
+  }
+}
