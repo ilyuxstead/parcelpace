@@ -1,0 +1,113 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-07-16",
+  "plan": {
+    "entry_time": "2026-07-16T09:11:47",
+    "route_id": "17C",
+    "planned_stops": 171,
+    "planned_miles": 98,
+    "planned_pieces": 315,
+    "predicted_finish": "19:41"
+  },
+  "hours": {
+    "10": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-16T11:07:30",
+      "hourly_stops": 9,
+      "hourly_pieces": 71,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.5
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-16T12:10:09",
+      "hourly_stops": 12,
+      "hourly_pieces": 74,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 5.7
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-16T13:03:17",
+      "hourly_stops": 18,
+      "hourly_pieces": 21,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 5.8
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-16T14:03:49",
+      "hourly_stops": 19,
+      "hourly_pieces": 29,
+      "hourly_pieces_picked_up": 12,
+      "hourly_miles": 5.6
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-16T15:15:57",
+      "hourly_stops": 24,
+      "hourly_pieces": 40,
+      "hourly_pieces_picked_up": 3,
+      "hourly_miles": 6.8
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-16T16:10:00",
+      "hourly_stops": 20,
+      "hourly_pieces": 26,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 6.3
+    },
+    "16": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-16T16:58:55",
+      "hourly_stops": 8,
+      "hourly_pieces": 6,
+      "hourly_pieces_picked_up": 420,
+      "hourly_miles": 4.1
+    },
+    "17": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-16T18:08:53",
+      "hourly_stops": 27,
+      "hourly_pieces": 33,
+      "hourly_pieces_picked_up": 3,
+      "hourly_miles": 6.3
+    },
+    "18": {
+      "notes": "I had to run the whole way out to the Sheetz gas station on old Scotland to get Marty’s pick up pieces. Was about a 4 mile trip both ways.",
+      "break_flag": false,
+      "entry_time": "2026-07-16T19:02:18",
+      "hourly_stops": 11,
+      "hourly_pieces": 11,
+      "hourly_pieces_picked_up": 79,
+      "hourly_miles": 9.6
+    },
+    "19": {
+      "notes": "Final mileage",
+      "break_flag": false,
+      "entry_time": "2026-07-16T19:23:50",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 16.8
+    },
+    "09": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-16T10:16:05",
+      "hourly_stops": 3,
+      "hourly_pieces": 6,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 21.4
+    }
+  }
+}
