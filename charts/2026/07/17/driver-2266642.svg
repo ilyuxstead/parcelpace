@@ -5,35 +5,35 @@
 <text x="20" y="54" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#9AA3A5">ROUTE 17C</text>
 <rect x="20" y="76" width="220" height="210" rx="10" fill="#1F2426"/>
 <text x="34" y="96" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" letter-spacing="0.08em" fill="#9AA3A5">STOPS</text>
-<text x="97.0" y="133.39644970414201" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">145</text>
-<rect x="74.0" y="139.39644970414201" width="46" height="90.603550295858" rx="4" fill="#E8A33D"/>
-<text x="163.0" y="118.4" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">169</text>
-<rect x="140.0" y="124.4" width="46" height="105.6" rx="4" fill="#4FA876"/>
+<text x="97.0" y="118.4" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">145</text>
+<rect x="74.0" y="124.4" width="46" height="105.6" rx="4" fill="#E8A33D"/>
+<text x="163.0" y="124.95448275862068" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">136</text>
+<rect x="140.0" y="130.95448275862068" width="46" height="99.04551724137932" rx="4" fill="#4FA876"/>
 <text x="97.0" y="244" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="9" fill="#9AA3A5" text-anchor="middle">PLANNED</text>
 <text x="163.0" y="244" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="9" fill="#9AA3A5" text-anchor="middle">ACTUAL</text>
 <line x1="34" y1="254" x2="226" y2="254" stroke="#343B3D" stroke-dasharray="3,3"/>
-<text x="34" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#9AA3A5">145 plan / 169 actual</text>
-<text x="226" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" font-weight="700" fill="#4FA876" text-anchor="end">+24</text>
+<text x="34" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#9AA3A5">145 plan / 136 actual</text>
+<text x="226" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" font-weight="700" fill="#D14B4B" text-anchor="end">-9</text>
 <rect x="256" y="76" width="220" height="210" rx="10" fill="#1F2426"/>
 <text x="270" y="96" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" letter-spacing="0.08em" fill="#9AA3A5">MILES</text>
-<text x="333.0" y="150.05487708168118" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">88.3</text>
-<rect x="310.0" y="156.05487708168118" width="46" height="73.9451229183188" rx="4" fill="#E8A33D"/>
-<text x="399.0" y="118.4" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">126.1</text>
+<text x="333.0" y="125.64050632911392" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">88.3</text>
+<rect x="310.0" y="131.64050632911392" width="46" height="98.35949367088608" rx="4" fill="#E8A33D"/>
+<text x="399.0" y="118.4" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">94.8</text>
 <rect x="376.0" y="124.4" width="46" height="105.6" rx="4" fill="#4FA876"/>
 <text x="333.0" y="244" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="9" fill="#9AA3A5" text-anchor="middle">PLANNED</text>
 <text x="399.0" y="244" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="9" fill="#9AA3A5" text-anchor="middle">ACTUAL</text>
 <line x1="270" y1="254" x2="462" y2="254" stroke="#343B3D" stroke-dasharray="3,3"/>
-<text x="270" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#9AA3A5">88.3 plan / 126.1 actual</text>
-<text x="462" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" font-weight="700" fill="#4FA876" text-anchor="end">+37.8</text>
+<text x="270" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#9AA3A5">88.3 plan / 94.8 actual</text>
+<text x="462" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" font-weight="700" fill="#4FA876" text-anchor="end">+6.5</text>
 <rect x="492" y="76" width="220" height="210" rx="10" fill="#1F2426"/>
 <text x="506" y="96" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" letter-spacing="0.08em" fill="#9AA3A5">PIECES</text>
-<text x="569.0" y="164.78504672897196" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">240</text>
-<rect x="546.0" y="170.78504672897196" width="46" height="59.21495327102804" rx="4" fill="#E8A33D"/>
-<text x="635.0" y="118.4" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">428</text>
+<text x="569.0" y="133.16129032258064" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">240</text>
+<rect x="546.0" y="139.16129032258064" width="46" height="90.83870967741936" rx="4" fill="#E8A33D"/>
+<text x="635.0" y="118.4" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#F2EFE9" text-anchor="middle">279</text>
 <rect x="612.0" y="124.4" width="46" height="105.6" rx="4" fill="#4FA876"/>
 <text x="569.0" y="244" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="9" fill="#9AA3A5" text-anchor="middle">PLANNED</text>
 <text x="635.0" y="244" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="9" fill="#9AA3A5" text-anchor="middle">ACTUAL</text>
 <line x1="506" y1="254" x2="698" y2="254" stroke="#343B3D" stroke-dasharray="3,3"/>
-<text x="506" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#9AA3A5">240 plan / 428 actual</text>
-<text x="698" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" font-weight="700" fill="#4FA876" text-anchor="end">+188</text>
+<text x="506" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#9AA3A5">240 plan / 279 actual</text>
+<text x="698" y="270" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" font-weight="700" fill="#4FA876" text-anchor="end">+39</text>
 </svg>
