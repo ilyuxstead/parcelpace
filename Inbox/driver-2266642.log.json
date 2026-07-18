@@ -8,6 +8,14 @@
       "warnings": [
         "hours[08] is all-zero with break_flag=false -- could be legitimate zero activity or an unedited/forgotten entry"
       ]
+    },
+    {
+      "date": "2026-07-17",
+      "timestamp": "2026-07-18T09:42:25.266135+00:00",
+      "errors": [],
+      "warnings": [
+        "hours[12] is all-zero with break_flag=false -- could be legitimate zero activity or an unedited/forgotten entry"
+      ]
     }
   ]
 }
