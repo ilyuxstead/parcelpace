@@ -265,6 +265,16 @@ def build_daily_rollup(date, driver_id, payload, inbox_dir):
     active_hours = 0
     break_hours = 0
     all_zero_hours = []
+    # Subset of all_zero_hours where the driver did NOT explicitly confirm
+    # the zero via confirmed_zero (see index.html's save-flow confirm step
+    # and validate.py's matching warning). This is the field a human
+    # actually wants to glance at -- all_zero_hours is kept as-is,
+    # unfiltered, for anyone who still wants the full raw list. Old data
+    # predating confirmed_zero has no such field on any hour entry, so
+    # entry.get("confirmed_zero") is falsy and every legacy all-zero hour
+    # lands in this list too -- same "applies retroactively, no backfill
+    # gap" pattern as _compute_active_minutes().
+    unconfirmed_zero_hours = []
 
     for hk in hour_keys:
         entry = hours[hk]
@@ -285,6 +295,8 @@ def build_daily_rollup(date, driver_id, payload, inbox_dir):
 
         if stops == 0 and miles == 0 and pieces == 0 and pickup == 0:
             all_zero_hours.append(hk)
+            if not entry.get("confirmed_zero"):
+                unconfirmed_zero_hours.append(hk)
 
     # active_minutes is the time-normalized replacement denominator for the
     # two active-hour pace metrics below; active_hours (the raw bucket
@@ -353,6 +365,7 @@ def build_daily_rollup(date, driver_id, payload, inbox_dir):
             "error_count": error_count,
             "has_gaps": _has_gaps(hour_keys),
             "all_zero_hours": all_zero_hours,
+            "unconfirmed_zero_hours": unconfirmed_zero_hours,
             "irregular_hour_gaps": irregular_gaps,
         },
     }
@@ -446,6 +459,9 @@ def build_overall_rollup(driver_id, daily_rollups):
     days_with_irregular_hours = sum(
         1 for r in daily_rollups if r["data_quality"]["irregular_hour_gaps"]
     )
+    days_with_unconfirmed_zero_hours = sum(
+        1 for r in daily_rollups if r["data_quality"]["unconfirmed_zero_hours"]
+    )
 
     return {
         "driver_id": driver_id,
@@ -481,6 +497,7 @@ def build_overall_rollup(driver_id, daily_rollups):
             "total_errors": total_errors,
             "days_with_gaps": days_with_gaps,
             "days_with_irregular_hours": days_with_irregular_hours,
+            "days_with_unconfirmed_zero_hours": days_with_unconfirmed_zero_hours,
         },
     }
 
