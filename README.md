@@ -206,15 +206,22 @@ This is a known gap on the roadmap, not a permanent design choice.
 
 ---
 
+## Deferred to v2
+
+These are intentionally out of scope for the current version, not bugs or oversights:
+
+- **`has_gaps` nuance.** `aggregate.py`'s handling of non-contiguous hour ranges (gaps in a shift) is still a binary span-vs-length check. Richer treatment (e.g. distinguishing a single missed hour from several) is deferred until it's clear it's actually needed.
+- **Composite scoring.** What composite "effort" and miles-normalized pace metrics should eventually feed into driver scoring remains undecided, consistent with the project's "collect raw stats first, score later" principle — there isn't enough real data yet to know what a fair weighting looks like.
+- **Chart access control.** Whether driver-facing and manager-only dashboard views need to be distinguished, and how, is deferred — no static-site access control mechanism exists yet, so today anyone with a driver ID can view that driver's dashboard.
+- **`trends.py` partial variance bands.** `draw_band()` currently requires both an avg and a stddev to render anything; a route with an avg but not yet enough history for a stddev renders no band at all rather than a partial one. Deferred until it's worth the added rendering complexity.
+
 ## Known open questions
 
 These are tracked as active design decisions, not bugs:
 
-- Whether `planned_miles: 0` and `predicted_finish: null` represent legitimate states or should be tightened in `validate.py`.
-- Whether `aggregate.py`'s handling of non-contiguous hour ranges (gaps in a shift) needs more nuance than the current `has_gaps` flag.
-- What composite "effort" and miles-normalized pace metrics should eventually feed into driver scoring.
-- `route_id` casing is only normalized client-side (the HTML tool uppercases on save). `validate.py`/`aggregate.py` don't normalize it, so a route entered inconsistently outside the web tool (e.g. `17f` vs `17F`) would silently split into two separate trend buckets rather than being caught.
-- Chart access control: whether driver-facing and manager-only views need to be distinguished, and how — no static-site access control mechanism exists yet, so today anyone with a driver ID can view that driver's dashboard.
+- `route_id` casing is only normalized client-side (the HTML tool uppercases on save) *and* now server-side via `normalize_route_id()` in `inbox_common.py`, applied in `aggregate.py`'s rollup grouping. Raw `yyyy/mm/dd/` source files themselves are left unnormalized — worth deciding whether that's fine long-term or whether the source files should eventually be normalized too.
+
+**Resolved:** `planned_miles: 0` and `predicted_finish: null` used to be warning-only in `validate.py`. Neither is ever a legitimate value, so both are now hard errors that block the file and land in the driver's log as evidence for a human to review.
 
 **Resolved:** two same-driver uploads for different dates used to be able to clobber each other in `inbox/` before `route_inbox.py` ran, because every upload was forced to the identical `driver-XXXXXXX.json` name. Now that `route_inbox.py` accepts any non-log `*.json` file (see `is_data_file()` in `inbox_common.py`), that collision no longer occurs as long as each upload has a distinct filename — which mobile-browser downloads already do in practice (they commonly assign their own generated filename, e.g. a UUID, rather than honoring the page's requested name).
 
