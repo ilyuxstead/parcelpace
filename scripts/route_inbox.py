@@ -1,10 +1,15 @@
 """
 route_inbox.py
 
-Scans inbox/ for driver submissions (driver-XXXXXXX.json), validates each
-one via validate.py, and -- if there are no hard errors -- moves it to its
-organized location (nested date path: yyyy/mm/dd/driver-XXXXXXX.json),
-overwriting any existing file for that driver+date.
+Scans inbox/ for driver submissions (any non-log '*.json' file -- see
+is_data_file() in inbox_common.py), validates each one via validate.py,
+and -- if there are no hard errors -- moves it to its organized location
+(nested date path: yyyy/mm/dd/driver-XXXXXXX.json), overwriting any
+existing file for that driver+date. The destination filename is always
+rebuilt from the payload's own driver_id, regardless of what the file was
+named in inbox/ -- the uploaded filename is disposable and never has to
+match any particular pattern, since driver_id and date are read from the
+JSON body.
 
 Log files (driver-XXXXXXX.log.json) are skipped when scanning, and are
 also where any validation errors/warnings get written -- one accumulating
@@ -12,13 +17,14 @@ log per driver, across all dates, that lives in inbox/ until a human
 clears it manually. Nothing is written to the log on a fully clean
 validation (no errors, no warnings).
 
-Known accepted risk (not handled here): since the uploaded filename is
-always driver-XXXXXXX.json with no date in it, if two exports from the
-same driver for two different dates land in inbox/ before this script
-runs, the second upload overwrites the first at the git level and the
-earlier day's data is lost silently. Accepted for now given low export
-frequency -- flagged for future reconsideration (e.g. putting the date in
-the export filename) rather than solved here.
+Resolved risk: earlier versions of this script only recognized
+driver-XXXXXXX.json filenames, so two same-driver uploads for different
+dates (both landing under that identical name) could clobber each other
+in inbox/ before this script ran. Now that any *.json is accepted, that
+collision no longer happens as long as each upload gets a distinct
+filename -- which is already the case for mobile browsers that assign
+their own generated (e.g. UUID) filename on save, and can additionally be
+relied on going forward rather than treated as accidental.
 """
 
 import json
@@ -132,7 +138,12 @@ def process_inbox(inbox_dir=INBOX_DIR, repo_root=REPO_ROOT):
 
         # driver_id/date for logging purposes -- prefer payload content,
         # but fall back to filename parsing if the payload itself is too
-        # broken to read (e.g. invalid JSON).
+        # broken to read (e.g. invalid JSON). That fallback only succeeds
+        # if the filename happens to match driver-XXXXXXX.json -- since
+        # inbox filenames are no longer required to follow that pattern
+        # (see is_data_file()), a broken payload with some other filename
+        # (a UUID, for instance) has no identifying info to recover and
+        # falls through to "UNKNOWN".
         driver_id = None
         date = None
         if payload is not None and isinstance(payload, dict):
