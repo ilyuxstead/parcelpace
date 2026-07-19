@@ -176,6 +176,9 @@ def _validate_hour_entry(hour_key, entry, result):
     if "break_flag" in entry and not isinstance(entry["break_flag"], bool):
         result.add_error("{}.break_flag must be a boolean".format(label_prefix))
 
+    if "confirmed_zero" in entry and not isinstance(entry["confirmed_zero"], bool):
+        result.add_error("{}.confirmed_zero must be a boolean".format(label_prefix))
+
     # Negative deltas: flagged, not blocked -- consistent with the HTML
     # tool's own red-highlight-but-don't-block behavior for these fields.
     # hourly_miles is included alongside the others now that it's computed
@@ -186,9 +189,12 @@ def _validate_hour_entry(hour_key, entry, result):
         if isinstance(val, (int, float)) and not isinstance(val, bool) and val < 0:
             result.add_warning("{}.{} is negative ({})".format(label_prefix, delta_field, val))
 
-    # All-zero hour with break_flag false: ambiguous -- could be a
-    # legitimate zero-activity hour, or a forgotten/unedited entry.
-    # Currently indistinguishable, so just flag it for a human to glance at.
+    # All-zero hour with break_flag false: ambiguous on its own -- could be
+    # a legitimate zero-activity hour, or a forgotten/unedited entry. The
+    # web tool now resolves that ambiguity at save time by requiring the
+    # driver to explicitly confirm a genuine all-zero hour (see
+    # confirmed_zero handling in index.html's save flow), so only an
+    # UNCONFIRMED all-zero hour is actually ambiguous here.
     numeric_fields = ("hourly_stops", "hourly_miles", "hourly_pieces", "hourly_pieces_picked_up")
     all_zero = all(
         isinstance(entry.get(f), (int, float))
@@ -196,10 +202,10 @@ def _validate_hour_entry(hour_key, entry, result):
         and entry.get(f) == 0
         for f in numeric_fields
     )
-    if all_zero and entry.get("break_flag") is False:
+    if all_zero and entry.get("break_flag") is False and entry.get("confirmed_zero") is not True:
         result.add_warning(
-            "{} is all-zero with break_flag=false -- could be legitimate "
-            "zero activity or an unedited/forgotten entry".format(label_prefix)
+            "{} is all-zero with break_flag=false and not confirmed -- could "
+            "be legitimate zero activity or an unedited/forgotten entry".format(label_prefix)
         )
 
 
