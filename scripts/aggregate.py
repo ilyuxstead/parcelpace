@@ -48,6 +48,7 @@ from inbox_common import (
     is_month_folder,
     is_year_folder,
     log_filename_for_driver,
+    normalize_route_id,
     split_date,
 )
 
@@ -309,7 +310,14 @@ def build_daily_rollup(date, driver_id, payload, inbox_dir):
     finish_time = hours[last_hour_key].get("entry_time") if last_hour_key else None
 
     predicted_finish = plan.get("predicted_finish") if plan else None
-    route_id = plan.get("route_id") if plan else None
+    # Normalized here (strip + uppercase) rather than trusting upstream
+    # casing -- index.html already uppercases on save, but this is the
+    # single point every downstream consumer of route_id for grouping
+    # (this file's own _build_trend_by_route, and trends.py's per-route
+    # series) reads through, so it's now a data guarantee rather than a
+    # process one. Raw yyyy/mm/dd source files are left untouched -- this
+    # only affects the rollup.
+    route_id = normalize_route_id(plan.get("route_id")) if plan else None
     planned_stops = plan.get("planned_stops") if plan else None
     planned_miles = plan.get("planned_miles") if plan else None
     planned_pieces = plan.get("planned_pieces") if plan else None
