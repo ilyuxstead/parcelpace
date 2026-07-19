@@ -10,8 +10,15 @@ import re
 
 LOG_SUFFIX = ".log.json"
 
-# Matches driver-XXXXXXX.json (the data file the driver actually uploads).
-# Date is NOT in the filename -- it lives inside the JSON body.
+# Matches driver-XXXXXXX.json specifically. Used only as a best-effort
+# fallback for extracting a driver_id from the filename when a payload is
+# too broken to parse (see driver_id_from_filename()) -- NOT used to decide
+# whether a file in inbox/ counts as a data file. Driver ID and date both
+# live in the JSON body, not the filename, and some mobile browsers (e.g.
+# iOS Share-sheet "Save to Files" flows) substitute their own generated
+# filename -- often a UUID -- regardless of the page's requested download
+# name. Gating is_data_file() on this pattern would silently skip those
+# uploads, so it isn't.
 DATA_FILENAME_RE = re.compile(r"^driver-(.+)\.json$")
 
 # Matches a "YYYY-MM-DD" date string as stored in the JSON body (payload
@@ -69,12 +76,20 @@ def is_log_file(filename):
 
 def is_data_file(filename):
     """
-    True if this filename looks like a driver data submission
-    (driver-XXXXXXX.json) and is NOT a log file.
+    True if this filename should be treated as a driver data submission --
+    any '*.json' file that isn't a log file (see is_log_file()).
+
+    Deliberately NOT restricted to the driver-XXXXXXX.json naming pattern:
+    driver_id and date are read from the JSON payload body wherever
+    possible (route_inbox.py only falls back to the filename if the
+    payload itself can't be parsed), and some mobile browsers rewrite the
+    filename on download regardless of what the page requested -- most
+    commonly to a UUID. Gating on the naming pattern would silently skip
+    those uploads instead of processing them.
     """
     if is_log_file(filename):
         return False
-    return bool(DATA_FILENAME_RE.match(filename))
+    return filename.endswith(".json")
 
 
 def driver_id_from_filename(filename):
