@@ -111,3 +111,22 @@ def log_filename_for_driver(driver_id):
 def data_filename_for_driver(driver_id):
     """Build the standard data filename for a driver."""
     return "driver-{}.json".format(driver_id)
+
+
+def normalize_route_id(route_id):
+    """
+    Normalize a route_id for grouping purposes (strip + uppercase), so a
+    route entered inconsistently anywhere upstream (e.g. '17f' vs '17F')
+    can't silently split trend history into two separate buckets.
+
+    index.html already uppercases on save, so this is a no-op for data
+    that came through the web tool -- it exists as a second, authoritative
+    guarantee for anything that reads route_id for grouping (aggregate.py's
+    rollups and trend-by-route), independent of how any given payload was
+    produced. Returns None unchanged (a day with no plan has no route_id
+    to normalize).
+    """
+    if not isinstance(route_id, str):
+        return route_id
+    normalized = route_id.strip().upper()
+    return normalized or None
