@@ -10,7 +10,7 @@ A lightweight delivery-driver telematics tracker that uses Codeberg git reposito
 
 1. A driver opens the **entry tool** (`index.html`, a single-page HTML app hosted on **Codeberg Pages**) on their phone.
 2. They log a **start-of-day plan** and then an **hourly check-in** throughout their shift. Cumulative-to-delta conversion happens client-side (`recalcDeltas()` against a `lastreading` baseline in `localStorage`) — only per-hour deltas are ever written to JSON.
-3. Each save is queued locally in the browser; at the end of a batch, the driver exports a combined `driver-XXXXXXX.json` payload and uploads it into the `inbox/` folder of the `dropstats` repo (via the Codeberg web UI or a git client on the phone).
+3. Each save is queued locally in the browser; at the end of a batch, the driver exports a combined `driver-XXXXXXX.json` payload and uploads it into the `inbox/` folder of the `dropstats` repo (via the Codeberg web UI or a git client on the phone). The uploaded filename itself is disposable — some mobile browsers substitute their own generated name (e.g. a UUID) on save regardless of what was requested, and `route_inbox.py` doesn't require any particular filename to process a submission.
 4. **`route_inbox.py`** validates and files the submission into the date-organized data tree.
 5. **`aggregate.py`** rolls daily and all-time stats per driver, from scratch, every run.
 6. **`visualize.py`** and **`trends.py`** render SVG charts from those rollups.
@@ -73,7 +73,7 @@ dropstats/
 
 The `pages` repo is much smaller — just `dashboard.html` plus whatever static assets it needs.
 
-**Date lives in the JSON, not the filename.** A driver's raw upload is always `driver-XXXXXXX.json` — the date is read out of the payload body during routing, then used to place the file in the right `yyyy/mm/dd/` folder.
+**Date lives in the JSON, not the filename.** Neither the date nor the driver ID has to be recoverable from a driver's raw upload filename — both are read out of the payload body during routing, then used to place the file in the right `yyyy/mm/dd/driver-XXXXXXX.json` location (the destination filename is always rebuilt from `driver_id`, regardless of what the file was called in `inbox/`). `route_inbox.py` accepts any non-log `*.json` file in `inbox/`, since some mobile browsers substitute their own generated filename on save.
 
 **Data folders are nested by year/month/day, not flat.** A flat `YYYY-MM-DD/` folder per day would eventually leave hundreds of folders sitting at the repo root. Nesting keeps the root tidy — at most ~12 month folders per year, ~31 day folders per month — while `rollups/` and `charts/` mirror the same nesting for consistency. `overall/` isn't date-keyed at all, so it stays flat, and `charts/trends/` is keyed by driver+route instead of by date.
 
@@ -98,7 +98,7 @@ The `pages` repo is much smaller — just `dashboard.html` plus whatever static 
 
 1. **Plan + hourly entries** are composed client-side in `index.html`. Cumulative device readings (stops, pieces, pieces picked up, miles) are converted to per-hour deltas *in the browser*, via `recalcDeltas()` against a `lastreading` baseline kept in `localStorage`. Only deltas are ever written to JSON — the raw cumulative totals never leave the phone.
 2. **Export** bundles the queued plan + hourly entries into one consolidated `driver-XXXXXXX.json` and the driver uploads it into `inbox/`.
-3. **`route_inbox.py`** scans `inbox/`, skips log files, and for each data file:
+3. **`route_inbox.py`** scans `inbox/`, skips log files, and for each data file (any non-log `*.json`, regardless of its name):
    - Calls `validate.py` against the schema. A missing `plan` is only a warning, but if a plan *is* submitted, a missing or blank `route_id` is a hard error — every plan needs a route so same-route days can be grouped for trending.
    - Appends any errors/warnings to that driver's accumulating `driver-XXXXXXX.log.json` (silent if the submission is fully clean).
    - On success, splits the payload's `date` field into `yyyy/mm/dd` and moves the file into `yyyy/mm/dd/driver-XXXXXXX.json`, overwriting any prior file for that driver+date.
@@ -213,7 +213,8 @@ These are tracked as active design decisions, not bugs:
 - What composite "effort" and miles-normalized pace metrics should eventually feed into driver scoring.
 - `route_id` casing is only normalized client-side (the HTML tool uppercases on save). `validate.py`/`aggregate.py` don't normalize it, so a route entered inconsistently outside the web tool (e.g. `17f` vs `17F`) would silently split into two separate trend buckets rather than being caught.
 - Chart access control: whether driver-facing and manager-only views need to be distinguished, and how — no static-site access control mechanism exists yet, so today anyone with a driver ID can view that driver's dashboard.
-- **Known accepted risk:** since the uploaded filename is always `driver-XXXXXXX.json` with no date in it, if two exports from the same driver for two different dates land in `inbox/` before `route_inbox.py` runs, the second upload overwrites the first and the earlier day's data is lost silently. Accepted for now given low export frequency — flagged for future reconsideration (e.g. putting the date in the export filename) rather than solved here.
+
+**Resolved:** two same-driver uploads for different dates used to be able to clobber each other in `inbox/` before `route_inbox.py` ran, because every upload was forced to the identical `driver-XXXXXXX.json` name. Now that `route_inbox.py` accepts any non-log `*.json` file (see `is_data_file()` in `inbox_common.py`), that collision no longer occurs as long as each upload has a distinct filename — which mobile-browser downloads already do in practice (they commonly assign their own generated filename, e.g. a UUID, rather than honoring the page's requested name).
 
 ---
 
