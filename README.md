@@ -137,11 +137,14 @@ A consolidated driver-day payload:
       "hourly_pieces_picked_up": 0,
       "notes": "",
       "break_flag": false,
+      "confirmed_zero": false,
       "entry_time": "ISO 8601"
     }
   }
 }
 ```
+
+`confirmed_zero` is optional and only meaningful when every hourly delta is 0 and `break_flag` is `false` -- the web tool prompts the driver to explicitly confirm a genuine zero-activity hour in that case, and sets this to `true` if they do. It's the difference between "confirmed zero" and "possibly forgotten/unedited" for an otherwise-identical all-zero hour (see `data_quality.unconfirmed_zero_hours` below). Older entries predating this field simply omit it, and are treated the same as an unconfirmed zero.
 
 `plan` may be `null` if a driver hasn't submitted a day plan. Hour keys are zero-padded `"00"`–`"23"` strings; the `hour-HH.json` naming convention in the export process gives one slot per hour at the filesystem level, so collisions are structurally impossible rather than something validation has to catch.
 
@@ -209,12 +212,13 @@ These are tracked as active design decisions, not bugs:
 
 - Whether `planned_miles: 0` and `predicted_finish: null` represent legitimate states or should be tightened in `validate.py`.
 - Whether `aggregate.py`'s handling of non-contiguous hour ranges (gaps in a shift) needs more nuance than the current `has_gaps` flag.
-- Whether an all-zero, non-break hour should be distinguishable from an unedited/forgotten entry — currently both look identical to the pipeline.
 - What composite "effort" and miles-normalized pace metrics should eventually feed into driver scoring.
 - `route_id` casing is only normalized client-side (the HTML tool uppercases on save). `validate.py`/`aggregate.py` don't normalize it, so a route entered inconsistently outside the web tool (e.g. `17f` vs `17F`) would silently split into two separate trend buckets rather than being caught.
 - Chart access control: whether driver-facing and manager-only views need to be distinguished, and how — no static-site access control mechanism exists yet, so today anyone with a driver ID can view that driver's dashboard.
 
 **Resolved:** two same-driver uploads for different dates used to be able to clobber each other in `inbox/` before `route_inbox.py` ran, because every upload was forced to the identical `driver-XXXXXXX.json` name. Now that `route_inbox.py` accepts any non-log `*.json` file (see `is_data_file()` in `inbox_common.py`), that collision no longer occurs as long as each upload has a distinct filename — which mobile-browser downloads already do in practice (they commonly assign their own generated filename, e.g. a UUID, rather than honoring the page's requested name).
+
+**Resolved:** an all-zero, non-break hour used to be indistinguishable from a forgotten/unedited entry — both produced identical deltas, since untouched wheel fields naturally compute a zero delta and the miles field falls back to `0` when blank. `index.html` now prompts the driver to explicitly confirm a genuine all-zero hour before it can be saved, setting `hours[HH].confirmed_zero: true` on confirmation. `validate.py` only warns on an all-zero hour that's *unconfirmed*, and `aggregate.py` surfaces those specifically via `data_quality.unconfirmed_zero_hours` (daily rollups) and `data_quality.days_with_unconfirmed_zero_hours` (overall rollups) — the original unfiltered `all_zero_hours` list is unchanged. Older data predating this field has no way to have been confirmed, so it's treated as unconfirmed by default, same backfill-free pattern as the active-hour elapsed-time derivation.
 
 ---
 
