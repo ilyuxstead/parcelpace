@@ -12,7 +12,7 @@ Dropstats schema:
       "planned_stops": int,
       "planned_miles": number,
       "planned_pieces": int,
-      "predicted_finish": "HH:MM" | null,
+      "predicted_finish": "HH:MM",
       "entry_time": ISO8601 str
   } | null,
   "hours": {
@@ -42,7 +42,11 @@ Design notes (see project memory for fuller context):
 - Hard errors block the move. Warnings do not -- they're logged but the
   file still proceeds, consistent with the project's general
   fault-tolerant-over-blocking philosophy (e.g. negative deltas are
-  flagged, not rejected).
+  flagged, not rejected). plan.predicted_finish == null and
+  plan.planned_miles == 0 are a deliberate exception to that general
+  stance: neither value is ever legitimate, so both are hard errors
+  rather than warnings -- the block itself, and the resulting log entry,
+  serve as evidence of the unfilled field for a human to review.
 """
 
 import json
@@ -130,22 +134,27 @@ def _validate_plan(plan, result):
     if "route_id" in plan and isinstance(plan["route_id"], str) and not plan["route_id"].strip():
         result.add_error("plan.route_id is present but blank -- a route code is required")
 
-    # predicted_finish: allowed to be null, but warn either way.
+    # predicted_finish: null used to be accepted (warning-only) but is
+    # never actually legitimate -- a driver always has a predicted finish
+    # in mind. Tightened to a hard error so it blocks the file and lands
+    # in the driver's log as evidence, rather than silently passing through.
     if "predicted_finish" not in plan:
         result.add_error("plan missing required field 'predicted_finish'")
     else:
         pf = plan["predicted_finish"]
         if pf is None:
-            result.add_warning("plan.predicted_finish is null")
+            result.add_error("plan.predicted_finish is null -- a predicted finish time is required")
         elif not isinstance(pf, str) or not TIME_RE.match(pf):
-            result.add_error("plan.predicted_finish must be 'HH:MM' or null")
+            result.add_error("plan.predicted_finish must be 'HH:MM'")
 
-    # planned_miles == 0 is allowed but worth a human glance.
+    # planned_miles == 0 was previously warning-only but is never a
+    # legitimate value -- tightened to a hard error, same reasoning as
+    # predicted_finish above.
     if isinstance(plan.get("planned_miles"), (int, float)) and not isinstance(
         plan.get("planned_miles"), bool
     ):
         if plan["planned_miles"] == 0:
-            result.add_warning("plan.planned_miles is 0")
+            result.add_error("plan.planned_miles is 0 -- planned miles must be greater than 0")
 
 
 def _validate_hour_entry(hour_key, entry, result):
