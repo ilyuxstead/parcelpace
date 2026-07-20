@@ -50,6 +50,9 @@
     "all_zero_hours": [
       "12"
     ],
+    "unconfirmed_zero_hours": [
+      "12"
+    ],
     "irregular_hour_gaps": [
       {
         "hour": "09",

@@ -52,6 +52,9 @@
     "all_zero_hours": [
       "08"
     ],
+    "unconfirmed_zero_hours": [
+      "08"
+    ],
     "irregular_hour_gaps": [
       {
         "hour": "08",

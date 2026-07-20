@@ -48,6 +48,7 @@
     "error_count": 0,
     "has_gaps": false,
     "all_zero_hours": [],
+    "unconfirmed_zero_hours": [],
     "irregular_hour_gaps": [
       {
         "hour": "10",

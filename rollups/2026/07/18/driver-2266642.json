@@ -1,0 +1,62 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-07-18",
+  "plan": {
+    "route_id": "21D",
+    "planned_stops": 169,
+    "planned_miles": 98.8,
+    "planned_pieces": 214,
+    "predicted_finish": "19:45"
+  },
+  "actual": {
+    "total_stops": 60,
+    "total_miles": 60.1,
+    "total_pieces": 69,
+    "total_pieces_picked_up": 0,
+    "active_hours": 6,
+    "break_hours": 0,
+    "hours_submitted": [
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14"
+    ],
+    "last_hour_key": "14",
+    "finish_time": "2026-07-19T07:43:10"
+  },
+  "plan_vs_actual": {
+    "stops_delta": -109,
+    "miles_delta": -38.7,
+    "pieces_delta": -145,
+    "finish_time_delta_minutes": -722
+  },
+  "pace": {
+    "stops_per_mile": 1.0,
+    "pieces_per_mile": 1.15,
+    "stops_per_active_hour": 2.75,
+    "pieces_per_active_hour": 3.17
+  },
+  "data_quality": {
+    "warning_count": 0,
+    "error_count": 0,
+    "has_gaps": false,
+    "all_zero_hours": [],
+    "unconfirmed_zero_hours": [],
+    "irregular_hour_gaps": [
+      {
+        "hour": "09",
+        "elapsed_minutes": 26.4
+      },
+      {
+        "hour": "10",
+        "elapsed_minutes": 37.8
+      },
+      {
+        "hour": "14",
+        "elapsed_minutes": 1062.3
+      }
+    ]
+  }
+}
