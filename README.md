@@ -2,20 +2,20 @@
 
 A lightweight delivery-driver telematics tracker that uses Codeberg git repositories as its entire data store. No database, no backend server — just JSON files, a static web form, a handful of Python scripts, and a static dashboard.
 
-> **Note:** This project moved from GitHub to Codeberg, under the `parcelpace` organization. GitHub and GitHub Actions have been retired entirely. All workflows below reflect the Codeberg-native setup.
+> **Note:** This project moved from GitHub to Codeberg, under the `parcelpace` organization. GitHub and GitHub Actions have been retired entirely. All workflows below reflect the Codeberg-native setup. (The project was previously named "Dropstats" — some hardcoded references, e.g. `DATA_REPO_RAW_BASE`, may still be catching up to the rename.)
 
 ---
 
 ## How it works
 
-1. A driver opens the **entry tool** (`index.html`, a single-page HTML app hosted on **Codeberg Pages**) on their phone.
+1. A driver opens the **entry tool** (`index.html`, a single-page HTML app hosted on **Codeberg Pages** from the `pages` repo, alongside the dashboard) on their phone.
 2. They log a **start-of-day plan** and then an **hourly check-in** throughout their shift. Cumulative-to-delta conversion happens client-side (`recalcDeltas()` against a `lastreading` baseline in `localStorage`) — only per-hour deltas are ever written to JSON.
-3. Each save is queued locally in the browser; at the end of a batch, the driver exports a combined `driver-XXXXXXX.json` payload and uploads it into the `inbox/` folder of the `parcelpace` repo (via the Codeberg web UI or a git client on the phone). The uploaded filename itself is disposable — some mobile browsers substitute their own generated name (e.g. a UUID) on save regardless of what was requested, and `route_inbox.py` doesn't require any particular filename to process a submission.
+3. Each save is queued locally in the browser; at the end of a batch, the driver exports a combined `driver-XXXXXXX.json` payload and uploads it into the `inbox/` folder of the `parcelpace/parcelpace` data repo (via the Codeberg web UI or a git client on the phone). The uploaded filename itself is disposable — some mobile browsers substitute their own generated name (e.g. a UUID) on save regardless of what was requested, and `route_inbox.py` doesn't require any particular filename to process a submission.
 4. **`route_inbox.py`** validates and files the submission into the date-organized data tree.
 5. **`aggregate.py`** rolls daily and all-time stats per driver, from scratch, every run.
 6. **`visualize.py`** and **`trends.py`** render SVG charts from those rollups.
 7. **`run_pipeline.py`** chains all four of the above into a single command.
-8. A separate static **dashboard** (`dashboard.html`, in the `pages` repo) lets anyone with a driver ID pull up that driver's charts, fetched cross-repo from Codeberg's raw content endpoint.
+8. A separate static **dashboard** (`dashboard.html`, also in the `pages` repo) lets anyone with a driver ID pull up that driver's charts, fetched cross-repo from Codeberg's raw content endpoint.
 
 No driver ever hand-edits JSON. The web tool is the only thing that produces it.
 
@@ -27,18 +27,17 @@ The project is split across two Codeberg repos under the `parcelpace` org:
 
 | Repo | Purpose |
 |---|---|
-| `codeberg.org/parcelpace/parcelpace` | Data store + pipeline scripts: `inbox/`, the nested `yyyy/mm/dd/` data tree, `rollups/`, `overall/`, `charts/`, and all Python scripts. Also hosts `index.html` via Codeberg Pages. |
-| `codeberg.org/parcelpace/pages` | The static `dashboard.html`, which fetches data and chart SVGs from the `parcelpace` repo's raw content endpoint (via a `DATA_REPO_RAW_BASE` constant) rather than sharing a repo with the data itself. |
+| `codeberg.org/parcelpace/parcelpace` | Data store + pipeline scripts only: `inbox/`, the nested `yyyy/mm/dd/` data tree, `rollups/`, `overall/`, `charts/`, and all Python scripts. Holds no HTML and hosts nothing via Codeberg Pages itself. |
+| `codeberg.org/parcelpace/pages` | Both front-end pages: `index.html` (the driver entry tool) and `dashboard.html`. Both are served via Codeberg Pages from this repo, and both fetch/write data cross-repo against the `parcelpace/parcelpace` data repo's raw content endpoint (via a `DATA_REPO_RAW_BASE`-style constant) rather than sharing a repo with the data itself. |
 
-Keeping the dashboard in its own repo means the data repo's history stays purely about driver data and pipeline code, and the dashboard can be redeployed independently of it.
+Keeping both front ends in their own repo, separate from the data repo, means the data repo's history stays purely about driver data and pipeline code, and the front end can be redeployed independently of it.
 
 ---
 
-## Repository structure (`parcelpace` repo)
+## Repository structure (`parcelpace` data repo)
 
 ```
 parcelpace/
-├── index.html                      # the phone-native entry tool (Codeberg Pages)
 ├── inbox/                          # incoming submissions land here, pre-validation
 │   ├── driver-XXXXXXX.json                 # one pending payload per driver
 │   └── driver-XXXXXXX.log.json             # accumulating validation log per driver
@@ -71,7 +70,7 @@ parcelpace/
     └── run_pipeline.py        # orchestrates all of the above in sequence
 ```
 
-The `pages` repo is much smaller — just `dashboard.html` plus whatever static assets it needs.
+The `pages` repo is much smaller — just `index.html`, `dashboard.html`, and whatever static assets they need. Both are served straight from that repo via Codeberg Pages.
 
 **Date lives in the JSON, not the filename.** Neither the date nor the driver ID has to be recoverable from a driver's raw upload filename — both are read out of the payload body during routing, then used to place the file in the right `yyyy/mm/dd/driver-XXXXXXX.json` location (the destination filename is always rebuilt from `driver_id`, regardless of what the file was called in `inbox/`). `route_inbox.py` accepts any non-log `*.json` file in `inbox/`, since some mobile browsers substitute their own generated filename on save.
 
@@ -84,7 +83,8 @@ The `pages` repo is much smaller — just `dashboard.html` plus whatever static 
 ```
    ┌──────────────┐      ┌─────────────┐      ┌───────────────────────┐      ┌─────────────┐      ┌───────────────────┐
    │  index.html   │ ───▶ │  inbox/     │ ───▶ │  yyyy/mm/dd/driver-…  │ ───▶ │  rollups/   │ ───▶ │  charts/          │
-   │ (Codeberg     │ JSON │  (pending)  │ move │  (organized)          │ agg  │  overall/   │ svg  │  charts/trends/   │
+   │ (pages repo,  │ JSON │  (pending,  │ move │  (organized, in the   │ agg  │  overall/   │ svg  │  charts/trends/   │
+   │  Codeberg     │      │  data repo) │      │  data repo)           │      │  (data repo)│      │  (data repo)      │
    │  Pages)       │      │             │      │                       │      │             │      │                   │
    └──────────────┘      └─────────────┘      └───────────────────────┘      └─────────────┘      └───────────────────┘
                           validate.py +                                                             visualize.py +
@@ -95,6 +95,8 @@ The `pages` repo is much smaller — just `dashboard.html` plus whatever static 
                                                                                                   fetches driver's rollup +
                                                                                                   chart SVGs via <img> tags
 ```
+
+`index.html` submits across repos to do this: it's served from the `pages` repo, but the file it uploads (via the Codeberg web UI or a git client) lands in `inbox/` in the separate `parcelpace/parcelpace` data repo — the two repos are wired together operationally by where a driver is told to upload, not by any shared hosting.
 
 1. **Plan + hourly entries** are composed client-side in `index.html`. Cumulative device readings (stops, pieces, pieces picked up, miles) are converted to per-hour deltas *in the browser*, via `recalcDeltas()` against a `lastreading` baseline kept in `localStorage`. Only deltas are ever written to JSON — the raw cumulative totals never leave the phone.
 2. **Export** bundles the queued plan + hourly entries into one consolidated `driver-XXXXXXX.json` and the driver uploads it into `inbox/`.
@@ -109,7 +111,7 @@ The `pages` repo is much smaller — just `dashboard.html` plus whatever static 
 5. **`visualize.py`** reads `rollups/` and renders a hand-rolled, dependency-free SVG snapshot per driver-day — planned vs. actual stops/miles/pieces — to `charts/yyyy/mm/dd/driver-XXXXXXX.svg`. It never touches `inbox/` or the organized data tree directly, and always runs after `aggregate.py`.
 6. **`trends.py`** reads both `rollups/` (for the real day-by-day series) and `overall/` (for the recent/prior average + stddev already computed by `aggregate.py`) and renders one sparkline panel per pace metric, per driver+route, to `charts/trends/driver-XXXXXXX/ROUTE.svg`. It's a pure rendering layer — it never recomputes trend math, so the chart and the JSON can't drift apart.
 7. **`run_pipeline.py`** chains steps 3–6 in order (`route_inbox` → `aggregate` → `visualize` → `trends`). It exits with code `1` if any files were blocked, but still runs every downstream stage for the drivers that filed cleanly — a blocked driver never holds up everyone else's rollups and charts.
-8. **`dashboard.html`** (in the `pages` repo) accepts a driver ID and fetches that driver's data from the `parcelpace` repo via a `DATA_REPO_RAW_BASE` constant pointing at Codeberg's raw endpoint. Direct `fetch()` calls to that endpoint are CORS-blocked, so chart SVGs are pulled in via `<img>` tags instead, which aren't subject to the same restriction — this cross-origin quirk is what drove the "render SVGs server-side, display them client-side via `<img>`" split between the pipeline and the dashboard. Displaying a driver's chart history also currently requires the `overall/driver-XXXXXXX.json` rollup to include a `dates` array (a small addition to `build_overall_rollup()` in `aggregate.py`).
+8. **`dashboard.html`** (in the `pages` repo, alongside `index.html`) accepts a driver ID and fetches that driver's data from the `parcelpace` data repo via a `DATA_REPO_RAW_BASE` constant pointing at Codeberg's raw endpoint. Direct `fetch()` calls to that endpoint are CORS-blocked, so chart SVGs are pulled in via `<img>` tags instead, which aren't subject to the same restriction — this cross-origin quirk is what drove the "render SVGs server-side, display them client-side via `<img>`" split between the pipeline and the dashboard. Displaying a driver's chart history also currently requires the `overall/driver-XXXXXXX.json` rollup to include a `dates` array (a small addition to `build_overall_rollup()` in `aggregate.py`).
 
 ---
 
@@ -178,11 +180,11 @@ python scripts/run_pipeline.py
 
 ### Automation
 
-The previous GitHub Actions setup has been retired along with the GitHub repo. Automation is not yet wired up — `run_pipeline.py` (and its constituent scripts) are run manually or via a local cron job against a clone of the `parcelpace` repo.
+The previous GitHub Actions setup has been retired along with the GitHub repo. Automation is not yet wired up — `run_pipeline.py` (and its constituent scripts) are run manually or via a local cron job against a clone of the `parcelpace/parcelpace` data repo.
 
 **Woodpecker CI** (`ci.codeberg.org`), which integrates natively with Codeberg, is the planned next step and is under active consideration but not yet implemented. The rough shape of that setup:
 
-- Enable the `parcelpace` repo on `ci.codeberg.org`.
+- Enable the `parcelpace/parcelpace` data repo on `ci.codeberg.org`.
 - Add an SSH deploy key so CI can push the regenerated `rollups/`, `overall/`, and `charts/` back to the repo.
 - A `.woodpecker.yml` that chains the pipeline stages with `depends_on`, mirroring `run_pipeline.py`'s ordering.
 - Commits made by CI itself carry `[skip ci]` to avoid triggering an infinite rebuild loop.
@@ -201,7 +203,7 @@ This is a known gap on the roadmap, not a permanent design choice.
 - **Rollups are always rebuilt, never patched.** `aggregate.py` (and `visualize.py`/`trends.py` downstream of it) has no incremental update logic — every run recomputes its outputs from scratch from the full set of organized date folders. Simple and safe at the current data volume.
 - **Nest date folders to keep the repo root readable.** The organized data tree, `rollups/`, and `charts/` all use `yyyy/mm/dd/` nesting instead of one flat folder per day, so none of them accumulate hundreds of sibling date folders over time.
 - **Pure rendering layers stay pure.** `visualize.py` and `trends.py` only ever read already-computed data from `rollups/` and `overall/` — they never recompute trend math or aggregate math themselves, so a chart can never silently disagree with the JSON it was drawn from.
-- **Cross-origin constraints shape the dashboard's architecture.** Direct `fetch()` from the dashboard (in the `pages` repo) to the `parcelpace` repo's raw content endpoint is CORS-blocked. SVGs delivered via `<img>` tags aren't subject to the same restriction, which is why chart rendering happens server-side (in the pipeline) rather than client-side in the dashboard.
+- **Cross-origin constraints shape the dashboard's architecture.** Direct `fetch()` from the dashboard (in the `pages` repo) to the `parcelpace` data repo's raw content endpoint is CORS-blocked. SVGs delivered via `<img>` tags aren't subject to the same restriction, which is why chart rendering happens server-side (in the pipeline) rather than client-side in the dashboard.
 - **Discuss design before implementation.** Cross-file ripple effects (a change in one script that implies a change in another) are surfaced and scoped before code is written, rather than patched in piecemeal.
 
 ---
