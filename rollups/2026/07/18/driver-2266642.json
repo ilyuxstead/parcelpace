@@ -24,19 +24,19 @@
       "14"
     ],
     "last_hour_key": "14",
-    "finish_time": "2026-07-19T07:43:10"
+    "finish_time": "2026-07-18T15:00:10"
   },
   "plan_vs_actual": {
     "stops_delta": -109,
     "miles_delta": -38.7,
     "pieces_delta": -145,
-    "finish_time_delta_minutes": -722
+    "finish_time_delta_minutes": -285
   },
   "pace": {
     "stops_per_mile": 1.0,
     "pieces_per_mile": 1.15,
-    "stops_per_active_hour": 2.75,
-    "pieces_per_active_hour": 3.17
+    "stops_per_active_hour": 11.84,
+    "pieces_per_active_hour": 13.61
   },
   "data_quality": {
     "warning_count": 0,
@@ -52,10 +52,6 @@
       {
         "hour": "10",
         "elapsed_minutes": 37.8
-      },
-      {
-        "hour": "14",
-        "elapsed_minutes": 1062.3
       }
     ]
   }

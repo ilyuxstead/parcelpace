@@ -16,15 +16,15 @@
     "pieces_per_day": 274.22,
     "stops_per_mile": 1.71,
     "pieces_per_mile": 3.3,
-    "stops_per_active_hour": 14.39,
-    "pieces_per_active_hour": 27.81,
-    "finish_time_delta_minutes": -47.17
+    "stops_per_active_hour": 14.9,
+    "pieces_per_active_hour": 28.39,
+    "finish_time_delta_minutes": -22.89
   },
   "consistency": {
     "stops_per_mile_stddev": 0.54,
     "pieces_per_mile_stddev": 1.27,
-    "stops_per_active_hour_stddev": 3.41,
-    "pieces_per_active_hour_stddev": 7.58
+    "stops_per_active_hour_stddev": 1.95,
+    "pieces_per_active_hour_stddev": 5.76
   },
   "trend": {
     "by_route": {
@@ -139,11 +139,11 @@
         "pieces_per_mile_prior_avg": null,
         "pieces_per_mile_recent_stddev": null,
         "pieces_per_mile_prior_stddev": null,
-        "stops_per_active_hour_recent_avg": 2.75,
+        "stops_per_active_hour_recent_avg": 11.84,
         "stops_per_active_hour_prior_avg": null,
         "stops_per_active_hour_recent_stddev": null,
         "stops_per_active_hour_prior_stddev": null,
-        "pieces_per_active_hour_recent_avg": 3.17,
+        "pieces_per_active_hour_recent_avg": 13.61,
         "pieces_per_active_hour_prior_avg": null,
         "pieces_per_active_hour_recent_stddev": null,
         "pieces_per_active_hour_prior_stddev": null
