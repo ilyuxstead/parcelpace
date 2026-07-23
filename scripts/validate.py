@@ -2,7 +2,7 @@
 validate.py
 
 Validates a single consolidated driver-day payload against the current
-Dropstats schema:
+parcelpace schema:
 
 {
   "driver_id": str,
