@@ -1,7 +1,7 @@
 """
 run_pipeline.py
 
-Single entry point that chains the full Dropstats pipeline in the order
+Single entry point that chains the full parcelpace pipeline in the order
 it's meant to run:
 
     route_inbox.py -> aggregate.py -> visualize.py -> trends.py
