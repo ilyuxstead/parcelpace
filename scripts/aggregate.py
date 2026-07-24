@@ -44,12 +44,10 @@ from datetime import datetime
 
 from inbox_common import (
     data_filename_for_driver,
-    is_day_folder,
-    is_month_folder,
-    is_year_folder,
     log_filename_for_driver,
     normalize_route_id,
     split_date,
+    walk_driver_day_tree,
 )
 
 REPO_ROOT = "."
@@ -95,35 +93,27 @@ def find_driver_day_files(repo_root):
     (date, driver_id, full_path) tuples for every driver-day data file.
 
     Structural folders at the root (inbox/, rollups/, overall/, scripts/)
-    are skipped automatically since they won't match is_year_folder().
+    are skipped automatically since they won't match a valid year segment.
+
+    Thin wrapper over inbox_common.walk_driver_day_tree() -- the traversal
+    itself now lives there so this and visualize.py's/trends.py's
+    equivalent walk (rooted at rollups/ instead of repo_root) can't drift
+    apart on what counts as a valid date folder or how driver_id gets
+    parsed out of a filename.
     """
-    results = []
-    for year in sorted(os.listdir(repo_root)):
-        year_dir = os.path.join(repo_root, year)
-        if not os.path.isdir(year_dir) or not is_year_folder(year):
-            continue
-
-        for month in sorted(os.listdir(year_dir)):
-            month_dir = os.path.join(year_dir, month)
-            if not os.path.isdir(month_dir) or not is_month_folder(month):
-                continue
-
-            for day in sorted(os.listdir(month_dir)):
-                day_dir = os.path.join(month_dir, day)
-                if not os.path.isdir(day_dir) or not is_day_folder(day):
-                    continue
-
-                date = "{}-{}-{}".format(year, month, day)
-                for filename in sorted(os.listdir(day_dir)):
-                    if not filename.startswith("driver-") or not filename.endswith(".json"):
-                        continue
-                    driver_id = filename[len("driver-"):-len(".json")]
-                    results.append((date, driver_id, os.path.join(day_dir, filename)))
-
-    return results
+    return walk_driver_day_tree(repo_root)
 
 
 _log_cache = {}
+# Per-driver index of {date: (warning_count, error_count)}, built once
+# alongside _log_cache the first time a driver's log is loaded. A driver's
+# log is never truncated/rotated automatically (see route_inbox.py), so it
+# only grows over the driver's lifetime -- without this index,
+# _log_counts_for_date() would re-scan the *entire* log's entries on every
+# single day rolled up for that driver, making aggregate.py's overall cost
+# O(days_tracked * total_log_entries) instead of O(total_log_entries).
+# Cleared alongside _log_cache at the start of every run().
+_log_date_index_cache = {}
 
 
 def _load_driver_log(inbox_dir, driver_id):
@@ -135,17 +125,36 @@ def _load_driver_log(inbox_dir, driver_id):
     return data
 
 
-def _log_counts_for_date(inbox_dir, driver_id, date):
-    """Sum warning/error counts from a driver's accumulating log, filtered to one date."""
+def _log_date_index(inbox_dir, driver_id):
+    """
+    Build (and cache) a {date: (warning_count, error_count)} index for one
+    driver's log, summing counts across all entries for a given date in a
+    single pass. Multiple log entries can share the same date (e.g. a
+    driver resubmitting the same day more than once), so counts are
+    accumulated rather than overwritten.
+    """
+    if driver_id in _log_date_index_cache:
+        return _log_date_index_cache[driver_id]
+
     log = _load_driver_log(inbox_dir, driver_id)
-    warning_count = 0
-    error_count = 0
+    index = {}
     for entry in log.get("entries", []):
-        if entry.get("date") != date:
+        date = entry.get("date")
+        if date is None:
             continue
-        warning_count += len(entry.get("warnings", []))
-        error_count += len(entry.get("errors", []))
-    return warning_count, error_count
+        w, e = index.get(date, (0, 0))
+        index[date] = (
+            w + len(entry.get("warnings", [])),
+            e + len(entry.get("errors", [])),
+        )
+
+    _log_date_index_cache[driver_id] = index
+    return index
+
+
+def _log_counts_for_date(inbox_dir, driver_id, date):
+    """Look up warning/error counts for one date from the driver's cached log index."""
+    return _log_date_index(inbox_dir, driver_id).get(date, (0, 0))
 
 
 # ---------- daily rollup computation ----------
@@ -518,6 +527,7 @@ def run(repo_root=REPO_ROOT, inbox_dir=None, rollups_dir=None, overall_dir=None)
     overall_dir = overall_dir or os.path.join(repo_root, OVERALL_DIR)
 
     _log_cache.clear()
+    _log_date_index_cache.clear()
 
     driver_day_files = find_driver_day_files(repo_root)
     print("Found {} driver-day file(s) across {} date folder(s).".format(
