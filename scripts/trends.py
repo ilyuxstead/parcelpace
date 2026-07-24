@@ -220,7 +220,13 @@ def _panel_svg(px, py, metric, series, route_trend, window_days):
         )
 
     if boundary_idx > 0:
-        draw_band("prior", PRIOR_COLOR, chart_left, x_at(boundary_idx - 1) if boundary_idx <= n - 1 else x_at(boundary_idx))
+        # boundary_idx-1 is always a valid series index here (0 <= boundary_idx-1
+        # <= n-1 whenever boundary_idx > 0): the old ternary's "else" branch,
+        # x_at(boundary_idx), was unreachable in normal operation (boundary_idx
+        # can only reach n if window_days <= 0, which TREND_WINDOW_DAYS never
+        # is) -- and would have indexed one point past the end of the series
+        # (x_at(n)) had it ever fired. Simplified to drop the dead/unsafe branch.
+        draw_band("prior", PRIOR_COLOR, chart_left, x_at(boundary_idx - 1))
     if boundary_idx < n:
         draw_band("recent", RECENT_COLOR, x_at(boundary_idx), chart_right)
 

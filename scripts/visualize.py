@@ -36,10 +36,8 @@ from xml.sax.saxutils import escape as _xml_escape
 
 from inbox_common import (
     data_filename_for_driver,
-    is_day_folder,
-    is_month_folder,
-    is_year_folder,
     split_date,
+    walk_driver_day_tree,
 )
 
 REPO_ROOT = "."
@@ -272,34 +270,13 @@ def find_rollup_files(rollups_root):
     (date, driver_id, full_path) tuples -- same traversal shape as
     aggregate.py's find_driver_day_files(), just rooted at rollups/
     instead of the repo root.
+
+    Thin wrapper over inbox_common.walk_driver_day_tree(), which both this
+    and aggregate.py's find_driver_day_files() now call, so the two can't
+    drift apart on what counts as a valid date folder or how driver_id
+    gets parsed out of a filename.
     """
-    results = []
-    if not os.path.isdir(rollups_root):
-        return results
-
-    for year in sorted(os.listdir(rollups_root)):
-        year_dir = os.path.join(rollups_root, year)
-        if not os.path.isdir(year_dir) or not is_year_folder(year):
-            continue
-
-        for month in sorted(os.listdir(year_dir)):
-            month_dir = os.path.join(year_dir, month)
-            if not os.path.isdir(month_dir) or not is_month_folder(month):
-                continue
-
-            for day in sorted(os.listdir(month_dir)):
-                day_dir = os.path.join(month_dir, day)
-                if not os.path.isdir(day_dir) or not is_day_folder(day):
-                    continue
-
-                date = "{}-{}-{}".format(year, month, day)
-                for filename in sorted(os.listdir(day_dir)):
-                    if not filename.startswith("driver-") or not filename.endswith(".json"):
-                        continue
-                    driver_id = filename[len("driver-"):-len(".json")]
-                    results.append((date, driver_id, os.path.join(day_dir, filename)))
-
-    return results
+    return walk_driver_day_tree(rollups_root)
 
 
 def run(repo_root=REPO_ROOT, rollups_dir=None, charts_dir=None):
