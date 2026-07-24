@@ -6,6 +6,7 @@ what counts as a "data file" vs a "log file" sitting in inbox/, or on how
 a date string maps onto the on-disk folder layout.
 """
 
+import os
 import re
 
 LOG_SUFFIX = ".log.json"
@@ -111,6 +112,52 @@ def log_filename_for_driver(driver_id):
 def data_filename_for_driver(driver_id):
     """Build the standard data filename for a driver."""
     return "driver-{}.json".format(driver_id)
+
+
+def walk_driver_day_tree(root):
+    """
+    Walk `root` for nested yyyy/mm/dd date folders and return a sorted list
+    of (date, driver_id, full_path) tuples for every driver-XXXXXXX.json
+    file found -- the same traversal shape needed both by aggregate.py
+    (rooted at the repo root, over the organized data tree) and
+    visualize.py/trends.py (rooted at rollups/). Centralized here so the
+    two don't drift apart on what counts as a valid year/month/day segment
+    or how a driver_id gets pulled out of a filename -- the exact drift
+    this module already exists to prevent for filename/date recognition
+    (see module docstring).
+
+    Non-date folders directly under `root` (inbox/, rollups/, overall/,
+    scripts/, etc.) are skipped automatically since they won't match
+    is_year_folder(); log files and anything not matching
+    'driver-*.json' are skipped the same way at the leaf level.
+    """
+    results = []
+    if not os.path.isdir(root):
+        return results
+
+    for year in sorted(os.listdir(root)):
+        year_dir = os.path.join(root, year)
+        if not os.path.isdir(year_dir) or not is_year_folder(year):
+            continue
+
+        for month in sorted(os.listdir(year_dir)):
+            month_dir = os.path.join(year_dir, month)
+            if not os.path.isdir(month_dir) or not is_month_folder(month):
+                continue
+
+            for day in sorted(os.listdir(month_dir)):
+                day_dir = os.path.join(month_dir, day)
+                if not os.path.isdir(day_dir) or not is_day_folder(day):
+                    continue
+
+                date = "{}-{}-{}".format(year, month, day)
+                for filename in sorted(os.listdir(day_dir)):
+                    if not filename.startswith("driver-") or not filename.endswith(".json"):
+                        continue
+                    driver_id = filename[len("driver-"):-len(".json")]
+                    results.append((date, driver_id, os.path.join(day_dir, filename)))
+
+    return results
 
 
 def normalize_route_id(route_id):
