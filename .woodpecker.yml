@@ -48,7 +48,7 @@ steps:
     commands:
       - git config user.name "parcelpace-ci"
       - git config user.email "ci@parcelpace.noreply"
-      - git add rollups/ overall/ charts/
+      - git add -A
       - |
         if ! git diff --cached --quiet; then
           git commit -m "chore: automated rollup/chart rebuild [skip ci]"
