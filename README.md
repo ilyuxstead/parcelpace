@@ -180,16 +180,13 @@ python scripts/run_pipeline.py
 
 ### Automation
 
-The previous GitHub Actions setup has been retired along with the GitHub repo. Automation is not yet wired up — `run_pipeline.py` (and its constituent scripts) are run manually or via a local cron job against a clone of the `parcelpace/parcelpace` data repo.
+The previous GitHub Actions setup has been retired along with the GitHub repo. **Woodpecker CI** (`ci.codeberg.org`), enabled on the `parcelpace/parcelpace` data repo, now runs the pipeline automatically once a day via `.woodpecker.yml` at the repo root. `run_pipeline.py` (and its constituent scripts) can still be run manually or via a local cron job against a clone of the repo — CI doesn't replace that, it just means a human no longer has to remember to do it daily.
 
-**Woodpecker CI** (`ci.codeberg.org`), which integrates natively with Codeberg, is the planned next step and is under active consideration but not yet implemented. The rough shape of that setup:
-
-- Enable the `parcelpace/parcelpace` data repo on `ci.codeberg.org`.
-- Add an SSH deploy key so CI can push the regenerated `rollups/`, `overall/`, and `charts/` back to the repo.
-- A `.woodpecker.yml` that chains the pipeline stages with `depends_on`, mirroring `run_pipeline.py`'s ordering.
-- Commits made by CI itself carry `[skip ci]` to avoid triggering an infinite rebuild loop.
-
-This is a known gap on the roadmap, not a permanent design choice.
+- **Trigger:** cron only, once daily (schedule name/cadence configured in Codeberg's repo CI settings, not in the YAML itself) — not push-triggered, so a driver upload doesn't itself kick off a rebuild.
+- **What it does:** runs `python scripts/run_pipeline.py`, then commits and pushes whatever changed under `rollups/`, `overall/`, and `charts/` back to `main`, authored as `parcelpace-ci` rather than a human.
+- **Publish-then-report ordering:** the commit-and-push step always runs, even if `run_pipeline.py` exited non-zero because a driver's file is blocked in `inbox/` — that exit code only means one driver needs a human look, not that everyone else's rollups/charts are wrong, so publishing isn't held up over it. A separate final step then deliberately fails the *build* (shows red in the Woodpecker UI) whenever that happens, so a blocked driver is still visible without having blocked the publish.
+- **Push access:** a dedicated read-write SSH deploy key (not a maintainer's personal key) is stored as a Woodpecker secret and registered on the repo.
+- **Loop prevention:** commits made by CI itself carry `[skip ci]`. The current trigger is cron-only, so this can't actually cause a rebuild loop today, but it's in place in case a push trigger is ever added later.
 
 ---
 
