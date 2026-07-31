@@ -1,0 +1,82 @@
+########################################################################
+# Woodpecker CI config for the parcelpace/parcelpace data repo.
+#
+# Trigger: cron only, once daily (schedule itself -- name, cadence, time
+# of day -- is configured in Codeberg's repo settings under CI, not here;
+# this file just declares that the pipeline should run when that named
+# cron schedule fires).
+#
+# Shape: three steps, deliberately NOT a single "run everything" step.
+# run_pipeline.py exits 1 when any driver file is blocked in inbox/ --
+# but by design (see run_pipeline.py's own docstring), that happens only
+# AFTER every other driver's rollups/charts have already been correctly
+# rebuilt in memory and on disk. If step 1 were allowed to halt the whole
+# Woodpecker pipeline on that exit code, the commit-and-push step would
+# never run, and a single blocked driver would silently prevent everyone
+# else's output from being published too -- exactly the failure mode
+# run_pipeline.py was written to avoid. So:
+#
+#   1. run-pipeline    -- runs the four stages, never halts the build
+#                          itself (failure: ignore), just records the
+#                          real exit code to a file.
+#   2. commit-and-push  -- always runs; commits + pushes whatever
+#                          changed in rollups/, overall/, charts/,
+#                          regardless of whether step 1 was clean.
+#   3. report-blocked   -- runs last, purely to make the overall BUILD
+#                          red if step 1's exit code was non-zero. This
+#                          is what actually surfaces "a driver needs
+#                          review" in the Woodpecker UI, without having
+#                          blocked the publish step above.
+########################################################################
+
+when:
+  event: cron
+  cron: parcelpace-daily
+
+steps:
+  - name: run-pipeline
+    image: python:3.12-alpine
+    commands:
+      # `|| rc=$?` captures a nonzero exit without tripping the shell's
+      # errexit behavior (Woodpecker runs each step's commands as a
+      # script that aborts on the first failing command) -- without this,
+      # a blocked-driver exit (1) from run_pipeline.py would abort the
+      # step right there and the `echo $? > pipeline_exit_code` line below
+      # would never run at all, on exactly the case this file exists to
+      # handle. `${rc:-0}` covers the success path, where `rc` never gets
+      # set because the command didn't fail.
+      - python scripts/run_pipeline.py > pipeline.log 2>&1 || rc=$?
+      - echo "${rc:-0}" > pipeline_exit_code
+      - cat pipeline.log
+    failure: ignore
+
+  - name: commit-and-push
+    image: alpine/git
+    secrets: [deploy_ssh_key]
+    commands:
+      - git config user.name "parcelpace-ci"
+      - git config user.email "ci@parcelpace.noreply"
+      - git add -A
+      - |
+        if ! git diff --cached --quiet; then
+          git commit -m "chore: automated rollup/chart rebuild [skip ci]"
+          mkdir -p ~/.ssh
+          eval "$(ssh-agent -s)"
+          echo "$DEPLOY_SSH_KEY" | ssh-add -
+          ssh-keyscan -H codeberg.org >> ~/.ssh/known_hosts 2>/dev/null
+          git remote set-url origin git@codeberg.org:parcelpace/parcelpace.git
+          git push origin HEAD:main
+        else
+          echo "No changes to commit -- nothing new since the last run."
+        fi
+
+  - name: report-blocked
+    image: alpine
+    commands:
+      # Fails (and turns the build red) iff run-pipeline's real exit code
+      # was non-zero -- i.e. one or more driver files are sitting in
+      # inbox/ blocked on hard validation errors. Rollups/charts for
+      # everyone else were still committed and pushed by the step above;
+      # this step exists only to make that "needs a human to check
+      # inbox/" state visible in the Woodpecker UI.
+      - test "$(cat pipeline_exit_code)" -eq 0
