@@ -1,0 +1,122 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-07-30",
+  "plan": {
+    "entry_time": "2026-07-30T08:47:57",
+    "route_id": "17C",
+    "planned_stops": 178,
+    "planned_miles": 92.2,
+    "planned_pieces": 358,
+    "predicted_finish": "19:53"
+  },
+  "hours": {
+    "10": {
+      "notes": "Heavy, heavy bulk",
+      "break_flag": false,
+      "entry_time": "2026-07-30T11:23:10",
+      "hourly_stops": 11,
+      "hourly_pieces": 78,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.6
+    },
+    "11": {
+      "notes": "Still clearing out Marty stuff that I’m not supposed to have because he’s slow and pitiful as a driver. Haven’t even gotten to the post office 230 N. Earl or the university yet",
+      "break_flag": false,
+      "entry_time": "2026-07-30T12:02:01",
+      "hourly_stops": 12,
+      "hourly_pieces": 18,
+      "hourly_pieces_picked_up": 2,
+      "hourly_miles": 3.2
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-30T13:17:36",
+      "hourly_stops": 12,
+      "hourly_pieces": 107,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.9
+    },
+    "13": {
+      "notes": "Got a little distracted. Pushing hard.",
+      "break_flag": false,
+      "entry_time": "2026-07-30T14:21:00",
+      "hourly_stops": 19,
+      "hourly_pieces": 31,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 5.8
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-30T15:10:14",
+      "hourly_stops": 19,
+      "hourly_pieces": 24,
+      "hourly_pieces_picked_up": 7,
+      "hourly_miles": 5.3
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-30T17:22:35",
+      "hourly_stops": 24,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 3,
+      "hourly_miles": 6.8
+    },
+    "16": {
+      "notes": "Miss recording this hour.  Picked up the UPS store might want to think about adjusting last hours entry time.",
+      "break_flag": false,
+      "entry_time": "2026-07-30T17:23:40",
+      "hourly_stops": 15,
+      "hourly_pieces": 12,
+      "hourly_pieces_picked_up": 423,
+      "hourly_miles": 8.3
+    },
+    "17": {
+      "notes": "Got very distracted again. Pushing super hard, the air is going to be close.",
+      "break_flag": false,
+      "entry_time": "2026-07-30T18:35:48",
+      "hourly_stops": 25,
+      "hourly_pieces": 33,
+      "hourly_pieces_picked_up": 4,
+      "hourly_miles": 9.9
+    },
+    "18": {
+      "notes": "Picking up the equipment dealer now",
+      "break_flag": false,
+      "entry_time": "2026-07-30T19:16:49",
+      "hourly_stops": 16,
+      "hourly_pieces": 21,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 5.2
+    },
+    "19": {
+      "notes": "Back in building final mileage",
+      "break_flag": false,
+      "entry_time": "2026-07-30T19:44:07",
+      "hourly_stops": 1,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 33,
+      "hourly_miles": 16.9
+    },
+    "08": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-07-30T10:05:33",
+      "hourly_stops": -6,
+      "hourly_pieces": -11,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": -20.6
+    },
+    "09": {
+      "notes": "Running straight air and I got off the carpet store",
+      "break_flag": false,
+      "entry_time": "2026-07-30T10:06:10",
+      "hourly_stops": 6,
+      "hourly_pieces": 11,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 20.6
+    }
+  }
+}
