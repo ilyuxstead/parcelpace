@@ -2,101 +2,105 @@
 <rect width="680" height="676" fill="#15191B"/>
 <text x="20" y="36" font-family="-apple-system,sans-serif" font-size="15" font-weight="700" letter-spacing="0.02em" fill="#F2EFE9">PACE TREND</text>
 <text x="660" y="35" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="12" fill="#9AA3A5" text-anchor="end">2266642 · route 17C</text>
-<text x="20" y="54" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#9AA3A5">14 days tracked · 2026-06-30 → 2026-07-29</text>
+<text x="20" y="54" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#9AA3A5">15 days tracked · 2026-06-30 → 2026-07-30</text>
 <rect x="20" y="70" width="640" height="130" rx="10" fill="#1F2426"/>
 <text x="34" y="90" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" letter-spacing="0.08em" fill="#9AA3A5">STOPS / MILE</text>
-<rect x="60" y="115.11261261261261" width="258.46153846153845" height="34.09009009009007" fill="#E8A33D" fill-opacity="0.15"/>
-<line x1="60" y1="132.15765765765764" x2="318.46153846153845" y2="132.15765765765764" stroke="#E8A33D" stroke-dasharray="2,3"/>
-<rect x="361.53846153846155" y="137.58108108108107" width="258.46153846153845" height="23.243243243243256" fill="#4FA876" fill-opacity="0.15"/>
-<line x1="361.53846153846155" y1="149.20270270270268" x2="620" y2="149.20270270270268" stroke="#4FA876" stroke-dasharray="2,3"/>
-<line x1="340.0" y1="94" x2="340.0" y2="180" stroke="#343B3D" stroke-dasharray="3,3"/>
-<polyline points="60.0,129.4 103.1,101.2 146.2,118.6 189.2,141.5 232.3,148.4 275.4,146.1 318.5,139.9 361.5,143.4 404.6,145.7 447.7,148.0 490.8,155.8 533.8,172.8 576.9,139.5 620.0,140.3" fill="none" stroke="#4FA876" stroke-width="2"/>
+<rect x="60" y="117.43693693693692" width="280.0" height="32.54054054054055" fill="#E8A33D" fill-opacity="0.15"/>
+<line x1="60" y1="133.7072072072072" x2="340.0" y2="133.7072072072072" stroke="#E8A33D" stroke-dasharray="2,3"/>
+<rect x="380.0" y="137.58108108108107" width="240.0" height="23.243243243243256" fill="#4FA876" fill-opacity="0.15"/>
+<line x1="380.0" y1="149.20270270270268" x2="620" y2="149.20270270270268" stroke="#4FA876" stroke-dasharray="2,3"/>
+<line x1="360.0" y1="94" x2="360.0" y2="180" stroke="#343B3D" stroke-dasharray="3,3"/>
+<polyline points="60.0,129.4 100.0,101.2 140.0,118.6 180.0,141.5 220.0,148.4 260.0,146.1 300.0,139.9 340.0,143.4 380.0,145.7 420.0,148.0 460.0,155.8 500.0,172.8 540.0,139.5 580.0,140.3 620.0,143.4" fill="none" stroke="#4FA876" stroke-width="2"/>
 <circle cx="60.0" cy="129.4" r="3" fill="#E8A33D"/>
-<circle cx="103.1" cy="101.2" r="3" fill="#E8A33D"/>
-<circle cx="146.2" cy="118.6" r="3" fill="#E8A33D"/>
-<circle cx="189.2" cy="141.5" r="3" fill="#E8A33D"/>
-<circle cx="232.3" cy="148.4" r="3" fill="#E8A33D"/>
-<circle cx="275.4" cy="146.1" r="3" fill="#E8A33D"/>
-<circle cx="318.5" cy="139.9" r="3" fill="#E8A33D"/>
-<circle cx="361.5" cy="143.4" r="3" fill="#4FA876"/>
-<circle cx="404.6" cy="145.7" r="3" fill="#4FA876"/>
-<circle cx="447.7" cy="148.0" r="3" fill="#4FA876"/>
-<circle cx="490.8" cy="155.8" r="3" fill="#4FA876"/>
-<circle cx="533.8" cy="172.8" r="3" fill="#4FA876"/>
-<circle cx="576.9" cy="139.5" r="3" fill="#4FA876"/>
-<circle cx="620.0" cy="140.3" r="3" fill="#4FA876"/>
+<circle cx="100.0" cy="101.2" r="3" fill="#E8A33D"/>
+<circle cx="140.0" cy="118.6" r="3" fill="#E8A33D"/>
+<circle cx="180.0" cy="141.5" r="3" fill="#E8A33D"/>
+<circle cx="220.0" cy="148.4" r="3" fill="#E8A33D"/>
+<circle cx="260.0" cy="146.1" r="3" fill="#E8A33D"/>
+<circle cx="300.0" cy="139.9" r="3" fill="#E8A33D"/>
+<circle cx="340.0" cy="143.4" r="3" fill="#E8A33D"/>
+<circle cx="380.0" cy="145.7" r="3" fill="#4FA876"/>
+<circle cx="420.0" cy="148.0" r="3" fill="#4FA876"/>
+<circle cx="460.0" cy="155.8" r="3" fill="#4FA876"/>
+<circle cx="500.0" cy="172.8" r="3" fill="#4FA876"/>
+<circle cx="540.0" cy="139.5" r="3" fill="#4FA876"/>
+<circle cx="580.0" cy="140.3" r="3" fill="#4FA876"/>
+<circle cx="620.0" cy="143.4" r="3" fill="#4FA876"/>
 <text x="64.0" y="121.4" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="start">2.11</text>
-<text x="616.0" y="132.3" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">1.83</text>
+<text x="616.0" y="135.4" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">1.75</text>
 <rect x="20" y="222" width="640" height="130" rx="10" fill="#1F2426"/>
 <text x="34" y="242" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" letter-spacing="0.08em" fill="#9AA3A5">PIECES / MILE</text>
-<rect x="60" y="270.1350974930362" width="258.46153846153845" height="46.31383472609099" fill="#E8A33D" fill-opacity="0.15"/>
-<line x1="60" y1="293.2920148560817" x2="318.46153846153845" y2="293.2920148560817" stroke="#E8A33D" stroke-dasharray="2,3"/>
-<rect x="361.53846153846155" y="301.67641597028785" width="258.46153846153845" height="17.5673166202414" fill="#4FA876" fill-opacity="0.15"/>
-<line x1="361.53846153846155" y1="310.46007428040855" x2="620" y2="310.46007428040855" stroke="#4FA876" stroke-dasharray="2,3"/>
-<line x1="340.0" y1="246" x2="340.0" y2="332" stroke="#343B3D" stroke-dasharray="3,3"/>
-<polyline points="60.0,282.7 103.1,253.2 146.2,276.1 189.2,313.9 232.3,312.1 275.4,304.1 318.5,310.9 361.5,316.4 404.6,304.3 447.7,307.1 490.8,316.4 533.8,324.8 576.9,302.9 620.0,301.9" fill="none" stroke="#4FA876" stroke-width="2"/>
+<rect x="60" y="273.1295264623956" width="280.0" height="45.91457753017636" fill="#E8A33D" fill-opacity="0.15"/>
+<line x1="60" y1="296.0868152274837" x2="340.0" y2="296.0868152274837" stroke="#E8A33D" stroke-dasharray="2,3"/>
+<rect x="380.0" y="298.2827298050139" width="240.0" height="19.164345403899745" fill="#4FA876" fill-opacity="0.15"/>
+<line x1="380.0" y1="307.8649025069638" x2="620" y2="307.8649025069638" stroke="#4FA876" stroke-dasharray="2,3"/>
+<line x1="360.0" y1="246" x2="360.0" y2="332" stroke="#343B3D" stroke-dasharray="3,3"/>
+<polyline points="60.0,282.7 100.0,253.2 140.0,276.1 180.0,313.9 220.0,312.1 260.0,304.1 300.0,310.9 340.0,316.4 380.0,304.3 420.0,307.1 460.0,316.4 500.0,324.8 540.0,302.9 580.0,301.9 620.0,297.1" fill="none" stroke="#4FA876" stroke-width="2"/>
 <circle cx="60.0" cy="282.7" r="3" fill="#E8A33D"/>
-<circle cx="103.1" cy="253.2" r="3" fill="#E8A33D"/>
-<circle cx="146.2" cy="276.1" r="3" fill="#E8A33D"/>
-<circle cx="189.2" cy="313.9" r="3" fill="#E8A33D"/>
-<circle cx="232.3" cy="312.1" r="3" fill="#E8A33D"/>
-<circle cx="275.4" cy="304.1" r="3" fill="#E8A33D"/>
-<circle cx="318.5" cy="310.9" r="3" fill="#E8A33D"/>
-<circle cx="361.5" cy="316.4" r="3" fill="#4FA876"/>
-<circle cx="404.6" cy="304.3" r="3" fill="#4FA876"/>
-<circle cx="447.7" cy="307.1" r="3" fill="#4FA876"/>
-<circle cx="490.8" cy="316.4" r="3" fill="#4FA876"/>
-<circle cx="533.8" cy="324.8" r="3" fill="#4FA876"/>
-<circle cx="576.9" cy="302.9" r="3" fill="#4FA876"/>
-<circle cx="620.0" cy="301.9" r="3" fill="#4FA876"/>
+<circle cx="100.0" cy="253.2" r="3" fill="#E8A33D"/>
+<circle cx="140.0" cy="276.1" r="3" fill="#E8A33D"/>
+<circle cx="180.0" cy="313.9" r="3" fill="#E8A33D"/>
+<circle cx="220.0" cy="312.1" r="3" fill="#E8A33D"/>
+<circle cx="260.0" cy="304.1" r="3" fill="#E8A33D"/>
+<circle cx="300.0" cy="310.9" r="3" fill="#E8A33D"/>
+<circle cx="340.0" cy="316.4" r="3" fill="#E8A33D"/>
+<circle cx="380.0" cy="304.3" r="3" fill="#4FA876"/>
+<circle cx="420.0" cy="307.1" r="3" fill="#4FA876"/>
+<circle cx="460.0" cy="316.4" r="3" fill="#4FA876"/>
+<circle cx="500.0" cy="324.8" r="3" fill="#4FA876"/>
+<circle cx="540.0" cy="302.9" r="3" fill="#4FA876"/>
+<circle cx="580.0" cy="301.9" r="3" fill="#4FA876"/>
+<circle cx="620.0" cy="297.1" r="3" fill="#4FA876"/>
 <text x="64.0" y="274.7" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="start">4.63</text>
-<text x="616.0" y="293.9" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">3.67</text>
+<text x="616.0" y="289.1" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">3.91</text>
 <rect x="20" y="374" width="640" height="130" rx="10" fill="#1F2426"/>
 <text x="34" y="394" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" letter-spacing="0.08em" fill="#9AA3A5">STOPS / ACTIVE HR</text>
-<rect x="60" y="409.9180478821363" width="258.46153846153845" height="23.360957642725566" fill="#E8A33D" fill-opacity="0.15"/>
-<line x1="60" y1="421.5985267034991" x2="318.46153846153845" y2="421.5985267034991" stroke="#E8A33D" stroke-dasharray="2,3"/>
-<rect x="361.53846153846155" y="412.0957642725599" width="258.46153846153845" height="43.752302025782626" fill="#4FA876" fill-opacity="0.15"/>
-<line x1="361.53846153846155" y1="433.9719152854512" x2="620" y2="433.9719152854512" stroke="#4FA876" stroke-dasharray="2,3"/>
-<line x1="340.0" y1="398" x2="340.0" y2="484" stroke="#343B3D" stroke-dasharray="3,3"/>
-<polyline points="60.0,414.4 103.1,405.2 146.2,429.8 189.2,421.8 232.3,434.1 275.4,434.5 318.5,411.4 361.5,429.5 404.6,417.9 447.7,428.6 490.8,446.0 533.8,476.8 576.9,410.6 620.0,428.3" fill="none" stroke="#4FA876" stroke-width="2"/>
+<rect x="60" y="411.40285451197053" width="280.0" height="22.371086556169416" fill="#E8A33D" fill-opacity="0.15"/>
+<line x1="60" y1="422.58839779005524" x2="340.0" y2="422.58839779005524" stroke="#E8A33D" stroke-dasharray="2,3"/>
+<rect x="380.0" y="412.1947513812155" width="240.0" height="43.75230202578268" fill="#4FA876" fill-opacity="0.15"/>
+<line x1="380.0" y1="434.07090239410684" x2="620" y2="434.07090239410684" stroke="#4FA876" stroke-dasharray="2,3"/>
+<line x1="360.0" y1="398" x2="360.0" y2="484" stroke="#343B3D" stroke-dasharray="3,3"/>
+<polyline points="60.0,414.4 100.0,405.2 140.0,429.8 180.0,421.8 220.0,434.1 260.0,434.5 300.0,411.4 340.0,429.5 380.0,417.9 420.0,428.6 460.0,446.0 500.0,476.8 540.0,410.6 580.0,428.3 620.0,430.3" fill="none" stroke="#4FA876" stroke-width="2"/>
 <circle cx="60.0" cy="414.4" r="3" fill="#E8A33D"/>
-<circle cx="103.1" cy="405.2" r="3" fill="#E8A33D"/>
-<circle cx="146.2" cy="429.8" r="3" fill="#E8A33D"/>
-<circle cx="189.2" cy="421.8" r="3" fill="#E8A33D"/>
-<circle cx="232.3" cy="434.1" r="3" fill="#E8A33D"/>
-<circle cx="275.4" cy="434.5" r="3" fill="#E8A33D"/>
-<circle cx="318.5" cy="411.4" r="3" fill="#E8A33D"/>
-<circle cx="361.5" cy="429.5" r="3" fill="#4FA876"/>
-<circle cx="404.6" cy="417.9" r="3" fill="#4FA876"/>
-<circle cx="447.7" cy="428.6" r="3" fill="#4FA876"/>
-<circle cx="490.8" cy="446.0" r="3" fill="#4FA876"/>
-<circle cx="533.8" cy="476.8" r="3" fill="#4FA876"/>
-<circle cx="576.9" cy="410.6" r="3" fill="#4FA876"/>
-<circle cx="620.0" cy="428.3" r="3" fill="#4FA876"/>
+<circle cx="100.0" cy="405.2" r="3" fill="#E8A33D"/>
+<circle cx="140.0" cy="429.8" r="3" fill="#E8A33D"/>
+<circle cx="180.0" cy="421.8" r="3" fill="#E8A33D"/>
+<circle cx="220.0" cy="434.1" r="3" fill="#E8A33D"/>
+<circle cx="260.0" cy="434.5" r="3" fill="#E8A33D"/>
+<circle cx="300.0" cy="411.4" r="3" fill="#E8A33D"/>
+<circle cx="340.0" cy="429.5" r="3" fill="#E8A33D"/>
+<circle cx="380.0" cy="417.9" r="3" fill="#4FA876"/>
+<circle cx="420.0" cy="428.6" r="3" fill="#4FA876"/>
+<circle cx="460.0" cy="446.0" r="3" fill="#4FA876"/>
+<circle cx="500.0" cy="476.8" r="3" fill="#4FA876"/>
+<circle cx="540.0" cy="410.6" r="3" fill="#4FA876"/>
+<circle cx="580.0" cy="428.3" r="3" fill="#4FA876"/>
+<circle cx="620.0" cy="430.3" r="3" fill="#4FA876"/>
 <text x="64.0" y="406.4" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="start">16.24</text>
-<text x="616.0" y="420.3" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">14.83</text>
+<text x="616.0" y="422.3" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">14.63</text>
 <rect x="20" y="526" width="640" height="130" rx="10" fill="#1F2426"/>
 <text x="34" y="546" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11" letter-spacing="0.08em" fill="#9AA3A5">PIECES / ACTIVE HR</text>
-<rect x="60" y="569.5896702098664" width="258.46153846153845" height="45.94167348051246" fill="#E8A33D" fill-opacity="0.15"/>
-<line x1="60" y1="592.5605069501227" x2="318.46153846153845" y2="592.5605069501227" stroke="#E8A33D" stroke-dasharray="2,3"/>
-<rect x="361.53846153846155" y="582.7744617061869" width="258.46153846153845" height="41.37094576178799" fill="#4FA876" fill-opacity="0.15"/>
-<line x1="361.53846153846155" y1="603.459934587081" x2="620" y2="603.459934587081" stroke="#4FA876" stroke-dasharray="2,3"/>
-<line x1="340.0" y1="550" x2="340.0" y2="636" stroke="#343B3D" stroke-dasharray="3,3"/>
-<polyline points="60.0,565.3 103.1,557.2 146.2,595.4 189.2,618.8 232.3,610.2 275.4,597.0 318.5,604.2 361.5,628.8 404.6,577.9 447.7,591.5 490.8,616.9 533.8,626.1 576.9,583.1 620.0,599.8" fill="none" stroke="#4FA876" stroke-width="2"/>
+<rect x="60" y="572.2852275824475" width="280.0" height="49.69201417279908" fill="#E8A33D" fill-opacity="0.15"/>
+<line x1="60" y1="597.1312346688471" x2="340.0" y2="597.1312346688471" stroke="#E8A33D" stroke-dasharray="2,3"/>
+<rect x="380.0" y="578.1451349141455" width="240.0" height="37.1518124829654" fill="#4FA876" fill-opacity="0.15"/>
+<line x1="380.0" y1="596.7210411556282" x2="620" y2="596.7210411556282" stroke="#4FA876" stroke-dasharray="2,3"/>
+<line x1="360.0" y1="550" x2="360.0" y2="636" stroke="#343B3D" stroke-dasharray="3,3"/>
+<polyline points="60.0,565.3 100.0,557.2 140.0,595.4 180.0,618.8 220.0,610.2 260.0,597.0 300.0,604.2 340.0,628.8 380.0,577.9 420.0,591.5 460.0,616.9 500.0,626.1 540.0,583.1 580.0,599.8 620.0,581.8" fill="none" stroke="#4FA876" stroke-width="2"/>
 <circle cx="60.0" cy="565.3" r="3" fill="#E8A33D"/>
-<circle cx="103.1" cy="557.2" r="3" fill="#E8A33D"/>
-<circle cx="146.2" cy="595.4" r="3" fill="#E8A33D"/>
-<circle cx="189.2" cy="618.8" r="3" fill="#E8A33D"/>
-<circle cx="232.3" cy="610.2" r="3" fill="#E8A33D"/>
-<circle cx="275.4" cy="597.0" r="3" fill="#E8A33D"/>
-<circle cx="318.5" cy="604.2" r="3" fill="#E8A33D"/>
-<circle cx="361.5" cy="628.8" r="3" fill="#4FA876"/>
-<circle cx="404.6" cy="577.9" r="3" fill="#4FA876"/>
-<circle cx="447.7" cy="591.5" r="3" fill="#4FA876"/>
-<circle cx="490.8" cy="616.9" r="3" fill="#4FA876"/>
-<circle cx="533.8" cy="626.1" r="3" fill="#4FA876"/>
-<circle cx="576.9" cy="583.1" r="3" fill="#4FA876"/>
-<circle cx="620.0" cy="599.8" r="3" fill="#4FA876"/>
+<circle cx="100.0" cy="557.2" r="3" fill="#E8A33D"/>
+<circle cx="140.0" cy="595.4" r="3" fill="#E8A33D"/>
+<circle cx="180.0" cy="618.8" r="3" fill="#E8A33D"/>
+<circle cx="220.0" cy="610.2" r="3" fill="#E8A33D"/>
+<circle cx="260.0" cy="597.0" r="3" fill="#E8A33D"/>
+<circle cx="300.0" cy="604.2" r="3" fill="#E8A33D"/>
+<circle cx="340.0" cy="628.8" r="3" fill="#E8A33D"/>
+<circle cx="380.0" cy="577.9" r="3" fill="#4FA876"/>
+<circle cx="420.0" cy="591.5" r="3" fill="#4FA876"/>
+<circle cx="460.0" cy="616.9" r="3" fill="#4FA876"/>
+<circle cx="500.0" cy="626.1" r="3" fill="#4FA876"/>
+<circle cx="540.0" cy="583.1" r="3" fill="#4FA876"/>
+<circle cx="580.0" cy="599.8" r="3" fill="#4FA876"/>
+<circle cx="620.0" cy="581.8" r="3" fill="#4FA876"/>
 <text x="64.0" y="557.3" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="start">35.56</text>
-<text x="616.0" y="591.8" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">29.66</text>
+<text x="616.0" y="573.8" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="10" fill="#F2EFE9" text-anchor="end">32.74</text>
 </svg>

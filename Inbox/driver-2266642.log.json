@@ -16,6 +16,14 @@
       "warnings": [
         "hours[12] is all-zero with break_flag=false -- could be legitimate zero activity or an unedited/forgotten entry"
       ]
+    },
+    {
+      "date": "2026-07-30",
+      "timestamp": "2026-07-31T11:07:08.385750+00:00",
+      "errors": [],
+      "warnings": [
+        "hours[08] is all-zero with break_flag=false and not confirmed -- could be legitimate zero activity or an unedited/forgotten entry"
+      ]
     }
   ]
 }
