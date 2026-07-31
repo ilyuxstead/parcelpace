@@ -54,7 +54,7 @@ steps:
           git commit -m "chore: automated rollup/chart rebuild [skip ci]"
           mkdir -p ~/.ssh
           eval "$(ssh-agent -s)"
-          ssh-add - <<< "$DEPLOY_SSH_KEY"
+          echo "$DEPLOY_SSH_KEY" | ssh-add -
           ssh-keyscan -H codeberg.org >> ~/.ssh/known_hosts 2>/dev/null
           git push origin HEAD:main
         else
