@@ -104,10 +104,10 @@
       "notes": "",
       "break_flag": false,
       "entry_time": "2026-07-30T10:05:33",
-      "hourly_stops": -6,
-      "hourly_pieces": -11,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
       "hourly_pieces_picked_up": 0,
-      "hourly_miles": -20.6
+      "hourly_miles": 0
     },
     "09": {
       "notes": "Running straight air and I got off the carpet store",
