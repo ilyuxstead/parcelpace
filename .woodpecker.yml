@@ -52,7 +52,9 @@ steps:
 
   - name: commit-and-push
     image: alpine/git
-    secrets: [deploy_ssh_key]
+    environment:
+      DEPLOY_SSH_KEY:
+        from_secret: deploy_ssh_key
     commands:
       - git config user.name "parcelpace-ci"
       - git config user.email "ci@parcelpace.noreply"
@@ -62,9 +64,6 @@ steps:
           git commit -m "chore: automated rollup/chart rebuild [skip ci]"
           mkdir -p ~/.ssh
           eval "$(ssh-agent -s)"
-          echo "$DEPLOY_SSH_KEY" | wc -l
-          echo "$DEPLOY_SSH_KEY" | head -1
-          echo "$DEPLOY_SSH_KEY" | tail -1
           echo "$DEPLOY_SSH_KEY" | ssh-add -
           ssh-keyscan -H codeberg.org >> ~/.ssh/known_hosts 2>/dev/null
           git remote set-url origin git@codeberg.org:parcelpace/parcelpace.git
