@@ -24,6 +24,16 @@
       "warnings": [
         "hours[08] is all-zero with break_flag=false and not confirmed -- could be legitimate zero activity or an unedited/forgotten entry"
       ]
+    },
+    {
+      "date": "2026-07-31",
+      "timestamp": "2026-08-01T10:38:35.894813+00:00",
+      "errors": [],
+      "warnings": [
+        "hours[19].hourly_stops is negative (-28)",
+        "hours[19].hourly_pieces is negative (-50)",
+        "hours[19].hourly_pieces_picked_up is negative (-35)"
+      ]
     }
   ]
 }
