@@ -45,7 +45,7 @@
     "pieces_per_active_hour": 32.74
   },
   "data_quality": {
-    "warning_count": 0,
+    "warning_count": 1,
     "error_count": 0,
     "has_gaps": false,
     "all_zero_hours": [
