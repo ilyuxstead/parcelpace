@@ -152,7 +152,7 @@
     "window_days": 7
   },
   "data_quality": {
-    "total_warnings": 6,
+    "total_warnings": 0,
     "total_errors": 0,
     "days_with_gaps": 1,
     "days_with_irregular_hours": 21,
