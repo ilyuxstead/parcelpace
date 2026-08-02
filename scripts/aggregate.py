@@ -484,6 +484,12 @@ def build_overall_rollup(driver_id, daily_rollups):
         "driver_id": driver_id,
         "days_tracked": days_tracked,
         "date_range": {"first": dates[0], "last": dates[-1]} if dates else None,
+        # Full list of every date this driver has a daily rollup for --
+        # dashboard.html's By Date tab (renderDateList()) reads this
+        # directly to populate the date pill list. date_range above only
+        # gives the first/last endpoints, not the full set, so it isn't a
+        # substitute for this.
+        "dates": dates,
         "totals": {
             "total_stops": total_stops,
             "total_miles": total_miles,
