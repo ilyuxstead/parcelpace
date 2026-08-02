@@ -1,0 +1,39 @@
+{
+  "driver_id": "2266642",
+  "entries": [
+    {
+      "date": "2026-07-13",
+      "timestamp": "2026-07-14T10:01:18.134965+00:00",
+      "errors": [],
+      "warnings": [
+        "hours[08] is all-zero with break_flag=false -- could be legitimate zero activity or an unedited/forgotten entry"
+      ]
+    },
+    {
+      "date": "2026-07-17",
+      "timestamp": "2026-07-18T09:42:25.266135+00:00",
+      "errors": [],
+      "warnings": [
+        "hours[12] is all-zero with break_flag=false -- could be legitimate zero activity or an unedited/forgotten entry"
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "timestamp": "2026-07-31T11:07:08.385750+00:00",
+      "errors": [],
+      "warnings": [
+        "hours[08] is all-zero with break_flag=false and not confirmed -- could be legitimate zero activity or an unedited/forgotten entry"
+      ]
+    },
+    {
+      "date": "2026-07-31",
+      "timestamp": "2026-08-01T10:38:35.894813+00:00",
+      "errors": [],
+      "warnings": [
+        "hours[19].hourly_stops is negative (-28)",
+        "hours[19].hourly_pieces is negative (-50)",
+        "hours[19].hourly_pieces_picked_up is negative (-35)"
+      ]
+    }
+  ]
+}
