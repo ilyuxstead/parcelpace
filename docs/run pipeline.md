@@ -58,8 +58,14 @@ vs. blocked, plus the blocked driver IDs if any exist.
 - All four stages retain their own "full rebuild every run" behavior —
   this orchestrator adds no incremental logic of its own; it's purely
   sequencing.
-- If Woodpecker CI is wired up later (see the project README's
-  "Automation" section), the CI job would call this same `run()`
-  entry point rather than reimplementing the chain — that's the whole
-  reason this file exists as a single callable function rather than
-  just four `python x.py` lines in a shell script.
+- Woodpecker CI (see the project README's "Automation" section) now
+  calls this same entry point rather than reimplementing the chain —
+  that's the whole reason this file exists as a single callable
+  function rather than just four `python x.py` lines in a shell
+  script. Concretely, the `run-pipeline` step in `.woodpecker.yml`
+  invokes the CLI wrapper (`python scripts/run_pipeline.py`), which
+  calls `run()` and exits `1` on any blocked driver — that exit code
+  is deliberately *not* allowed to fail the Woodpecker step itself
+  (`failure: ignore`), so the downstream `commit-and-push` step still
+  runs; a separate `report-blocked` step is what actually surfaces a
+  non-zero exit as a red build.
