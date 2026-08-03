@@ -46,25 +46,36 @@ presence of `plan` and `hours` keys.
   This is stricter than a missing plan: once a plan exists, a usable
   route code is non-negotiable because `aggregate.py`'s per-route
   trending has nothing to group on otherwise.
-- `predicted_finish` — required key, but its *value* may be `null`
-  (warning) or a `"HH:MM"` string (fine). Anything else is an error.
-- `planned_miles == 0` → warning, not an error. Zero miles planned is
-  unusual but not necessarily wrong (e.g. a route that's pure stops
-  with no driving segment isn't something this script can rule out).
+- `predicted_finish` — required key. Its value must be a `"HH:MM"`
+  string; a `null` value, or anything else that isn't a valid
+  `"HH:MM"` string, is a **hard error**. This used to be warning-only
+  when `null`, but a predicted finish is never actually optional — the
+  block itself, and the resulting log entry, now serve as evidence of
+  the unfilled field for a human to review.
+- `planned_miles == 0` → **hard error**, same reasoning as
+  `predicted_finish`: zero planned miles is never a legitimate value,
+  so it's tightened rather than left as a warning.
 
 **`hours` block** (`_validate_hour_entry`, once per hour key):
 - Hour keys must match `^([01]\d|2[0-3])$` (i.e. `"00"`–`"23"`).
 - Each hour entry requires `hourly_stops`, `hourly_miles`,
   `hourly_pieces`, `hourly_pieces_picked_up`, `entry_time` (typed and
-  present), plus `notes` (string) and `break_flag` (bool) if present.
-- Negative deltas on any of the four numeric fields → warning, not an
-  error, matching the web tool's own red-highlight-but-don't-block
-  behavior for the same fields.
-- All four numeric fields are zero **and** `break_flag` is `false` →
-  warning. This is the one case the code can't fully resolve on its
-  own: it's indistinguishable from a legitimate zero-activity hour
-  without a break flag set. See the open design question in the
-  project README.
+  present), plus `notes` (string), `break_flag` (bool), and
+  `confirmed_zero` (bool) if present.
+- Negative deltas on any of the four numeric fields (including
+  `hourly_miles`, now that it's computed from a cumulative trip-meter
+  reading the same way as the others) → warning, not an error,
+  matching the web tool's own red-highlight-but-don't-block behavior
+  for the same fields.
+- All four numeric fields are zero **and** `break_flag` is `false`
+  **and** `confirmed_zero` is not `true` → warning. The web tool now
+  prompts the driver to explicitly confirm a genuine all-zero hour at
+  save time (see `index.html`'s save flow), so this warning only fires
+  on an hour that's genuinely unconfirmed — either the driver didn't
+  confirm it, or the data predates the `confirmed_zero` field
+  entirely, in which case it's treated as unconfirmed by default (same
+  backfill-free pattern as the active-hour elapsed-time derivation in
+  `aggregate.py`).
 
 ## Design notes worth knowing
 
