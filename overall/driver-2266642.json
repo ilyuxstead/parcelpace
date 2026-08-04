@@ -1,9 +1,9 @@
 {
   "driver_id": "2266642",
-  "days_tracked": 24,
+  "days_tracked": 25,
   "date_range": {
     "first": "2026-06-27",
-    "last": "2026-08-01"
+    "last": "2026-08-03"
   },
   "dates": [
     "2026-06-27",
@@ -29,28 +29,29 @@
     "2026-07-29",
     "2026-07-30",
     "2026-07-31",
-    "2026-08-01"
+    "2026-08-01",
+    "2026-08-03"
   ],
   "totals": {
-    "total_stops": 3358,
-    "total_miles": 2151.0,
-    "total_pieces": 6657,
-    "total_pieces_picked_up": 9231
+    "total_stops": 3466,
+    "total_miles": 2262.5,
+    "total_pieces": 6927,
+    "total_pieces_picked_up": 10610
   },
   "averages": {
-    "stops_per_day": 139.92,
-    "pieces_per_day": 277.38,
-    "stops_per_mile": 1.64,
-    "pieces_per_mile": 3.24,
-    "stops_per_active_hour": 14.52,
-    "pieces_per_active_hour": 28.37,
-    "finish_time_delta_minutes": -23.38
+    "stops_per_day": 138.64,
+    "pieces_per_day": 277.08,
+    "stops_per_mile": 1.61,
+    "pieces_per_mile": 3.21,
+    "stops_per_active_hour": 14.32,
+    "pieces_per_active_hour": 28.2,
+    "finish_time_delta_minutes": -24.68
   },
   "consistency": {
     "stops_per_mile_stddev": 0.53,
-    "pieces_per_mile_stddev": 1.18,
-    "stops_per_active_hour_stddev": 2.14,
-    "pieces_per_active_hour_stddev": 5.3
+    "pieces_per_mile_stddev": 1.17,
+    "stops_per_active_hour_stddev": 2.3,
+    "pieces_per_active_hour_stddev": 5.25
   },
   "trend": {
     "by_route": {
@@ -95,24 +96,24 @@
         "pieces_per_active_hour_prior_stddev": null
       },
       "17C": {
-        "days_tracked": 16,
+        "days_tracked": 17,
         "window_days": 7,
-        "stops_per_mile_recent_avg": 1.55,
-        "stops_per_mile_prior_avg": 1.97,
-        "stops_per_mile_recent_stddev": 0.31,
-        "stops_per_mile_prior_stddev": 0.41,
-        "pieces_per_mile_recent_avg": 3.32,
-        "pieces_per_mile_prior_avg": 3.91,
-        "pieces_per_mile_recent_stddev": 0.48,
-        "pieces_per_mile_prior_stddev": 1.08,
-        "stops_per_active_hour_recent_avg": 13.62,
-        "stops_per_active_hour_prior_avg": 15.46,
-        "stops_per_active_hour_recent_stddev": 2.29,
-        "stops_per_active_hour_prior_stddev": 1.06,
-        "pieces_per_active_hour_recent_avg": 29.27,
-        "pieces_per_active_hour_prior_avg": 30.49,
-        "pieces_per_active_hour_recent_stddev": 3.01,
-        "pieces_per_active_hour_prior_stddev": 4.11
+        "stops_per_mile_recent_avg": 1.45,
+        "stops_per_mile_prior_avg": 1.94,
+        "stops_per_mile_recent_stddev": 0.38,
+        "stops_per_mile_prior_stddev": 0.4,
+        "pieces_per_mile_recent_avg": 3.18,
+        "pieces_per_mile_prior_avg": 3.86,
+        "pieces_per_mile_recent_stddev": 0.58,
+        "pieces_per_mile_prior_stddev": 1.03,
+        "stops_per_active_hour_recent_avg": 12.89,
+        "stops_per_active_hour_prior_avg": 15.4,
+        "stops_per_active_hour_recent_stddev": 2.64,
+        "stops_per_active_hour_prior_stddev": 1.03,
+        "pieces_per_active_hour_recent_avg": 28.29,
+        "pieces_per_active_hour_prior_avg": 30.55,
+        "pieces_per_active_hour_recent_stddev": 3.41,
+        "pieces_per_active_hour_prior_stddev": 3.88
       },
       "20A": {
         "days_tracked": 1,
@@ -181,7 +182,7 @@
     "total_warnings": 6,
     "total_errors": 0,
     "days_with_gaps": 1,
-    "days_with_irregular_hours": 22,
+    "days_with_irregular_hours": 23,
     "days_with_unconfirmed_zero_hours": 3
   }
 }
