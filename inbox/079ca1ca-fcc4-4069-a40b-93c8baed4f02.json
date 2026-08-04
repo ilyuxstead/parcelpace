@@ -1,0 +1,123 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-08-03",
+  "plan": {
+    "entry_time": "2026-08-03T08:33:47",
+    "route_id": "17C",
+    "planned_stops": 108,
+    "planned_miles": 127.1,
+    "planned_pieces": 264,
+    "predicted_finish": "20:37"
+  },
+  "hours": {
+    "10": {
+      "notes": "Dykeman Road and the pumping company got very close with their air, +/ -15 seconds",
+      "break_flag": false,
+      "entry_time": "2026-08-03T11:08:51",
+      "hourly_stops": 17,
+      "hourly_pieces": 108,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 14.7
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-03T12:12:15",
+      "hourly_stops": 12,
+      "hourly_pieces": 70,
+      "hourly_pieces_picked_up": 3,
+      "hourly_miles": 4.6
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-03T13:02:15",
+      "hourly_stops": 14,
+      "hourly_pieces": 27,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 5.4
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-03T14:00:13",
+      "hourly_stops": 18,
+      "hourly_pieces": 22,
+      "hourly_pieces_picked_up": 22,
+      "hourly_miles": 6.8
+    },
+    "14": {
+      "notes": "Took a lunch this hour. 1445-1515. Almost done stops. Just need to bang out Deerfield commons. Then nothing but pick ups",
+      "break_flag": false,
+      "entry_time": "2026-08-03T15:14:25",
+      "hourly_stops": 13,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 5.3
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-03T16:30:49",
+      "hourly_stops": 16,
+      "hourly_pieces": 9,
+      "hourly_pieces_picked_up": 98,
+      "hourly_miles": 14
+    },
+    "16": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-03T17:30:52",
+      "hourly_stops": 4,
+      "hourly_pieces": 1,
+      "hourly_pieces_picked_up": 1119,
+      "hourly_miles": 2.4
+    },
+    "17": {
+      "notes": "I met Marty down at the truck Mart letterbox to get all his pick up pieces and take off the Grove Edison, Ashton Neighbourhood.",
+      "break_flag": false,
+      "entry_time": "2026-08-03T18:33:10",
+      "hourly_stops": 7,
+      "hourly_pieces": 4,
+      "hourly_pieces_picked_up": 26,
+      "hourly_miles": 12.8
+    },
+    "18": {
+      "notes": "You can’t make this stuff up. They set me up to 50 fish hatchery, right past the Weaver tractor pick up. I made a full meeting Marty way on the other side of Shippensburg. Wouldn’t have been that bad if I would’ve gotten it while I was still delivering his neighborhoods, but I already made the whole back on the King Street only to be sent back up.",
+      "break_flag": false,
+      "entry_time": "2026-08-03T19:16:05",
+      "hourly_stops": 7,
+      "hourly_pieces": 6,
+      "hourly_pieces_picked_up": 109,
+      "hourly_miles": 9.9
+    },
+    "19": {
+      "notes": "IN building final mileage",
+      "break_flag": false,
+      "entry_time": "2026-08-03T19:41:51",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 17
+    },
+    "08": {
+      "notes": "Running straight air.",
+      "break_flag": false,
+      "entry_time": "2026-08-03T09:22:48",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 18.6
+    },
+    "09": {
+      "notes": "We were pushing so hard to get that 1030 air off. We forgot to log this hour.  The next hour will be double accumulated.",
+      "break_flag": false,
+      "entry_time": "2026-08-03T11:07:20",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    }
+  }
+}
