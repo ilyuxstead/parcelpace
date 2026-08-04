@@ -1,0 +1,104 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-08-04",
+  "plan": {
+    "entry_time": "2026-08-04T09:05:57",
+    "route_id": "17C",
+    "planned_stops": 157,
+    "planned_miles": 77.5,
+    "planned_pieces": 307,
+    "predicted_finish": "18:40"
+  },
+  "hours": {
+    "10": {
+      "notes": "Post office off",
+      "break_flag": false,
+      "entry_time": "2026-08-04T11:15:09",
+      "hourly_stops": 3,
+      "hourly_pieces": 98,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 2.3
+    },
+    "11": {
+      "notes": "Took lunch 1136 - 1206",
+      "break_flag": false,
+      "entry_time": "2026-08-04T12:04:05",
+      "hourly_stops": 4,
+      "hourly_pieces": 36,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 1.5
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-04T13:07:17",
+      "hourly_stops": 22,
+      "hourly_pieces": 30,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 5.9
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-04T14:01:59",
+      "hourly_stops": 23,
+      "hourly_pieces": 33,
+      "hourly_pieces_picked_up": 8,
+      "hourly_miles": 5.3
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-04T15:11:57",
+      "hourly_stops": 26,
+      "hourly_pieces": 29,
+      "hourly_pieces_picked_up": 2,
+      "hourly_miles": 5.4
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-04T16:15:50",
+      "hourly_stops": 16,
+      "hourly_pieces": 19,
+      "hourly_pieces_picked_up": 16,
+      "hourly_miles": 9.6
+    },
+    "16": {
+      "notes": "Got the UPS store picked up",
+      "break_flag": false,
+      "entry_time": "2026-08-04T17:04:28",
+      "hourly_stops": 8,
+      "hourly_pieces": 8,
+      "hourly_pieces_picked_up": 454,
+      "hourly_miles": 3.2
+    },
+    "17": {
+      "notes": "All deliveries done, heading to power equipment",
+      "break_flag": false,
+      "entry_time": "2026-08-04T18:11:00",
+      "hourly_stops": 21,
+      "hourly_pieces": 26,
+      "hourly_pieces_picked_up": 5,
+      "hourly_miles": 7.5
+    },
+    "18": {
+      "notes": "Back in building air offloaded final mileage",
+      "break_flag": false,
+      "entry_time": "2026-08-04T19:05:09",
+      "hourly_stops": 1,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 39,
+      "hourly_miles": 19.2
+    },
+    "09": {
+      "notes": "All air has been delivered. UPS stores MFL has been delivered as well.  Gonna do central receiving the post office the Dykeman’s then start over by Baltimore Road.",
+      "break_flag": false,
+      "entry_time": "2026-08-04T10:39:26",
+      "hourly_stops": 16,
+      "hourly_pieces": 25,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 23.7
+    }
+  }
+}
