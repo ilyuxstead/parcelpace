@@ -1,0 +1,132 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-08-05",
+  "plan": {
+    "entry_time": "2026-08-05T09:20:53",
+    "route_id": "17C",
+    "planned_stops": 177,
+    "planned_miles": 83.9,
+    "planned_pieces": 338,
+    "predicted_finish": "19:43"
+  },
+  "hours": {
+    "10": {
+      "notes": "The Dykeman’s are done",
+      "break_flag": false,
+      "entry_time": "2026-08-05T11:37:44",
+      "hourly_stops": 7,
+      "hourly_pieces": 125,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 3
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-05T12:26:21",
+      "hourly_stops": 14,
+      "hourly_pieces": 17,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.5
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-05T13:01:53",
+      "hourly_stops": 13,
+      "hourly_pieces": 13,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 2.7
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-05T14:05:24",
+      "hourly_stops": 22,
+      "hourly_pieces": 33,
+      "hourly_pieces_picked_up": 3,
+      "hourly_miles": 5.3
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-05T15:02:13",
+      "hourly_stops": 25,
+      "hourly_pieces": 37,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.4
+    },
+    "15": {
+      "notes": "Will drop the ball pushing super hard",
+      "break_flag": false,
+      "entry_time": "2026-08-05T17:23:14",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "16": {
+      "notes": "Got the UPS store picked up 35 to go",
+      "break_flag": false,
+      "entry_time": "2026-08-05T17:24:10",
+      "hourly_stops": 37,
+      "hourly_pieces": 36,
+      "hourly_pieces_picked_up": 461,
+      "hourly_miles": 14.1
+    },
+    "17": {
+      "notes": "Just came down and met Marty pretty far off area taking 10 stops off him",
+      "break_flag": false,
+      "entry_time": "2026-08-05T18:10:48",
+      "hourly_stops": 6,
+      "hourly_pieces": 8,
+      "hourly_pieces_picked_up": 5,
+      "hourly_miles": 8.9
+    },
+    "18": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-05T19:01:56",
+      "hourly_stops": 10,
+      "hourly_pieces": 12,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 10.7
+    },
+    "19": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-05T20:14:40",
+      "hourly_stops": 24,
+      "hourly_pieces": 24,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 9
+    },
+    "20": {
+      "notes": "Took my lunch and 10 minute break",
+      "break_flag": false,
+      "entry_time": "2026-08-05T21:06:12",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 11
+    },
+    "21": {
+      "notes": "Back in building final Mileage",
+      "break_flag": false,
+      "entry_time": "2026-08-05T21:39:10",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 17
+    },
+    "09": {
+      "notes": "All air delivered except for a N. Moore St.  UPS store bookstore central receiving taken care of.",
+      "break_flag": false,
+      "entry_time": "2026-08-05T10:47:21",
+      "hourly_stops": 12,
+      "hourly_pieces": 45,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 24.4
+    }
+  }
+}
