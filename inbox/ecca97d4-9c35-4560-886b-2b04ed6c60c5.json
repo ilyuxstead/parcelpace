@@ -1,0 +1,131 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-08-06",
+  "plan": {
+    "entry_time": "2026-08-06T09:11:37",
+    "route_id": "17C",
+    "planned_stops": 165,
+    "planned_miles": 82.3,
+    "planned_pieces": 332,
+    "predicted_finish": "19:09"
+  },
+  "hours": {
+    "10": {
+      "notes": "Got the Dykeman’s done. We got a big stop at 301 Lurgan elementary school.  Thank goodness that’s coming off when I go up there to do the 12 o’clock airs now.",
+      "break_flag": false,
+      "entry_time": "2026-08-06T11:23:07",
+      "hourly_stops": 7,
+      "hourly_pieces": 126,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.4
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-06T12:09:04",
+      "hourly_stops": 13,
+      "hourly_pieces": 14,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 3.8
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-06T13:01:07",
+      "hourly_stops": 13,
+      "hourly_pieces": 38,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4.2
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-06T14:00:37",
+      "hourly_stops": 15,
+      "hourly_pieces": 31,
+      "hourly_pieces_picked_up": 9,
+      "hourly_miles": 4.7
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-06T15:11:50",
+      "hourly_stops": 32,
+      "hourly_pieces": 36,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 6.6
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-06T16:16:34",
+      "hourly_stops": 17,
+      "hourly_pieces": 20,
+      "hourly_pieces_picked_up": 23,
+      "hourly_miles": 9.6
+    },
+    "16": {
+      "notes": "UPS store picked up",
+      "break_flag": false,
+      "entry_time": "2026-08-06T17:24:15",
+      "hourly_stops": 15,
+      "hourly_pieces": 12,
+      "hourly_pieces_picked_up": 417,
+      "hourly_miles": 2.4
+    },
+    "17": {
+      "notes": "Had to get millers pu at dg on orstown rd. Then maus pu way down at middle ridge rd. When I get back to bldg, will have to come back out and finish martys route.",
+      "break_flag": false,
+      "entry_time": "2026-08-06T18:53:36",
+      "hourly_stops": 22,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 5,
+      "hourly_miles": 17.1
+    },
+    "18": {
+      "notes": "Back in building",
+      "break_flag": false,
+      "entry_time": "2026-08-06T19:32:47",
+      "hourly_stops": 6,
+      "hourly_pieces": 5,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 19.8
+    },
+    "19": {
+      "notes": "On Marty’s area cleaning up 11 stops",
+      "break_flag": false,
+      "entry_time": "2026-08-06T20:36:10",
+      "hourly_stops": 2,
+      "hourly_pieces": 1,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 21.9
+    },
+    "20": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-06T21:00:07",
+      "hourly_stops": 7,
+      "hourly_pieces": 7,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 4
+    },
+    "21": {
+      "notes": "Back in building final mileage",
+      "break_flag": false,
+      "entry_time": "2026-08-06T21:36:51",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 26
+    },
+    "09": {
+      "notes": "Running straight air with ground mixed in at the air stops. Only have the Dykeman’s left 12 o’clock on Austin.",
+      "break_flag": false,
+      "entry_time": "2026-08-06T10:15:33",
+      "hourly_stops": 5,
+      "hourly_pieces": 28,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 20.5
+    }
+  }
+}
