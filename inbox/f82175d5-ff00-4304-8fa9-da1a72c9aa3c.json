@@ -1,0 +1,114 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-08-07",
+  "plan": {
+    "entry_time": "2026-08-07T09:15:20",
+    "route_id": "17C",
+    "planned_stops": 161,
+    "planned_miles": 96.4,
+    "planned_pieces": 347,
+    "predicted_finish": "19:45"
+  },
+  "hours": {
+    "10": {
+      "notes": "Our early a.m. and 1230s committed done. Doing the UPS store now RL’s Dykeman and then I gotta start doing the 12 o’clock.",
+      "break_flag": false,
+      "entry_time": "2026-08-07T11:09:47",
+      "hourly_stops": 8,
+      "hourly_pieces": 76,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 26.7
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-07T12:22:47",
+      "hourly_stops": 21,
+      "hourly_pieces": 54,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 9.8
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-07T13:37:04",
+      "hourly_stops": 13,
+      "hourly_pieces": 103,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 7.8
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-07T14:13:32",
+      "hourly_stops": 10,
+      "hourly_pieces": 10,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 3.2
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-07T15:21:55",
+      "hourly_stops": 23,
+      "hourly_pieces": 25,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 8.7
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-07T16:24:09",
+      "hourly_stops": 20,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 17,
+      "hourly_miles": 8.4
+    },
+    "16": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-07T17:29:50",
+      "hourly_stops": 11,
+      "hourly_pieces": 6,
+      "hourly_pieces_picked_up": 418,
+      "hourly_miles": 4.8
+    },
+    "17": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-07T18:02:33",
+      "hourly_stops": 13,
+      "hourly_pieces": 13,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 3.2
+    },
+    "18": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-07T19:01:26",
+      "hourly_stops": 21,
+      "hourly_pieces": 23,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 5
+    },
+    "19": {
+      "notes": "Back in building final mileage",
+      "break_flag": false,
+      "entry_time": "2026-08-07T19:45:10",
+      "hourly_stops": 5,
+      "hourly_pieces": 5,
+      "hourly_pieces_picked_up": 24,
+      "hourly_miles": 19.1
+    },
+    "09": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-07T11:09:00",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    }
+  }
+}
