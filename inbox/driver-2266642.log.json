@@ -34,6 +34,17 @@
         "hours[19].hourly_pieces is negative (-50)",
         "hours[19].hourly_pieces_picked_up is negative (-35)"
       ]
+    },
+    {
+      "date": "2026-08-11",
+      "timestamp": "2026-08-12T03:01:27.497627+00:00",
+      "errors": [],
+      "warnings": [
+        "hours[14].hourly_stops is negative (-32)",
+        "hours[14].hourly_pieces is negative (-51)",
+        "hours[14].hourly_pieces_picked_up is negative (-1)",
+        "hours[14].hourly_miles is negative (-9.1)"
+      ]
     }
   ]
 }
