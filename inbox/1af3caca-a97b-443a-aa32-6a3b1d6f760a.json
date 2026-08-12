@@ -1,0 +1,97 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-08-11",
+  "plan": {
+    "entry_time": "2026-08-11T09:19:08",
+    "route_id": "17C",
+    "planned_stops": 176,
+    "planned_miles": 91.1,
+    "planned_pieces": 366,
+    "predicted_finish": "19:58"
+  },
+  "hours": {
+    "10": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-11T11:14:57",
+      "hourly_stops": 8,
+      "hourly_pieces": 138,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 5.1
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-11T12:40:04",
+      "hourly_stops": 26,
+      "hourly_pieces": 53,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 6.2
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-11T14:08:10",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-11T14:08:33",
+      "hourly_stops": 32,
+      "hourly_pieces": 51,
+      "hourly_pieces_picked_up": 1,
+      "hourly_miles": 9.1
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-11T17:32:23",
+      "hourly_stops": -32,
+      "hourly_pieces": -51,
+      "hourly_pieces_picked_up": -1,
+      "hourly_miles": -9.1
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-11T17:32:27",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "16": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-11T17:33:22",
+      "hourly_stops": 89,
+      "hourly_pieces": 112,
+      "hourly_pieces_picked_up": 546,
+      "hourly_miles": 27.7
+    },
+    "17": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-11T21:17:20",
+      "hourly_stops": 51,
+      "hourly_pieces": 59,
+      "hourly_pieces_picked_up": 4,
+      "hourly_miles": 31.8
+    },
+    "09": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-11T10:02:03",
+      "hourly_stops": 3,
+      "hourly_pieces": 3,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 21.1
+    }
+  }
+}
