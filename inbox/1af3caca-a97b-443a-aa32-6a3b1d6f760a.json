@@ -78,7 +78,27 @@
     "17": {
       "notes": "",
       "break_flag": false,
-      "entry_time": "2026-08-11T21:17:20",
+      "entry_time": "2026-08-11T17:00:27",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "18": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-11T18:00:27",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "19": {
+      "notes": "back in building. final mileage",
+      "break_flag": false,
+      "entry_time": "2026-08-11T19:47:27",
       "hourly_stops": 51,
       "hourly_pieces": 59,
       "hourly_pieces_picked_up": 4,
