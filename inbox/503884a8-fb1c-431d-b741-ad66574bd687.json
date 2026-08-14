@@ -1,0 +1,117 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-08-13",
+  "plan": {
+    "entry_time": "2026-08-13T09:08:22",
+    "route_id": "17C",
+    "planned_stops": 169,
+    "planned_miles": 88.7,
+    "planned_pieces": 338,
+    "predicted_finish": "19:42"
+  },
+  "hours": {
+    "10": {
+      "notes": "Never logged. Delivered bulk",
+      "break_flag": false,
+      "entry_time": "2026-08-13T12:05:13",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "11": {
+      "notes": "Total cumulative so far.",
+      "break_flag": false,
+      "entry_time": "2026-08-13T12:05:54",
+      "hourly_stops": 24,
+      "hourly_pieces": 158,
+      "hourly_pieces_picked_up": 2,
+      "hourly_miles": 30.5
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-13T13:28:47",
+      "hourly_stops": 30,
+      "hourly_pieces": 49,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 7.4
+    },
+    "13": {
+      "notes": "Pushing ridiculously hard. Not submitted.",
+      "break_flag": false,
+      "entry_time": "2026-08-13T16:14:26",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "14": {
+      "notes": "Still pushing ridiculously hard.",
+      "break_flag": false,
+      "entry_time": "2026-08-13T16:14:38",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "15": {
+      "notes": "Still pushing trying to get the last couple bulks off before pick ups",
+      "break_flag": false,
+      "entry_time": "2026-08-13T16:15:16",
+      "hourly_stops": 113,
+      "hourly_pieces": 292,
+      "hourly_pieces_picked_up": 25,
+      "hourly_miles": 59.7
+    },
+    "16": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-13T17:10:25",
+      "hourly_stops": 9,
+      "hourly_pieces": 5,
+      "hourly_pieces_picked_up": 411,
+      "hourly_miles": 3.2
+    },
+    "17": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-13T18:01:55",
+      "hourly_stops": 17,
+      "hourly_pieces": 17,
+      "hourly_pieces_picked_up": 5,
+      "hourly_miles": 6.2
+    },
+    "18": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-13T19:05:27",
+      "hourly_stops": 163,
+      "hourly_pieces": 340,
+      "hourly_pieces_picked_up": 442,
+      "hourly_miles": 76.6
+    },
+    "19": {
+      "notes": "Back in building. Final mileage",
+      "break_flag": false,
+      "entry_time": "2026-08-13T19:35:49",
+      "hourly_stops": 1,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 19,
+      "hourly_miles": 18.2
+    },
+    "09": {
+      "notes": "Ran Straight air never logged",
+      "break_flag": false,
+      "entry_time": "2026-08-13T12:04:54",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    }
+  }
+}
