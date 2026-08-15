@@ -1,0 +1,117 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-08-14",
+  "plan": {
+    "entry_time": "2026-08-14T09:04:33",
+    "route_id": "17C",
+    "planned_stops": 155,
+    "planned_miles": 81.5,
+    "planned_pieces": 301,
+    "predicted_finish": "18:48"
+  },
+  "hours": {
+    "09": {
+      "notes": "Running straight air",
+      "break_flag": false,
+      "entry_time": "2026-08-14T10:10:24",
+      "hourly_stops": 4,
+      "hourly_pieces": 4,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 20.0
+    },
+    "10": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-14T11:10:02",
+      "hourly_stops": 5,
+      "hourly_pieces": 108,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 3.1
+    },
+    "11": {
+      "notes": "Not logged",
+      "break_flag": false,
+      "entry_time": "2026-08-14T13:24:25",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "12": {
+      "notes": "Corrected from raw 58/209/5/33: pre-confirmed_zero-fix baseline bug reset lastreading to 0 after hour 11's confirmed zero, so the original entry captured the full cumulative-to-date reading instead of a true delta. True delta = raw minus cumulative through hour 10 (9 stops / 112 pieces / 0 pu / 23.1 mi).",
+      "break_flag": false,
+      "entry_time": "2026-08-14T13:25:16",
+      "hourly_stops": 49,
+      "hourly_pieces": 97,
+      "hourly_pieces_picked_up": 5,
+      "hourly_miles": 9.9
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-14T14:06:47",
+      "hourly_stops": 13,
+      "hourly_pieces": 13,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 3.9
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-14T17:14:41",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-14T17:14:44",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "16": {
+      "notes": "Corrected from raw 117/269/462/54.1: same baseline-reset bug fired again after hours 14 and 15's confirmed zeros. True delta = raw minus cumulative through hour 13 (71 stops / 222 pieces / 5 pu / 36.9 mi).",
+      "break_flag": false,
+      "entry_time": "2026-08-14T17:14:59",
+      "hourly_stops": 46,
+      "hourly_pieces": 47,
+      "hourly_pieces_picked_up": 457,
+      "hourly_miles": 17.2
+    },
+    "17": {
+      "notes": "Not recorded",
+      "break_flag": false,
+      "entry_time": "2026-08-14T18:50:58",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "18": {
+      "notes": "Corrected from raw 141/296/498/66.9: same baseline-reset bug fired again after hour 17's confirmed zero. True delta = raw minus cumulative through hour 16 (117 stops / 269 pieces / 462 pu / 54.1 mi).",
+      "break_flag": false,
+      "entry_time": "2026-08-14T18:51:27",
+      "hourly_stops": 24,
+      "hourly_pieces": 27,
+      "hourly_pieces_picked_up": 36,
+      "hourly_miles": 12.8
+    },
+    "19": {
+      "notes": "Back in building. Final mileage",
+      "break_flag": false,
+      "entry_time": "2026-08-14T19:11:57",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 16.9
+    }
+  }
+}
