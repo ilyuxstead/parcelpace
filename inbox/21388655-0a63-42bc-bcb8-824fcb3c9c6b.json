@@ -1,0 +1,106 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-08-17",
+  "plan": {
+    "entry_time": "2026-08-17T08:40:51",
+    "route_id": "16B",
+    "planned_stops": 103,
+    "planned_miles": 161.4,
+    "planned_pieces": 218,
+    "predicted_finish": "18:21"
+  },
+  "hours": {
+    "10": {
+      "notes": "Little late. One air left. Cleaning up Airport Road and the parts of Walnut bottom that are part of 17 C before going out into the country. I’m not familiar with.  79 total to go.",
+      "break_flag": false,
+      "entry_time": "2026-08-17T11:31:06",
+      "hourly_stops": 19,
+      "hourly_pieces": 44,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 13.2
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-17T12:34:31",
+      "hourly_stops": 15,
+      "hourly_pieces": 22,
+      "hourly_pieces_picked_up": 4,
+      "hourly_miles": 15.1
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-17T14:07:06",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-17T14:10:25",
+      "hourly_stops": 22,
+      "hourly_pieces": 26,
+      "hourly_pieces_picked_up": 18,
+      "hourly_miles": 22.3
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-17T15:31:33",
+      "hourly_stops": 17,
+      "hourly_pieces": 20,
+      "hourly_pieces_picked_up": 9,
+      "hourly_miles": 32.7
+    },
+    "15": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-17T17:37:31",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "16": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-17T17:37:56",
+      "hourly_stops": 17,
+      "hourly_pieces": 22,
+      "hourly_pieces_picked_up": 40,
+      "hourly_miles": 41.2
+    },
+    "17": {
+      "notes": "Final mileage. Back in building.",
+      "break_flag": false,
+      "entry_time": "2026-08-17T18:14:14",
+      "hourly_stops": 3,
+      "hourly_pieces": 2,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 17.4
+    },
+    "18": {
+      "notes": "Adding make up mileage for not resetting trip right out of the building",
+      "break_flag": false,
+      "entry_time": "2026-08-17T18:22:42",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 3.2
+    },
+    "09": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-17T10:15:34",
+      "hourly_stops": 6,
+      "hourly_pieces": 80,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 21.9
+    }
+  }
+}
