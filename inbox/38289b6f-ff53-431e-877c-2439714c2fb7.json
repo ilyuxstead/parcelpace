@@ -1,0 +1,119 @@
+{
+  "driver_id": "2266642",
+  "date": "2026-08-20",
+  "plan": {
+    "entry_time": "2026-08-20T09:18:23",
+    "route_id": "19E",
+    "planned_stops": 184,
+    "planned_miles": 75.7,
+    "planned_pieces": 276,
+    "predicted_finish": "19:19"
+  },
+  "hours": {
+    "10": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-20T11:12:52",
+      "hourly_stops": 21,
+      "hourly_pieces": 82,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 20.8
+    },
+    "11": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-20T16:07:01",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "12": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-20T16:07:03",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "13": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-20T16:07:06",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "14": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-20T16:07:09",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "15": {
+      "notes": "Been lazy this afternoon",
+      "break_flag": false,
+      "entry_time": "2026-08-20T16:07:39",
+      "hourly_stops": 85,
+      "hourly_pieces": 100,
+      "hourly_pieces_picked_up": 35,
+      "hourly_miles": 31.9
+    },
+    "16": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-20T18:06:40",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    },
+    "17": {
+      "notes": "",
+      "break_flag": false,
+      "entry_time": "2026-08-20T18:07:19",
+      "hourly_stops": 52,
+      "hourly_pieces": 63,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 10.5
+    },
+    "18": {
+      "notes": "Last stop complete. Heading to bumble bee hollow to get another guys pieces.",
+      "break_flag": false,
+      "entry_time": "2026-08-20T18:58:51",
+      "hourly_stops": 23,
+      "hourly_pieces": 31,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 5
+    },
+    "19": {
+      "notes": "Back in building. Final mileage. 5.5 miles down to meet the driver. 3 extra miles back to building. Subtract about 9 miles to get route mileage without helping",
+      "break_flag": false,
+      "entry_time": "2026-08-20T19:46:09",
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 21.8
+    },
+    "09": {
+      "notes": "Hustled doing both air and bulk ground",
+      "break_flag": false,
+      "entry_time": "2026-08-20T10:56:00",
+      "confirmed_zero": true,
+      "hourly_stops": 0,
+      "hourly_pieces": 0,
+      "hourly_pieces_picked_up": 0,
+      "hourly_miles": 0
+    }
+  }
+}
